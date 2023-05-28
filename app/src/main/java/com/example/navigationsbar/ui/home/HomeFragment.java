@@ -38,7 +38,6 @@ public class HomeFragment extends Fragment {
                 T1.setText("Working");
             }
         });
-
         return root;
     }
 
