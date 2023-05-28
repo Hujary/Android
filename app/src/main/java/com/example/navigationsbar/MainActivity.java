@@ -1,8 +1,11 @@
 package com.example.navigationsbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.navigationsbar.ui.home.HomeFragment;
+import com.example.navigationsbar.ui.question.QuestionActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,10 +24,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-        //getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        //getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this,R.color.white));
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
