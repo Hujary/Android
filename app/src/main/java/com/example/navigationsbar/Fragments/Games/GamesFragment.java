@@ -31,16 +31,15 @@ public class GamesFragment extends Fragment {
     private Resources resources;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        GamesViewModel dashboardViewModel = new ViewModelProvider(this).get(GamesViewModel.class);
         binding = FragmentGamesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         resources = getResources(); // Get the resources object
 
         try {
-            // Here, the method to create articles is called
+                // Here, the method to create articles is called
             recyclerView = root.findViewById(R.id.articleRecyclerView);
-            recyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false));
+            recyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
             ArticleCreator articleCreator = new ArticleCreator(resources);
             List<Article> articles = articleCreator.createArticles();
             articleAdapter = new ArticleAdapter(articles);
@@ -48,15 +47,6 @@ public class GamesFragment extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        Button buttonGame1 = root.findViewById(R.id.button3);
-        buttonGame1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Games_HoeherTiefer_Activity.class);
-                startActivity(intent);
-            }
-        });
 
         return root;
     }

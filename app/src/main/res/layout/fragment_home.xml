@@ -6,15 +6,142 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.Home.HomeFragment">
 
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="215dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@drawable/container_background_blue"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:text="Höher/Tiefer"
+                    android:textSize="20dp"
+                    android:textColor="@color/white"
+                    android:gravity="center" />
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:textSize="14dp"
+                    android:gravity="center"
+                    android:text="offlinegame ohne Karten"
+                    android:textColor="@color/lightblue1" />
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="match_parent"
+                    android:layout_height="61dp"
+                    android:gravity="center"
+                    android:text="platzhalter"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/button6"
+                    android:layout_width="101dp"
+                    android:layout_height="37dp"
+                    android:background="@drawable/rounded_button_background_small"
+                    android:gravity="center"
+                    android:text="Spielen"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="1"
+            app:cardCornerRadius="8dp">
+
+            <!-- Inhalt der zweiten CardView -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@drawable/container_background_blue"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:text="Busfahrer"
+                    android:textSize="20dp"
+                    android:textColor="@color/white"
+                    android:gravity="center" />
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:textSize="14dp"
+                    android:gravity="center"
+                    android:text="offlinegame ohne Karten"
+                    android:textColor="@color/lightblue1" />
+
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="match_parent"
+                    android:layout_height="61dp"
+                    android:gravity="center"
+                    android:text="platzhalter"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/button15"
+                    android:layout_width="101dp"
+                    android:layout_height="37dp"
+                    android:background="@drawable/rounded_button_background_small"
+                    android:gravity="center"
+                    android:text="Spielen"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="246dp"
-        android:layout_height="79dp"
-        android:layout_marginStart="104dp"
-        android:layout_marginTop="44dp"
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="64dp"
+        android:fontFamily="sans-serif-condensed"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp"
         android:text="Party.Saver"
-        android:textSize="35dp"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textColor="@color/darkgrey"
+        android:textSize="50dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout" />
 
     <TextView
         android:id="@+id/textView3"
@@ -22,18 +149,17 @@
         android:layout_height="133dp"
         android:layout_marginTop="32dp"
         android:text="@string/Home_Start_Game"
+        android:textAlignment="center"
         android:textSize="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        tools:layout_editor_absoluteX="0dp" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="343dp"
         android:layout_height="75dp"
         android:layout_marginStart="37dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="38dp"
         android:background="@drawable/rounded_button_background"
         android:elevation="4dp"

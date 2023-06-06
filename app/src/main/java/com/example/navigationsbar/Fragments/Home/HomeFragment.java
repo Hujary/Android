@@ -16,32 +16,57 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.navigationsbar.Activitys.Games.Games_HoeherTiefer_Activity;
 import com.example.navigationsbar.Activitys.Questions.QuestionOneActivity;
 import com.example.navigationsbar.Artikel.ArticleCreator;
 import com.example.navigationsbar.R;
 import com.example.navigationsbar.Artikel.Article;
 import com.example.navigationsbar.Artikel.ArticleAdapter;
+import android.graphics.Color;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 
 import java.util.List;
 
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
-    private Resources resources;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-            // Objekte erzeugen
+        // Objekte erzeugen
         Button myButton = root.findViewById(R.id.button);
+        TextView textView2 = root.findViewById(R.id.textView2);
+        Button buttonGame1 = root.findViewById(R.id.button6);
 
-        resources = getResources(); // Get the resources object
+        buttonGame1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Games_HoeherTiefer_Activity.class);
+                startActivity(intent);
+            }
+        });
 
-            // Intent für Question View -> Lambda Function
+        // Intent für Question View -> Lambda Function
         Intent intent = new Intent(requireActivity(), QuestionOneActivity.class);
         myButton.setOnClickListener(v -> startActivity(intent));
+
+            // Erstelle den Textinhalt mit dem blauen Punkt
+        String text = "Party.Saver";
+        SpannableString spannableString = new SpannableString(text);
+
+            // Setze die Farbe des Punkts auf blau
+        int dotIndex = text.indexOf(".");
+        if (dotIndex != -1) {
+            int colorLightBlue = getResources().getColor(R.color.lightblueButton);
+            spannableString.setSpan(new ForegroundColorSpan(colorLightBlue), dotIndex, dotIndex + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+            // Setze den formatierten Text im TextView
+        textView2.setText(spannableString);
 
         return root;
     }
