@@ -1,11 +1,9 @@
-package com.example.navigationsbar;
+package com.example.navigationsbar.Activitys;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.navigationsbar.ui.home.HomeFragment;
-import com.example.navigationsbar.ui.question.QuestionActivity;
+import com.example.navigationsbar.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;

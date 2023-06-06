@@ -12,7 +12,7 @@
         android:theme="@style/Theme.NavigationsBar"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".Activitys.MainActivity"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>
@@ -22,7 +22,19 @@
         </activity>
 
         <activity
-            android:name=".ui.question.QuestionActivity" />
+            android:name=".Activitys.QuestionOneActivity" />
+
+        <activity
+            android:name=".Activitys.QuestionTwoActivity" />
+
+        <activity
+            android:name=".Activitys.QuestionThreeActivity" />
+
+        <activity
+            android:name=".Activitys.Games_HoeherTiefer_Activity" />
+
+        <activity
+            android:name=".Activitys.FilteredGamesListActivity" />
 
     </application>
 </manifest>

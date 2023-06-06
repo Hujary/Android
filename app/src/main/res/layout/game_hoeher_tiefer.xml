@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/TextViewVorherigeKarte"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="147dp"
+            android:text="Wird deine nächste Karte Höher oder Tiefer ?"
+            android:textSize="30dp" />
+
+        <ImageView
+            android:id="@+id/imageViewKarten"
+            android:layout_width="match_parent"
+            android:layout_height="342dp"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="&quot;vorherige Karte&quot;"
+            android:textSize="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/ButtonTiefer"
+                android:layout_width="124dp"
+                android:layout_height="wrap_content"
+                android:text="tiefer" />
+
+            <Button
+                android:id="@+id/ButtonGleich"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="GLEICH" />
+
+            <Button
+                android:id="@+id/ButtonHoeher"
+                android:layout_width="139dp"
+                android:layout_height="wrap_content"
+                android:text="Höher" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="66dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:text="aktueller Streak: 0"
+                android:textSize="30dp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/ButtonBack"
+            android:layout_width="99dp"
+            android:layout_height="wrap_content"
+            android:text="beenden" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

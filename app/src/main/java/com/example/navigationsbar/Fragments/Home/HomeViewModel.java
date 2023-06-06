@@ -1,4 +1,4 @@
-package com.example.navigationsbar.ui.home;
+package com.example.navigationsbar.Fragments.Home;
 
 import android.widget.Button;
 

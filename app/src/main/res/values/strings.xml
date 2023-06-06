@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">NavigationsBar</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_games">games</string>
+    <string name="title_settings">settings</string>
+    <string name="Home_Start_Game"> Hier kannst du herausfinden welches Partyspiel zu eurer Gruppe Passt </string>
+    <string name="question_1_wie_viele"> Wie viele Spieler seit ihr ? </string>
+    <string name="question_2_welche_Karten"> Welche Karten habt ihr ? </string>
+    <string name="question_3_fehlen_karten"> fehlen Karten in deinem Set ? </string>
+    <string name="question_4_welche_Karten_fehlen"> welche Karten genau fehlen in deinem Set? </string>
 </resources>

@@ -1,0 +1,132 @@
+{
+  "Spiele": "HigherLower, Crazy8, Durak, Circle, Lügner, HigherLower+",
+  "Game_1": [
+    {
+      "name": "HigherLower",
+      "Regeln": [
+        "Eine Karte wird offen auf den Tisch gelegt. Nun raten die Spieler der Reihe nach, ob die nächste gezogene Karte einen höheren oder niedrigeren Zahlenwert hat.",
+        "Liegt der Spieler richtig, ist der nächst am Zug. Liegt der Spieler falsch, muss er einen Schluck trinken und erneut raten.",
+        "Solange bis er eine Karte richtig errät."
+      ],
+      "Spielerzahl_Min": 2,
+      "Spieleranzahl_Max": 10,
+      "Benötigte Karten": "Nicht relevant",
+      "SpieldauerMin": 1,
+      "SpieldauerMax": 5,
+      "Schwierigkeitsgrad": "medium"
+    }
+  ],
+  "Game_2": [
+    {
+      "name": "Crazy8",
+      "Regeln": [
+        "Jeder Spieler bekommt wahlweise 4 oder 6 Karten. Eine Karte wird zu Beginn offen auf den Tisch gelegt.",
+        "Der Spieler bei dem begonnen wurde auszuteilen beginnt (man darf nicht bei sich selbst starten).",
+        "Nun werden Karten reihum auf den Stapel abgelegt. Zulässig sind das selbe Symbol oder die selbe Zahl.",
+        "Kann ein Spieler nicht legen, so muss er eine Karte ziehen und der nächste ist an der Reihe. Wer als erstes keine Karten mehr auf der Hand hat gewinnt.",
+        "Folgende Zahlen haben besondere Funktionen.",
+        "2 -> 2 Karten ziehen. Diese Karte darf nicht gestapelt werden.",
+        "8 -> Wünsch dir was. Eine 8 darf auf alles gelegt werden außer 2&A. Der Spieler darf sich ein Symbol wünschen",
+        "10 -> Richtungswechsel.",
+        "A -> Are you Strong = Der Spieler greift den nächsten an. Dieser muss ebenfalls mit einem Ass abwehren. Hat der Spieler kein Ass zum abwähren muss er 2 Karten ziehen. Danach ist der nächste an der Reihe.",
+        "Hat der erste Spieler keine Karten mehr auf der Hand wird abgerechnet.",
+        "Jede Karte hat einen Wert. 2-7 & 9,10 haben ihren jewiligen Wert. J,Q,K,A haben den Wert 1. Die 8 hat den Wert 32.",
+        "Der Spieler mit dem höchsten Wert ist raus. Alle Anderen spielen weiter. Das Spiel ist beendet wenn die letzten beiden Spieler das Finale beenden."
+      ],
+      "Spielerzahl_Min": 2,
+      "Spieleranzahl_Max": 6,
+      "Benötigte Karten": "Vollständiges Deck mit 52 Karten ; optional 32 Karten Deck -> 2 wird zu 7",
+      "SpieldauerMin": 5,
+      "SpieldauerMax": 20,
+      "Schwierigkeitsgrad": "easy - kein Trinkspiel"
+    }
+  ],
+  "Game_3": [
+    {
+      "name": "Circle",
+      "Regeln": [
+        "Alle Karten werden in der Mitte des Tisch's verdeckt und kreisförmig ausgelegt, sodass ein Kreis (Donut) entsteht.",
+        "Die Karten sollen sich alle überlappen und keine Freiräume haben. Der erste Spieler beginnt und zieht eine Karte aus dem Circle.",
+        "Je nach Zahl gibt es eine Aufgabe oder ein Spiel. Wenn ein Spieler eine Karte zieht und der Circle unterbrochen wird dh. eine Lücke entsteht, so muss dieser sein Getränk auf ex trinken.",
+        "Alle Zahlen Bedeutungen: ",
+        "2: Trink 2 Schlücke",
+        "3: Kategorie - Nenn eine Kategorie z.B. Automarken. Du beginnst. Jeder muss reihum eine Marke nennen. Der erste der nichts mehr weiß muss trinken",
+        "4: Buddy - Such dir einen Trinkpartner aus. Wenn einer von euch trinkt muss der andere auch trinken. Es kann mehrere Buddys geben",
+        "5: Regel - Erfinde eine Regel. Wer diese bricht muss trinken. Die Regel gilt solange bis jmd eine neue aufstellt",
+        "6: Thumbs - Du kannst diese Karte solange behalten wie du willst. Irgendwann legst du unauffällig deinen Daumen auf den Tisch. Der Spieler der das als letztes auch tut muss trinken",
+        "7: Question Master - Diesem Spieler dürfen keine Fragen mehr beantwortet werden. Tust du es doch musst du trinken. Zieht ein anderer Spieler diese Karte bist du abgelöst",
+        "8: Medusa - Diesem Spieler darf nicht mehr in die Augen geschaut werden. Tust du es doch musst du trinken. Zieht ein anderer Spieler diese Karte bist du abgelöst",
+        "9: Rhyme - Nenne ein Wort auf das alle der Reihe nach nun ein Reim finden müssen. Der erste der nichts mehr weiß muss trinken. Du musst selbst mind ein Reim auf dein Wort finden",
+        "10: Spielt eine Runde Ich packe meinen Koffer. Der Verlierer muss trinken",
+        "J: Spielt eine Runde Ich hab noch nie. Der Verlierer muss trinken",
+        "Q: Alle Frauen müssen trinken",
+        "K: Alle Männer müssen trinken",
+        "A: Du darfst 4 Schlücke verteilen"
+      ],
+      "Spielerzahl_Min": 4,
+      "Spieleranzahl_Max": 8,
+      "Benötigte Karten": "Vollständiges Deck mit 52 Karten ; optional 32 Karten Deck -> Aufgaben können beliebig getauscht werden",
+      "SpieldauerMin": 15,
+      "SpieldauerMax": 30,
+      "Schwierigkeitsgrad": "medium"
+    }
+  ],
+  "Game_4": [
+    {
+      "name": "Durak",
+      "Regeln": "siehe Google - Viel zu lang, einf Durak standart Regeln",
+      "Spielerzahl_Min": 3,
+      "Spieleranzahl_Max": 8,
+      "Benötigte Karten": "Vollständiges Deck mit 52 Karten",
+      "SpieldauerMin": 10,
+      "SpieldauerMax": 15,
+      "Schwierigkeitsgrad": "easy - Kein Trinkspiel"
+    }
+  ],
+  "Game_5": [
+    {
+      "name": "Lügner",
+      "Regeln": [
+        "Die Karten werden gleichmäßig unter allen Spielern verteilt. Der Spieler mit der Kreuz 2 beginnt.",
+        "Er legt diese verdeckt vor sich ab und bennt diese als Kreuz 2. Dabei darf NICHT gelogen werden.",
+        "Danach geht es Reih um und jeder Spieler legt verdeckt eine Karte ab, die er als 2 benennt",
+        "Dies muss jedoch nicht die Wahrheit sein. Die Zahl muss jedoch der zuerst gelegten Karte entsprechen",
+        "Beginnt ein Spieler mit einer 5, so müssen alle anderen auch 5er legen.",
+        "Glaubst du einem Spieler nicht, kannst du ihm sagen er soll seine soeben gelegt Karte aufdecken.",
+        "Hat er gelogen, so muss der Spieler alle bisherigen Karten aufnehmen. Sagt er die Wahrheit, musst du alle Karten aufnehmen",
+        "Jeder Spieler kann zu jeder Zeit einen beliebigen Spieler aufdecken",
+        "Die einzige Karte die nicht genannt werden darf ist das Ass. Wenn ein Ass abgelegt wird muss immer gelogen werden",
+        "Hat ein Spieler 4 Asse auf der Hand hat er verloren und das Spiel ist beendet",
+        "Ziel ist es, alle seine Karten loszuwerden. Hat ein Spieler 4 gleiche auf der Hand, kann er diese rauslegen",
+        "Es dürfen außerdem auch mehrere Karten gleichzeitg abgelegt werden. Bspw. 2 5er"
+      ],
+      "Spielerzahl_Min": 3,
+      "Spieleranzahl_Max": 8,
+      "Benötigte Karten": "Vollständiges Deck mit 52 Karten ; optional 32 Karten Deck ; möglich solang von jeder Zahl 4 Karten da sind. -> höchste Karte wird zum 'Ass'.",
+      "SpieldauerMin": 10,
+      "SpieldauerMax": 30,
+      "Schwierigkeitsgrad": "easy - Kein Trinkspiel"
+    }
+  ],
+  "Game_6": [
+    {
+      "name": "Busfahrer",
+      "Regeln": [
+        "Es werden 5 Karten nebeneinander und offen auf den Tisch gelegt.",
+        "Ein Spieler beginnt und rät ob eine Karte höher oder niedriger ist als eine der 5 Karten auf dem Tisch",
+        "Das Ziel ist es 3 mal in Folge richtig zu raten. Man darf aber auch öfter raten",
+        "Bei jeder richtigen Karte wird diese an den jeweiligen Stapel angelegt. Es kann immer nur an die beiden Enden jedes Stapels angelegt werden",
+        "Außerdem muss mindestens eine von 3 Karten an den höchsten Stapel angelegt werden. Man darf auch einen kurzen Stapel zum längsten machen und dann dort anlegen",
+        "Schafft es der Spieler mind 3 Karten erfolgreich zu erraten kann er seinen Zug beenden und der nächste Spieler ist an der Reihe",
+        "Rät der Spieler eine Karte falsch, so muss er so viele Schlücke trinken, wie Karten an diesem Stapel liegen",
+        "Der Spieler startet dann erneut und zwar solange, bis er mind 3 Karten in Folge richtig erraten hat"
+      ],
+      "Spielerzahl_Min": 2,
+      "Spieleranzahl_Max": 10,
+      "Benötigte Karten": "Nicht relevant",
+      "SpieldauerMin": 10,
+      "SpieldauerMax": 30,
+      "Schwierigkeitsgrad": "medium"
+    }
+  ]
+}
