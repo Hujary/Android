@@ -16,7 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.navigationsbar.Activitys.QuestionOneActivity;
+import com.example.navigationsbar.Activitys.Questions.QuestionOneActivity;
 import com.example.navigationsbar.Artikel.ArticleCreator;
 import com.example.navigationsbar.R;
 import com.example.navigationsbar.Artikel.Article;

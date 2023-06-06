@@ -22,16 +22,16 @@
         </activity>
 
         <activity
-            android:name=".Activitys.QuestionOneActivity" />
+            android:name=".Activitys.Questions.QuestionOneActivity" />
 
         <activity
-            android:name=".Activitys.QuestionTwoActivity" />
+            android:name=".Activitys.Questions.QuestionTwoActivity" />
 
         <activity
-            android:name=".Activitys.QuestionThreeActivity" />
+            android:name=".Activitys.Questions.QuestionThreeActivity" />
 
         <activity
-            android:name=".Activitys.Games_HoeherTiefer_Activity" />
+            android:name=".Activitys.Games.Games_HoeherTiefer_Activity" />
 
         <activity
             android:name=".Activitys.FilteredGamesListActivity" />

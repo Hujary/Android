@@ -1,4 +1,4 @@
-package com.example.navigationsbar.Activitys;
+package com.example.navigationsbar.Activitys.Games;
 
 import android.os.Bundle;
 import android.view.View;

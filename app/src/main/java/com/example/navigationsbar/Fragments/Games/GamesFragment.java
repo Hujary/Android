@@ -6,13 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.navigationsbar.Activitys.Games_HoeherTiefer_Activity;
+import com.example.navigationsbar.Activitys.Games.Games_HoeherTiefer_Activity;
 import com.example.navigationsbar.R;
 import com.example.navigationsbar.databinding.FragmentGamesBinding;
 

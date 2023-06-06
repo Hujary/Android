@@ -1,4 +1,4 @@
-package com.example.navigationsbar.Activitys;
+package com.example.navigationsbar.Activitys.Questions;
 
 import android.content.Intent;
 import android.os.Bundle;

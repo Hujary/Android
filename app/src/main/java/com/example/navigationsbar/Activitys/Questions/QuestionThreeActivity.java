@@ -1,4 +1,4 @@
-package com.example.navigationsbar.Activitys;
+package com.example.navigationsbar.Activitys.Questions;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.navigationsbar.Activitys.FilteredGamesListActivity;
 import com.example.navigationsbar.R;
 
 public class QuestionThreeActivity  extends AppCompatActivity {
