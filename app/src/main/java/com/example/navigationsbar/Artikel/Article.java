@@ -10,7 +10,7 @@ public class Article {
     private int spieldauerMax;
     private String schwierigkeitsgrad;
 
-    public Article(String title, String spielregel, String benötigteKarten, int spieleranzahlMax, int spieleranzahlMin, int spieldauerMax, int spieldauerMin, String schwierigkeitsgrad) {
+    public Article(String title, String spielregel, String benötigteKarten, int spieleranzahlMin, int spieleranzahlMax, int spieldauerMin, int spieldauerMax, String schwierigkeitsgrad) {
         this.title = title;
         this.spielregel = spielregel;
         this.benötigteKarten = benötigteKarten;
@@ -25,11 +25,7 @@ public class Article {
         return title;
     }
 
-    public String getSpielregel() {
-        return spielregel;
-    }
-
-    public String getBenötigtekarten() {
+    public String getBenötigteKarten() {
         return benötigteKarten;
     }
 

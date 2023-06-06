@@ -27,8 +27,6 @@ import java.util.List;
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
-    private RecyclerView recyclerView;
-    private ArticleAdapter articleAdapter;
     private Resources resources;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -36,28 +34,12 @@ public class HomeFragment extends Fragment {
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        // Objekte erzeugen
+            // Objekte erzeugen
         Button myButton = root.findViewById(R.id.button);
-        TextView T2 = root.findViewById(R.id.textView3);
-        ImageView IV = root.findViewById(R.id.imageView);
-        IV.setImageResource(R.drawable.spielkarten);
 
         resources = getResources(); // Get the resources object
 
-        try {
-            // Hier wird die Methode um Artikel zu erstellen aufgerufen
-            recyclerView = root.findViewById(R.id.articleRecyclerView);
-            recyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false));
-            ArticleCreator articleCreator = new ArticleCreator(resources);
-            List<Article> articles = articleCreator.createArticles();
-            articleAdapter = new ArticleAdapter(articles);
-            recyclerView.setAdapter(articleAdapter);
-        } catch (Exception e) {
-            e.printStackTrace();
-            T2.setText("Error" + e);
-        }
-
-        // Intent für Question View -> Lambda Function
+            // Intent für Question View -> Lambda Function
         Intent intent = new Intent(requireActivity(), QuestionOneActivity.class);
         myButton.setOnClickListener(v -> startActivity(intent));
 
@@ -67,6 +49,5 @@ public class HomeFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        recyclerView.setAdapter(null);
     }
 }
