@@ -7,7 +7,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.navigationsbar.Activitys.FilteredGamesListActivity;
+import com.example.navigationsbar.Activitys.FilteredGameList.FilteredGamesListActivity;
 import com.example.navigationsbar.R;
 
 public class QuestionThreeActivity  extends AppCompatActivity {

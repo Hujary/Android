@@ -1,22 +1,18 @@
 package com.example.navigationsbar.Fragments.Games;
 
-import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.navigationsbar.Activitys.Games.Games_HoeherTiefer_Activity;
 import com.example.navigationsbar.Artikel.Article;
-import com.example.navigationsbar.Artikel.ArticleAdapter;
+import com.example.navigationsbar.Activitys.Adapter.ArticleAdapter;
 import com.example.navigationsbar.Artikel.ArticleCreator;
 import com.example.navigationsbar.R;
 import com.example.navigationsbar.databinding.FragmentGamesBinding;

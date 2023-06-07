@@ -5,109 +5,58 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <GridLayout
-        android:layout_width="414dp"
-        android:layout_height="727dp"
-        android:alignmentMode="alignMargins"
-        android:columnCount="2"
-        android:columnOrderPreserved="false"
-        android:rowCount="1"
-        android:useDefaultMargins="true"
+    <LinearLayout
+        android:layout_width="395dp"
+        android:layout_height="227dp"
+        android:background="@color/lightblueButton"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_columnWeight="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        tools:layout_editor_absoluteY="-1dp">
 
-        <!-- Left Article -->
-        <LinearLayout
-            android:layout_width="171dp"
-            android:layout_height="232dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:background="@color/lightblueButton"
-            android:orientation="vertical"
-            app:layout_columnWeight="1">
+        <!-- Views for the Left Article -->
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
-            <!-- Views for the Left Article -->
-            <TextView
-                android:id="@+id/titleTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/playerNumberTextView"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:textColor="@color/white" />
 
-            <TextView
-                android:id="@+id/playerNumberTextView"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:textColor="@color/white" />
+        <TextView
+            android:id="@+id/cardNumberTextView"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:textColor="@color/white" />
 
-            <TextView
-                android:id="@+id/cardNumberTextView"
-                android:layout_width="match_parent"
-                android:layout_height="32dp"
-                android:textColor="@color/white" />
+        <TextView
+            android:id="@+id/playTimeTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white" />
 
-            <TextView
-                android:id="@+id/playTimeTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white" />
+        <TextView
+            android:id="@+id/difficultyTextView"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:textColor="@color/white" />
 
-            <TextView
-                android:id="@+id/difficultyTextView"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:textColor="@color/white" />
-        </LinearLayout>
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="101dp"
+            android:layout_height="37dp"
+            android:background="@drawable/rounded_button_background_small"
+            android:text="Spielen"
+            android:textColor="@color/white" />
+    </LinearLayout>
 
-        <!-- Right Article -->
-        <LinearLayout
-            android:id="@+id/secondArticleLayout"
-            android:layout_width="171dp"
-            android:layout_height="232dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="50dp"
-            android:background="@color/lightblueButton"
-            android:orientation="vertical"
-            app:layout_columnWeight="1">
-
-            <!-- Views for the Right Article -->
-            <TextView
-                android:id="@+id/titleTextView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/playerNumberTextView2"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:textColor="@color/white" />
-
-            <TextView
-                android:id="@+id/cardNumberTextView2"
-                android:layout_width="match_parent"
-                android:layout_height="32dp"
-                android:textColor="@color/white" />
-
-            <TextView
-                android:id="@+id/playTimeTextView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white" />
-
-            <TextView
-                android:id="@+id/difficultyTextView2"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:textColor="@color/white" />
-        </LinearLayout>
-    </GridLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

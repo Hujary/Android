@@ -16,7 +16,7 @@ public class QuestionOneActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.question1_layout);
 
-        Button buttonReturn = findViewById(R.id.button2);
+        Button buttonReturn = findViewById(R.id.buttonBack);
         buttonReturn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

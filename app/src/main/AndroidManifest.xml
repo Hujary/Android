@@ -31,10 +31,13 @@
             android:name=".Activitys.Questions.QuestionThreeActivity" />
 
         <activity
+            android:name=".Activitys.Questions.QuestionFourActivity" />
+
+        <activity
             android:name=".Activitys.Games.Games_HoeherTiefer_Activity" />
 
         <activity
-            android:name=".Activitys.FilteredGamesListActivity" />
+            android:name=".Activitys.FilteredGameList.FilteredGamesListActivity" />
 
     </application>
 </manifest>
