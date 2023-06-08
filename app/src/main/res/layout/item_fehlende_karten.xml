@@ -32,7 +32,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="4dp"
             android:layout_weight="1"
-            android:background="@drawable/herz_ass" />
+            android:background="@drawable/herz_zwei" />
 
         <ImageView
             android:id="@+id/imageViewSpielkarte2"
@@ -41,7 +41,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
             android:layout_weight="1"
-            android:background="@drawable/herz_ass" />
+            android:background="@drawable/herz_drei" />
 
         <ImageView
             android:id="@+id/imageViewSpielkarte3"
@@ -50,7 +50,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            android:background="@drawable/herz_ass" />
+            android:background="@drawable/herz_vier" />
 
         <ImageView
             android:id="@+id/imageViewSpielkarte4"
@@ -59,7 +59,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            android:background="@drawable/herz_ass" />
+            android:background="@drawable/herz_fuenf" />
     </LinearLayout>
 
     <LinearLayout
@@ -79,7 +79,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="4dp"
             android:layout_weight="1"
-            android:background="@drawable/herz_ass" />
+            android:background="@drawable/herz_sechs" />
 
         <ImageView
             android:id="@+id/imageViewSpielkarte6"
@@ -88,7 +88,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
             android:layout_weight="1"
-            android:background="@drawable/herz_ass" />
+            android:background="@drawable/herz_sieben" />
 
         <ImageView
             android:id="@+id/imageViewSpielkarte7"
@@ -97,7 +97,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            android:background="@drawable/herz_ass" />
+            android:background="@drawable/herz_acht" />
 
         <ImageView
             android:id="@+id/imageViewSpielkarte8"
@@ -106,7 +106,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            android:background="@drawable/herz_ass" />
+            android:background="@drawable/herz_neun" />
     </LinearLayout>
 
     <LinearLayout
@@ -126,7 +126,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="4dp"
             android:layout_weight="1"
-            android:background="@drawable/herz_ass" />
+            android:background="@drawable/herz_zehn" />
 
         <ImageView
             android:id="@+id/imageViewSpielkarte10"
@@ -135,7 +135,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
             android:layout_weight="1"
-            android:background="@drawable/herz_ass" />
+            android:background="@drawable/herz_bube" />
 
         <ImageView
             android:id="@+id/imageViewSpielkarte11"
@@ -144,7 +144,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            android:background="@drawable/herz_ass" />
+            android:background="@drawable/herz_dame" />
 
         <ImageView
             android:id="@+id/imageViewSpielkarte12"
@@ -153,7 +153,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            android:background="@drawable/herz_ass" />
+            android:background="@drawable/herz_koenig" />
     </LinearLayout>
 
     <LinearLayout
@@ -181,8 +181,7 @@
             android:layout_height="match_parent"
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
-            android:layout_weight="1"
-            android:background="@drawable/herz_ass" />
+            android:layout_weight="1" />
 
         <ImageView
             android:id="@+id/PlatzhalterImage1"
