@@ -1,6 +1,7 @@
 package com.example.navigationsbar.Activitys.Adapter;
 
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,69 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+    private int[] imageIdsHerz = {
+            R.drawable.herz_zwei,
+            R.drawable.herz_drei,
+            R.drawable.herz_vier,
+            R.drawable.herz_fuenf,
+            R.drawable.herz_sechs,
+            R.drawable.herz_sieben,
+            R.drawable.herz_acht,
+            R.drawable.herz_neun,
+            R.drawable.herz_zehn,
+            R.drawable.herz_bube,
+            R.drawable.herz_dame,
+            R.drawable.herz_koenig,
+            R.drawable.herz_ass,
+    };
+
+    private int[] imageIdsKaro = {
+            R.drawable.karo_zwei,
+            R.drawable.karo_drei,
+            R.drawable.karo_vier,
+            R.drawable.karo_fuenf,
+            R.drawable.karo_sechs,
+            R.drawable.karo_sieben,
+            R.drawable.karo_acht,
+            R.drawable.karo_neun,
+            R.drawable.karo_zehn,
+            R.drawable.karo_bube,
+            R.drawable.karo_dame,
+            R.drawable.karo_koenig,
+            R.drawable.karo_ass,
+    };
+
+    private int[] imageIdsPik = {
+            R.drawable.pik_zwei,
+            R.drawable.pik_drei,
+            R.drawable.pik_vier,
+            R.drawable.pik_fuenf,
+            R.drawable.pik_sechs,
+            R.drawable.pik_sieben,
+            R.drawable.pik_acht,
+            R.drawable.pik_neun,
+            R.drawable.pik_zehn,
+            R.drawable.pik_bube,
+            R.drawable.pik_dame,
+            R.drawable.pik_koenig,
+            R.drawable.pik_ass,
+    };
+
+    private int[] imageIdsKreuz = {
+            R.drawable.kreuz_zwei,
+            R.drawable.kreuz_drei,
+            R.drawable.kreuz_vier,
+            R.drawable.kreuz_fuenf,
+            R.drawable.kreuz_sechs,
+            R.drawable.kreuz_sieben,
+            R.drawable.kreuz_acht,
+            R.drawable.kreuz_neun,
+            R.drawable.kreuz_zehn,
+            R.drawable.kreuz_bube,
+            R.drawable.kreuz_dame,
+            R.drawable.kreuz_koenig,
+            R.drawable.kreuz_ass,
+    };
 
     private static List<Integer> selectedImages; // Store the positions of selected images
 
@@ -36,63 +100,102 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         switch (position) {
             case 0:
                 holder.textView.setText("Herz");
+                holder.imageView1.setImageResource(imageIdsHerz[0]);
+                holder.imageView2.setImageResource(imageIdsHerz[1]);
+                holder.imageView3.setImageResource(imageIdsHerz[2]);
+                holder.imageView4.setImageResource(imageIdsHerz[3]);
+                holder.imageView5.setImageResource(imageIdsHerz[4]);
+                holder.imageView6.setImageResource(imageIdsHerz[5]);
+                holder.imageView7.setImageResource(imageIdsHerz[6]);
+                holder.imageView8.setImageResource(imageIdsHerz[7]);
+                holder.imageView9.setImageResource(imageIdsHerz[8]);
+                holder.imageView10.setImageResource(imageIdsHerz[9]);
+                holder.imageView11.setImageResource(imageIdsHerz[10]);
+                holder.imageView12.setImageResource(imageIdsHerz[11]);
+                holder.imageView13.setImageResource(imageIdsHerz[12]);
 
+                    // Apply color filter if the image is selected
+                if (selectedImages.contains(position)) {
+                    holder.imageView1.setColorFilter(Color.parseColor("#80000000"));
+                } else {
+                    holder.imageView1.setColorFilter(null);
+                }
                 break;
+
             case 1:
                 holder.textView.setText("Karo");
-                holder.imageView1.setBackgroundResource(R.drawable.karo_zwei);
-                holder.imageView2.setBackgroundResource(R.drawable.karo_drei);
-                holder.imageView3.setBackgroundResource(R.drawable.karo_vier);
-                holder.imageView4.setBackgroundResource(R.drawable.karo_fuenf);
-                holder.imageView5.setBackgroundResource(R.drawable.karo_sechs);
-                holder.imageView6.setBackgroundResource(R.drawable.karo_sieben);
-                holder.imageView7.setBackgroundResource(R.drawable.karo_acht);
-                holder.imageView8.setBackgroundResource(R.drawable.karo_neun);
-                holder.imageView9.setBackgroundResource(R.drawable.karo_zehn);
-                holder.imageView10.setBackgroundResource(R.drawable.karo_bube);
-                holder.imageView11.setBackgroundResource(R.drawable.karo_dame);
-                holder.imageView12.setBackgroundResource(R.drawable.karo_koenig);
-                holder.imageView13.setBackgroundResource(R.drawable.karo_ass);
+                holder.imageView1.setImageResource(imageIdsKaro[0]);
+                holder.imageView2.setImageResource(imageIdsKaro[1]);
+                holder.imageView3.setImageResource(imageIdsKaro[2]);
+                holder.imageView4.setImageResource(imageIdsKaro[3]);
+                holder.imageView5.setImageResource(imageIdsKaro[4]);
+                holder.imageView6.setImageResource(imageIdsKaro[5]);
+                holder.imageView7.setImageResource(imageIdsKaro[6]);
+                holder.imageView8.setImageResource(imageIdsKaro[7]);
+                holder.imageView9.setImageResource(imageIdsKaro[8]);
+                holder.imageView10.setImageResource(imageIdsKaro[9]);
+                holder.imageView11.setImageResource(imageIdsKaro[10]);
+                holder.imageView12.setImageResource(imageIdsKaro[11]);
+                holder.imageView13.setImageResource(imageIdsKaro[12]);
+
+                // Apply color filter if the image is selected
+                if (selectedImages.contains(position)) {
+                    holder.imageView1.setColorFilter(Color.parseColor("#80000000"));
+
+                } else {
+                    holder.imageView1.setColorFilter(null);
+                }
                 break;
+
             case 2:
                 holder.textView.setText("Pik");
-                holder.imageView1.setBackgroundResource(R.drawable.pik_zwei);
-                holder.imageView2.setBackgroundResource(R.drawable.pik_drei);
-                holder.imageView3.setBackgroundResource(R.drawable.pik_vier);
-                holder.imageView4.setBackgroundResource(R.drawable.pik_fuenf);
-                holder.imageView5.setBackgroundResource(R.drawable.pik_sechs);
-                holder.imageView6.setBackgroundResource(R.drawable.pik_sieben);
-                holder.imageView7.setBackgroundResource(R.drawable.pik_acht);
-                holder.imageView8.setBackgroundResource(R.drawable.pik_neun);
-                holder.imageView9.setBackgroundResource(R.drawable.pik_zehn);
-                holder.imageView10.setBackgroundResource(R.drawable.pik_bube);
-                holder.imageView11.setBackgroundResource(R.drawable.pik_dame);
-                holder.imageView12.setBackgroundResource(R.drawable.pik_koenig);
-                holder.imageView13.setBackgroundResource(R.drawable.pik_ass);
+                holder.imageView1.setImageResource(imageIdsPik[0]);
+                holder.imageView2.setImageResource(imageIdsPik[1]);
+                holder.imageView3.setImageResource(imageIdsPik[2]);
+                holder.imageView4.setImageResource(imageIdsPik[3]);
+                holder.imageView5.setImageResource(imageIdsPik[4]);
+                holder.imageView6.setImageResource(imageIdsPik[5]);
+                holder.imageView7.setImageResource(imageIdsPik[6]);
+                holder.imageView8.setImageResource(imageIdsPik[7]);
+                holder.imageView9.setImageResource(imageIdsPik[8]);
+                holder.imageView10.setImageResource(imageIdsPik[9]);
+                holder.imageView11.setImageResource(imageIdsPik[10]);
+                holder.imageView12.setImageResource(imageIdsPik[11]);
+                holder.imageView13.setImageResource(imageIdsPik[12]);
+
+                // Apply color filter if the image is selected
+                if (selectedImages.contains(position)) {
+                    holder.imageView1.setColorFilter(Color.parseColor("#80000000"));
+
+                } else {
+                    holder.imageView1.setColorFilter(null);
+                }
                 break;
             case 3:
+                    // Change the pictures for Case 3
                 holder.textView.setText("Kreuz");
-                holder.imageView1.setBackgroundResource(R.drawable.kreuz_zwei);
-                holder.imageView2.setBackgroundResource(R.drawable.kreuz_drei);
-                holder.imageView3.setBackgroundResource(R.drawable.kreuz_vier);
-                holder.imageView4.setBackgroundResource(R.drawable.kreuz_fuenf);
-                holder.imageView5.setBackgroundResource(R.drawable.kreuz_sechs);
-                holder.imageView6.setBackgroundResource(R.drawable.kreuz_sieben);
-                holder.imageView7.setBackgroundResource(R.drawable.kreuz_acht);
-                holder.imageView8.setBackgroundResource(R.drawable.kreuz_neun);
-                holder.imageView9.setBackgroundResource(R.drawable.kreuz_zehn);
-                holder.imageView10.setBackgroundResource(R.drawable.kreuz_bube);
-                holder.imageView11.setBackgroundResource(R.drawable.kreuz_dame);
-                holder.imageView12.setBackgroundResource(R.drawable.kreuz_koenig);
-                holder.imageView13.setBackgroundResource(R.drawable.kreuz_ass);
-                break;
-        }
+                holder.imageView1.setImageResource(imageIdsKreuz[0]);
+                holder.imageView2.setImageResource(imageIdsKreuz[1]);
+                holder.imageView3.setImageResource(imageIdsKreuz[2]);
+                holder.imageView4.setImageResource(imageIdsKreuz[3]);
+                holder.imageView5.setImageResource(imageIdsKreuz[4]);
+                holder.imageView6.setImageResource(imageIdsKreuz[5]);
+                holder.imageView7.setImageResource(imageIdsKreuz[6]);
+                holder.imageView8.setImageResource(imageIdsKreuz[7]);
+                holder.imageView9.setImageResource(imageIdsKreuz[8]);
+                holder.imageView10.setImageResource(imageIdsKreuz[9]);
+                holder.imageView11.setImageResource(imageIdsKreuz[10]);
+                holder.imageView12.setImageResource(imageIdsKreuz[11]);
+                holder.imageView13.setImageResource(imageIdsKreuz[12]);
 
-        // Apply color filter if the image is selected
-        if (selectedImages.contains(position)) {
-            holder.imageView1.setColorFilter(Color.parseColor("#80000000"));
-        } else {
-            holder.imageView1.setColorFilter(null);
+                    // Apply color filter if the image is selected
+                if (selectedImages.contains(position)) {
+                    holder.imageView1.setColorFilter(Color.parseColor("#80000000"));
+
+                } else {
+                    holder.imageView1.setColorFilter(null);
+                }
+                break;
         }
     }
 
@@ -134,7 +237,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             imageView12 = itemView.findViewById(R.id.imageViewSpielkarte12);
             imageView13 = itemView.findViewById(R.id.imageViewSpielkarte13);
 
-
             imageView1.setOnClickListener(this);
             imageView2.setOnClickListener(this);
             imageView3.setOnClickListener(this);
@@ -150,32 +252,30 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             imageView13.setOnClickListener(this);
         }
 
+        private void addSelectedImage(int position) {
+            if (!selectedImages.contains(position)) {
+                selectedImages.add(position);
+            }
+        }
+
+        private void removeSelectedImage(int position) {
+            selectedImages.remove(Integer.valueOf(position));
+        }
+
         @Override
         public void onClick(View v) {
             ImageView clickedImageView = (ImageView) v;
             int position = getAdapterPosition();
 
+            //System.out.println(selectedImages);
+
             if (clickedImageView.getColorFilter() != null) {
-                // If the image is already selected, deselect it
                 clickedImageView.setColorFilter(null);
-                // Remove the position from the selected images list
                 removeSelectedImage(position);
             } else {
-                // If the image is not selected, select it
                 clickedImageView.setColorFilter(Color.parseColor("#80000000"));
-                // Add the position to the selected images list
                 addSelectedImage(position);
             }
         }
-    }
-
-    private static void addSelectedImage(int position) {
-        if (!selectedImages.contains(position)) {
-            selectedImages.add(position);
-        }
-    }
-
-    private static void removeSelectedImage(int position) {
-        selectedImages.remove(Integer.valueOf(position));
     }
 }

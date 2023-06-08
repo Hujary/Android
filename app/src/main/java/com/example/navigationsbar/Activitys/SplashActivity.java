@@ -29,18 +29,15 @@ public class SplashActivity extends AppCompatActivity {
         splashAnimation.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-                // Animation start
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                // Animation end
                 startMainActivity();
             }
 
             @Override
             public void onAnimationRepeat(Animation animation) {
-                // Animation repeat
             }
         });
 

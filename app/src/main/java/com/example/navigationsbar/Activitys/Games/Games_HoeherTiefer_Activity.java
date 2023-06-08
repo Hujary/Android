@@ -34,6 +34,8 @@ public class Games_HoeherTiefer_Activity extends AppCompatActivity {
 
     private int streakNumber;
 
+    private boolean isCardBackVisible = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +45,8 @@ public class Games_HoeherTiefer_Activity extends AppCompatActivity {
         textViewNumber = findViewById(R.id.textView5);
         textViewInfo = findViewById(R.id.textView4);
         ImageViewKarten = findViewById(R.id.imageViewKarten);
+        ImageViewKarten.setImageResource(R.drawable.card_back);
+        isCardBackVisible = true;
         ImageViewKarten.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {flipAnimation();}
@@ -84,17 +88,26 @@ public class Games_HoeherTiefer_Activity extends AppCompatActivity {
     }
 
     private void flipAnimation() {
-        ObjectAnimator oa1 = ObjectAnimator.ofFloat(ImageViewKarten, "rotationY", 0f, 90f);
-        ObjectAnimator oa2 = ObjectAnimator.ofFloat(ImageViewKarten, "rotationY", -90f, 0f);
+        ObjectAnimator oa1, oa2;
+
+        if (isCardBackVisible) {
+            oa1 = ObjectAnimator.ofFloat(ImageViewKarten, "rotationY", 0f, 90f);
+            oa2 = ObjectAnimator.ofFloat(ImageViewKarten, "rotationY", -90f, 0f);
+        } else {
+            oa1 = ObjectAnimator.ofFloat(ImageViewKarten, "rotationY", 0f, -90f);
+            oa2 = ObjectAnimator.ofFloat(ImageViewKarten, "rotationY", 90f, 0f);
+        }
 
         oa1.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                if (ImageViewKarten.getDrawable().getConstantState() != getResources().getDrawable(R.drawable.card_back).getConstantState()) {
+                if (isCardBackVisible) {
                     ImageViewKarten.setImageResource(R.drawable.card_back);
+                    isCardBackVisible = false;
                 } else {
-                    setImageResourceForNumber(currentNumber);
+                    generateRandomNumber(2, 14);
+                    isCardBackVisible = true;
                 }
                 oa2.start();
             }
@@ -189,14 +202,14 @@ public class Games_HoeherTiefer_Activity extends AppCompatActivity {
                 (guess.equals("lower") && newNumber < currentNumber) ||
                 (guess.equals("same") && newNumber == currentNumber)) {
             // You win
-            textViewInfo.setText("Dein Tipp war korrekt, vorherige Karte: " + previousNumberToName + ", gezogene Karte: " + NewNumberToName);
+            textViewInfo.setText("Dein Tipp war korrekt");
             currentNumber = newNumber;
             currentNumberToName = NewNumberToName; // Aktualisieren des aktuellen Kartenwertes
             streakNumber++;
             textViewStreak.setText("aktueller Streak: " + streakNumber);
         } else {
             // You lose
-            textViewInfo.setText("Dein Tipp war leider falsch. Versuche es erneut. vorherige Karte: " + previousNumberToName + ", gezogene Karte: " + NewNumberToName);
+            textViewInfo.setText("Dein Tipp war leider falsch");
             streakNumber = 0;
             textViewStreak.setText("aktueller Streak: " + streakNumber);
         }
