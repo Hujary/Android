@@ -25,6 +25,9 @@
             android:name=".Activitys.MainActivity" />
 
         <activity
+            android:name=".Activitys.Questions.QuestionFourActivity" />
+
+        <activity
             android:name=".Activitys.Questions.QuestionOneActivity" />
 
         <activity
@@ -32,9 +35,6 @@
 
         <activity
             android:name=".Activitys.Questions.QuestionThreeActivity" />
-
-        <activity
-            android:name=".Activitys.Questions.QuestionFourActivity" />
 
         <activity
             android:name=".Activitys.Games.Games_HoeherTiefer_Activity" />
