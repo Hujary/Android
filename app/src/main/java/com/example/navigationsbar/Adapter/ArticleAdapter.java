@@ -1,5 +1,6 @@
-package com.example.navigationsbar.Activitys.Adapter;
+package com.example.navigationsbar.Adapter;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,16 +9,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.navigationsbar.Artikel.Article;
+import com.example.navigationsbar.Activitys.FilteredGameList.DetailedGameInformationActivity;
+import com.example.navigationsbar.Items.Article.Article;
 import com.example.navigationsbar.R;
 
 import java.util.List;
 
 public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder> {
     private final List<Article> articles;
+    private final OnClickListener onClickListener;
 
-    public ArticleAdapter(List<Article> articles) {
+    public ArticleAdapter(List<Article> articles, OnClickListener onClickListener) {
         this.articles = articles;
+        this.onClickListener = onClickListener;
     }
 
     @NonNull
@@ -38,12 +42,12 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
         return articles.size();
     }
 
-    public static class ArticleViewHolder extends RecyclerView.ViewHolder {
-        private TextView titleTextView;
-        private TextView cardNumberTextView;
-        private TextView playerNumberTextView;
-        private TextView playTimeTextView;
-        private TextView difficultyTextView;
+    public class ArticleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        private final TextView titleTextView;
+        private final TextView cardNumberTextView;
+        private final TextView playerNumberTextView;
+        private final TextView playTimeTextView;
+        private final TextView difficultyTextView;
 
         public ArticleViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -52,6 +56,8 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
             playerNumberTextView = itemView.findViewById(R.id.playerNumberTextView);
             playTimeTextView = itemView.findViewById(R.id.playTimeTextView);
             difficultyTextView = itemView.findViewById(R.id.difficultyTextView);
+
+            itemView.setOnClickListener(this);
         }
 
         public void bindArticle(Article article) {
@@ -61,5 +67,19 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
             playTimeTextView.setText("Spielzeit: " + article.getSpieldauerMin() + "min - " + article.getSpieldauerMax() + "min");
             difficultyTextView.setText(article.getSchwierigkeitsgrad());
         }
+
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition();
+            if (position != RecyclerView.NO_POSITION) {
+                Article article = articles.get(position);
+                onClickListener.onItemClick(article);
+            }
+        }
+    }
+
+    public interface OnClickListener {
+            // rufe die Methode aus GameFragment auf.
+        void onItemClick(Article article);
     }
 }

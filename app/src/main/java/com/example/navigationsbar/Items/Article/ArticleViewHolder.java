@@ -1,12 +1,12 @@
-package com.example.navigationsbar.Artikel;
+package com.example.navigationsbar.Items.Article;
 
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.navigationsbar.Items.Article.Article;
 import com.example.navigationsbar.R;
 
 public class ArticleViewHolder extends RecyclerView.ViewHolder {

@@ -21,6 +21,6 @@
             android:layout_width="134dp"
             android:layout_height="209dp"
             android:scaleType="fitXY"
-            android:src="@drawable/bags" />
+            android:src="@drawable/pik_acht" />
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.example.navigationsbar.Artikel;
+package com.example.navigationsbar.Items.Article;
 
 public class Article {
     private String title;

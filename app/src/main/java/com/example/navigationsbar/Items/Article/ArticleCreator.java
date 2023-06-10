@@ -1,7 +1,8 @@
-package com.example.navigationsbar.Artikel;
+package com.example.navigationsbar.Items.Article;
 
 import android.content.res.Resources;
 
+import com.example.navigationsbar.Items.Article.Article;
 import com.example.navigationsbar.R;
 
 import org.json.JSONArray;
