@@ -28,6 +28,13 @@
                 android:layout_height="wrap_content"
                 android:text="Spieleranzahl" />
 
+            <!-- Spieleranzahl -->
+            <TextView
+                android:id="@+id/cardCountTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Spieleranzahl" />
+
             <!-- Spieldauer -->
             <TextView
                 android:id="@+id/gameDurationTextView"
@@ -47,7 +54,7 @@
                 android:id="@+id/rulesTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Wenn der Text in einer TextView zu lang ist, wird er innerhalb der TextView automatisch umgebrochen. Der Inhalt wird jedoch nicht automatisch verkleinert, um komplett in die TextView zu passen. Wenn der Text den verfügbaren Platz überschreitet, wird er abgeschnitten und durch Ellipsen (...) am Ende gekennzeichnet.Wenn der Text in einer TextView zu lang ist, wird er innerhalb der TextView automatisch umgebrochen. Der Inhalt wird jedoch nicht automatisch verkleinert, um komplett in die TextView zu passen. Wenn der Text den verfügbaren Platz überschreitet, wird er abgeschnitten und durch Ellipsen (...) am Ende gekennzeichnet.Wenn der Text in einer TextView zu lang ist, wird er innerhalb der TextView automatisch umgebrochen. Der Inhalt wird jedoch nicht automatisch verkleinert, um komplett in die TextView zu passen. Wenn der Text den verfügbaren Platz überschreitet, wird er abgeschnitten und durch Ellipsen (...) am Ende gekennzeichnet.Wenn der Text in einer TextView zu lang ist, wird er innerhalb der TextView automatisch umgebrochen. Der Inhalt wird jedoch nicht automatisch verkleinert, um komplett in die TextView zu passen. Wenn der Text den verfügbaren Platz überschreitet, wird er abgeschnitten und durch Ellipsen (...) am Ende gekennzeichnet.Wenn der Text in einer TextView zu lang ist, wird er innerhalb der TextView automatisch umgebrochen. Der Inhalt wird jedoch nicht automatisch verkleinert, um komplett in die TextView zu passen. Wenn der Text den verfügbaren Platz überschreitet, wird er abgeschnitten und durch Ellipsen (...) am Ende gekennzeichnet.Wenn der Text in einer TextView zu lang ist, wird er innerhalb der TextView automatisch umgebrochen. Der Inhalt wird jedoch nicht automatisch verkleinert, um komplett in die TextView zu passen. Wenn der Text den verfügbaren Platz überschreitet, wird er abgeschnitten und durch Ellipsen (...) am Ende gekennzeichnet.Wenn der Text in einer TextView zu lang ist, wird er innerhalb der TextView automatisch umgebrochen. Der Inhalt wird jedoch nicht automatisch verkleinert, um komplett in die TextView zu passen. Wenn der Text den verfügbaren Platz überschreitet, wird er abgeschnitten und durch Ellipsen (...) am Ende gekennzeichnet.Wenn der Text in einer TextView zu lang ist, wird er innerhalb der TextView automatisch umgebrochen. Der Inhalt wird jedoch nicht automatisch verkleinert, um komplett in die TextView zu passen. Wenn der Text den verfügbaren Platz überschreitet, wird er abgeschnitten und durch Ellipsen (...) am Ende gekennzeichnet." />
+                android:text="[placeholder]" />
 
         </LinearLayout>
     </ScrollView>

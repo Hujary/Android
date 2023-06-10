@@ -6,61 +6,57 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center">
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="376dp"
         android:layout_height="225dp"
-        android:background="@color/lightblueButton"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_columnWeight="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        android:layout_margin="8dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true"
+        tools:ignore="MissingConstraints">
 
-        <!-- Views for the Left Article -->
-        <TextView
-            android:id="@+id/titleTextView"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:layout_height="match_parent"
+            android:background="@color/lightblueButton"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_columnWeight="1">
 
-        <TextView
-            android:id="@+id/playerNumberTextView"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:textColor="@color/white" />
+            <!-- Views for the Left Article -->
+            <TextView
+                android:id="@+id/titleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/cardNumberTextView"
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:textColor="@color/white" />
+            <TextView
+                android:id="@+id/playerNumberTextView"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:textColor="@color/white" />
 
-        <TextView
-            android:id="@+id/playTimeTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white" />
+            <TextView
+                android:id="@+id/cardNumberTextView"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:textColor="@color/white" />
 
-        <TextView
-            android:id="@+id/difficultyTextView"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:textColor="@color/white" />
+            <TextView
+                android:id="@+id/playTimeTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white" />
 
-        <Button
-            android:id="@+id/buttonSeeMoreInformation"
-            android:layout_width="101dp"
-            android:layout_height="37dp"
-            android:background="@drawable/rounded_button_background_small"
-            android:text="anschauen"
-            android:textColor="@color/white" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/difficultyTextView"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:textColor="@color/white" />
 
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

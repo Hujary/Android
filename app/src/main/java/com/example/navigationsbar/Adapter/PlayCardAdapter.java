@@ -26,7 +26,7 @@ public class PlayCardAdapter extends RecyclerView.Adapter<PlayCardAdapter.BestSe
     @NonNull
     @Override
     public BestSellerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.playcards_layout, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_playcards, parent, false);
         return new BestSellerViewHolder(view);
     }
 

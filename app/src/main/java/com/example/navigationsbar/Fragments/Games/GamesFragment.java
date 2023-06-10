@@ -6,20 +6,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.navigationsbar.Activitys.FilteredGameList.DetailedGameInformationActivity;
 import com.example.navigationsbar.Items.Article.Article;
 import com.example.navigationsbar.Adapter.ArticleAdapter;
 import com.example.navigationsbar.Items.Article.ArticleCreator;
 import com.example.navigationsbar.R;
 import com.example.navigationsbar.databinding.FragmentGamesBinding;
-
 import java.util.List;
 
 public class GamesFragment extends Fragment implements ArticleAdapter.OnClickListener {
@@ -57,7 +53,16 @@ public class GamesFragment extends Fragment implements ArticleAdapter.OnClickLis
 
     @Override
     public void onItemClick(Article article) {
+            // Intent und Variablen übergeben
         Intent intent = new Intent(requireContext(), DetailedGameInformationActivity.class);
+        intent.putExtra("title", article.getTitle());
+        intent.putExtra("cardNumber", article.getBenötigteKarten());
+        intent.putExtra("playerNumberMin", article.getSpieleranzahlMin());
+        intent.putExtra("playerNumberMax", article.getSpieleranzahlMax());
+        intent.putExtra("playTimeMin", article.getSpieldauerMin());
+        intent.putExtra("playTimeMax", article.getSpieldauerMax());
+        intent.putExtra("difficulty", article.getSchwierigkeitsgrad());
+        intent.putExtra("rules", article.getSpielregeln());
         startActivity(intent);
     }
 }

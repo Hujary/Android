@@ -48,4 +48,8 @@ public class Article {
     public String getSchwierigkeitsgrad() {
         return schwierigkeitsgrad;
     }
+    public String getSpielregeln() {
+        return spielregel;
+    }
+
 }
