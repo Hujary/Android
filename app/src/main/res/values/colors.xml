@@ -12,4 +12,5 @@
     <color name="lightblue1">#7DB8F4</color>
     <color name="lightblueButtonPressed">#C6D3D5</color>
     <color name="red">#F44336</color>
+    <color name="number_picker_selected_text_color">#0342AF</color>
 </resources>

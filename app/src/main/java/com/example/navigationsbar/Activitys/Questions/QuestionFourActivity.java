@@ -3,10 +3,17 @@ package com.example.navigationsbar.Activitys.Questions;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.navigationsbar.Activitys.FilteredGameList.FilteredGamesListActivity;
+import com.example.navigationsbar.Activitys.GameData;
 import com.example.navigationsbar.Adapter.PlayCardAdapter;
 import com.example.navigationsbar.Items.Spielkarten.SpielKarten;
 import com.example.navigationsbar.R;
@@ -21,13 +28,15 @@ public class QuestionFourActivity extends AppCompatActivity {
     private List<Integer> selectedKaroPositions = new ArrayList<>();
     private List<Integer> selectedPikPositions = new ArrayList<>();
     private List<Integer> selectedKreuzPositions = new ArrayList<>();
+    private GameData gameData; // Das GameData-Objekt als Feld deklarieren
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.question4_layout);
+        gameData = GameData.getInstance();
 
-        // Herz RecyclerView
+            // Herz RecyclerView
         herzRecyclerView = findViewById(R.id.HerzRecyclerView);
         herzRecyclerView.setHasFixedSize(true);
         herzRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
@@ -48,6 +57,26 @@ public class QuestionFourActivity extends AppCompatActivity {
         PlayCardAdapter herzAdapter = new PlayCardAdapter(herzList);
         herzRecyclerView.setAdapter(herzAdapter);
 
+            // Logik für Return button
+        TextView buttonReturn = findViewById(R.id.textView_back);
+        buttonReturn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+            // Logik für Confirm button
+        Button button_confirm = findViewById(R.id.button_confirm2);
+        button_confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startNextActivity();
+            }
+        });
+
+
+        // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         herzAdapter.setOnItemClickListener(new PlayCardAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(SpielKarten spielkarte, int position) {
@@ -68,7 +97,7 @@ public class QuestionFourActivity extends AppCompatActivity {
             }
         });
 
-        // Karo RecyclerView
+            // Karo RecyclerView
         karoRecyclerView = findViewById(R.id.KaroRecyclerView);
         karoRecyclerView.setHasFixedSize(true);
         karoRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
@@ -109,7 +138,7 @@ public class QuestionFourActivity extends AppCompatActivity {
             }
         });
 
-        // Pik RecyclerView
+            // Pik RecyclerView
         pikRecyclerView = findViewById(R.id.PikRecyclerview);
         pikRecyclerView.setHasFixedSize(true);
         pikRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
@@ -150,7 +179,7 @@ public class QuestionFourActivity extends AppCompatActivity {
             }
         });
 
-        // Kreuz RecyclerView
+            // Kreuz RecyclerView
         kreuzRecyclerView = findViewById(R.id.KreuzRecyclerview);
         kreuzRecyclerView.setHasFixedSize(true);
         kreuzRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
@@ -190,5 +219,13 @@ public class QuestionFourActivity extends AppCompatActivity {
                 Toast.makeText(QuestionFourActivity.this, selectedPositions.toString(), Toast.LENGTH_SHORT).show();
             }
         });
+        // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    }
+
+
+        // Start the intent and pass the value
+    private void startNextActivity() {
+        Intent intent = new Intent(QuestionFourActivity.this, QuestionFiveActivity.class);
+        startActivity(intent);
     }
 }

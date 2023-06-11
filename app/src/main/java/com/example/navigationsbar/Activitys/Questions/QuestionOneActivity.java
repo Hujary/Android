@@ -4,58 +4,72 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.NumberPicker;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.navigationsbar.Activitys.GameData;
 import com.example.navigationsbar.R;
 
-public class QuestionOneActivity extends AppCompatActivity implements View.OnClickListener {
+public class QuestionOneActivity extends AppCompatActivity implements NumberPicker.OnValueChangeListener {
+    private TextView tvShowNumbers;
+    private int chosenNumber;
+    private GameData gameData; // Das GameData-Objekt als Feld deklarieren
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.question1_layout);
+        gameData = GameData.getInstance();
 
-        Button buttonReturn = findViewById(R.id.buttonBack);
+        tvShowNumbers = findViewById(R.id.questionOneTextView);
+        NumberPicker numberPicker = findViewById(R.id.numberPicker);
+        numberPicker.setMinValue(1);
+        numberPicker.setMaxValue(10);
+        chosenNumber = 1;
+
+        Button button_confirm = findViewById(R.id.button_confirm);
+        button_confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startNextActivity();
+            }
+        });
+
+
+        TextView buttonReturn = findViewById(R.id.TextView_back);
         buttonReturn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    finish();
-                }
-            });
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
-            // Setze den Listener für die Antwort-Buttons
-        Button button1 = findViewById(R.id.button_true);
-        Button button2 = findViewById(R.id.button_false);
-        Button button3 = findViewById(R.id.button7);
-        Button button4 = findViewById(R.id.button8);
-        Button button5 = findViewById(R.id.button9);
-        Button button6 = findViewById(R.id.button10);
-        Button button7 = findViewById(R.id.button11);
-        Button button8 = findViewById(R.id.button12);
-        Button button9 = findViewById(R.id.button13);
-        Button button10 = findViewById(R.id.button14);
-
-        button1.setOnClickListener(this);
-        button2.setOnClickListener(this);
-        button3.setOnClickListener(this);
-        button4.setOnClickListener(this);
-        button5.setOnClickListener(this);
-        button6.setOnClickListener(this);
-        button7.setOnClickListener(this);
-        button8.setOnClickListener(this);
-        button9.setOnClickListener(this);
-        button10.setOnClickListener(this);
+            // Change the format of numbers in the number picker
+        numberPicker.setFormatter(new NumberPicker.Formatter() {
+            @Override
+            public String format(int i) {
+                return String.format("%02d", i);
+            }
+        });
+        numberPicker.setOnValueChangedListener(this);
     }
 
     @Override
-    public void onClick(View v) {
-            // Nummer des Buttons als Daten an den neuen Intent übergeben
-        String buttonText = ((Button) v).getText().toString();
-        int buttonNumber = Integer.parseInt(buttonText);
+    public void onValueChange(NumberPicker numberPicker, int oldVal, int newVal) {
+            // Store the currently selected number
+        chosenNumber = newVal;
+    }
 
+    private void startNextActivity() {
+
+            // Pass the chosen number as data to the Singelton Object
+        int buttonNumber = chosenNumber;
+        gameData.setNumberOfPlayers(buttonNumber);
+
+            // Starte Frage 2 Activity
         Intent intent = new Intent(QuestionOneActivity.this, QuestionTwoActivity.class);
-        intent.putExtra("buttonNumber", buttonNumber);
         startActivity(intent);
     }
 }

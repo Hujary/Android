@@ -37,9 +37,7 @@ public class PlayCardAdapter extends RecyclerView.Adapter<PlayCardAdapter.BestSe
 
         if (selectedPositions.contains(position)) {
             holder.mImageview.setImageResource(R.drawable.card_back);
-            holder.mImageview.setColorFilter(Color.parseColor("#80000000"));
         } else {
-            holder.mImageview.setColorFilter(null);
         }
     }
 

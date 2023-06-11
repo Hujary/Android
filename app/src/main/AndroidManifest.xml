@@ -28,6 +28,9 @@
             android:name=".Activitys.MainActivity" />
 
         <activity
+            android:name=".Activitys.Questions.QuestionFiveActivity" />
+
+        <activity
             android:name=".Activitys.Questions.QuestionFourActivity" />
 
         <activity

@@ -56,7 +56,6 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
             playerNumberTextView = itemView.findViewById(R.id.playerNumberTextView);
             playTimeTextView = itemView.findViewById(R.id.playTimeTextView);
             difficultyTextView = itemView.findViewById(R.id.difficultyTextView);
-
             itemView.setOnClickListener(this);
         }
 

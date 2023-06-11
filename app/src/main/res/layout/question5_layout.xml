@@ -11,15 +11,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-condensed"
-        android:text="wie viele Spieler ?"
+        android:text="welcher Modus ?"
         android:textSize="40dp" />
 
     <NumberPicker
-        android:id="@+id/numberPicker"
-        android:layout_width="213dp"
-        android:layout_height="434dp"
+        android:id="@+id/answerPicker"
+        android:layout_width="335dp"
+        android:layout_height="425dp"
         android:layout_margin="20dp"
-        android:theme="@style/NumberPickerTheme" />
+        android:theme="@style/NumberPickerThemeQuestionFive" />
 
     <LinearLayout
         android:layout_width="match_parent"
