@@ -24,6 +24,8 @@ public class QuestionFiveActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.question5_layout);
         gameData = GameData.getInstance();
+            //  todo: fix the Schwierigkeit Null problem if nothing was selected
+        gameData.setSchwierigkeit(antwortenArray[0]);
 
             // NumberPicker Werte einsetzen
         numberPickerLocation = findViewById(R.id.answerPicker);
@@ -44,9 +46,7 @@ public class QuestionFiveActivity extends AppCompatActivity {
         Button button_confirm = findViewById(R.id.button_confirm);
         button_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                startNextActivity();
-            }
+            public void onClick(View v) { startNextActivity(); }
         });
 
             // Werte vom NumberPicker speichern

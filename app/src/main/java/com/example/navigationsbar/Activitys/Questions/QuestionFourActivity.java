@@ -86,14 +86,7 @@ public class QuestionFourActivity extends AppCompatActivity {
                     selectedHerzPositions.add(position);
                 }
                 herzAdapter.notifyDataSetChanged();
-
-                // Ausgabe der ausgewählten Positionen der Herz-Karten
-                StringBuilder selectedPositions = new StringBuilder("Selected Herz Positions: ");
-                for (Integer selectedPosition : selectedHerzPositions) {
-                    selectedPositions.append(selectedPosition).append(", ");
-                }
-                Log.d("QuestionFourActivity", selectedPositions.toString());
-                Toast.makeText(QuestionFourActivity.this, selectedPositions.toString(), Toast.LENGTH_SHORT).show();
+                gameData.setSelectedHerzCards(selectedHerzPositions);
             }
         });
 
@@ -127,14 +120,7 @@ public class QuestionFourActivity extends AppCompatActivity {
                     selectedKaroPositions.add(position);
                 }
                 karoAdapter.notifyDataSetChanged();
-
-                // Ausgabe der ausgewählten Positionen der Karo-Karten
-                StringBuilder selectedPositions = new StringBuilder("Selected Karo Positions: ");
-                for (Integer selectedPosition : selectedKaroPositions) {
-                    selectedPositions.append(selectedPosition).append(", ");
-                }
-                Log.d("QuestionFourActivity", selectedPositions.toString());
-                Toast.makeText(QuestionFourActivity.this, selectedPositions.toString(), Toast.LENGTH_SHORT).show();
+                gameData.setSelectedKaroCards(selectedKaroPositions);
             }
         });
 
@@ -168,14 +154,7 @@ public class QuestionFourActivity extends AppCompatActivity {
                     selectedPikPositions.add(position);
                 }
                 pikAdapter.notifyDataSetChanged();
-
-                // Ausgabe der ausgewählten Positionen der Pik-Karten
-                StringBuilder selectedPositions = new StringBuilder("Selected Pik Positions: ");
-                for (Integer selectedPosition : selectedPikPositions) {
-                    selectedPositions.append(selectedPosition).append(", ");
-                }
-                Log.d("QuestionFourActivity", selectedPositions.toString());
-                Toast.makeText(QuestionFourActivity.this, selectedPositions.toString(), Toast.LENGTH_SHORT).show();
+                gameData.setSelectedPikCards(selectedPikPositions);
             }
         });
 
@@ -209,14 +188,7 @@ public class QuestionFourActivity extends AppCompatActivity {
                     selectedKreuzPositions.add(position);
                 }
                 kreuzAdapter.notifyDataSetChanged();
-
-                // Ausgabe der ausgewählten Positionen der Kreuz-Karten
-                StringBuilder selectedPositions = new StringBuilder("Selected Kreuz Positions: ");
-                for (Integer selectedPosition : selectedKreuzPositions) {
-                    selectedPositions.append(selectedPosition).append(", ");
-                }
-                Log.d("QuestionFourActivity", selectedPositions.toString());
-                Toast.makeText(QuestionFourActivity.this, selectedPositions.toString(), Toast.LENGTH_SHORT).show();
+                gameData.setSelectedKreuzCards(selectedKreuzPositions);
             }
         });
         // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

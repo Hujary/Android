@@ -8,7 +8,12 @@ public class GameData {
     private String haveCards;
     private String fehlenKarten;
     private String schwierigkeit;
-    private List<String> selectedCards;
+    private List<Integer> selectedHerzCards;
+    private List<Integer> selectedKaroCards;
+    private List<Integer> selectedPikCards;
+    private List<Integer> selectedKreuzCards;
+
+
 
     private GameData() {
         // Private Konstruktor, um direkte Instanziierung zu verhindern
@@ -58,8 +63,24 @@ public class GameData {
     }
 
 
-        //  Getter und Setter für selectedCards
-    public List<String> getSelectedCards() { return selectedCards; }
-    public void setSelectedCards(List<String> selectedCards) { this.selectedCards = selectedCards; }
+        //  Getter und Setter für selectedHerzCards
+    public List<Integer> getSelectedHerzCards() { return selectedHerzCards; }
+    public void setSelectedHerzCards(List<Integer> selectedHerzCards) { this.selectedHerzCards = selectedHerzCards; }
+
+
+        //  Getter und Setter für selectedPikCards
+    public List<Integer> getSelectedPikCards() { return selectedPikCards; }
+    public void setSelectedPikCards(List<Integer> selectedPikCards) { this.selectedPikCards = selectedPikCards; }
+
+
+        //  Getter und Setter für selectedKreuzCards
+    public List<Integer> getSelectedKreuzCards() { return selectedKreuzCards; }
+    public void setSelectedKreuzCards(List<Integer> selectedKreuzCards) { this.selectedKreuzCards = selectedKreuzCards; }
+
+
+        //  Getter und Setter für selectedKaroCards
+    public List<Integer> getSelectedKaroCards() { return selectedKaroCards; }
+    public void setSelectedKaroCards(List<Integer> selectedKaroCards) { this.selectedKaroCards = selectedKaroCards; }
+
 
 }

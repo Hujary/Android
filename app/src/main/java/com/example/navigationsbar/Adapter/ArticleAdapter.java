@@ -1,9 +1,10 @@
 package com.example.navigationsbar.Adapter;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -33,8 +34,10 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
 
     @Override
     public void onBindViewHolder(@NonNull ArticleViewHolder holder, int position) {
+        Animation animation = AnimationUtils.loadAnimation(holder.itemView.getContext(), android.R.anim.slide_in_left);
         Article article = articles.get(position);
         holder.bindArticle(article);
+        holder.itemView.startAnimation(animation);
     }
 
     @Override
@@ -78,7 +81,6 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
     }
 
     public interface OnClickListener {
-            // rufe die Methode aus GameFragment auf.
         void onItemClick(Article article);
     }
 }

@@ -52,5 +52,4 @@ public class filteredArticle {
     public String getSpielregeln() {
         return spielregel;
     }
-
 }

@@ -3,11 +3,14 @@ package com.example.navigationsbar.Adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.navigationsbar.Items.Article.Article;
 import com.example.navigationsbar.Items.FilteredArticle.filteredArticle;
 import com.example.navigationsbar.R;
 
@@ -55,6 +58,9 @@ public class FilteredArticleAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             ArticleViewHolder articleViewHolder = (ArticleViewHolder) holder;
             filteredArticle article = articles.get(position);
             articleViewHolder.bindArticle(article);
+
+            Animation animation = AnimationUtils.loadAnimation(articleViewHolder.itemView.getContext(), android.R.anim.slide_in_left);
+            articleViewHolder.itemView.startAnimation(animation);
         } else {
             // Handle the footer view here (if needed)
         }
