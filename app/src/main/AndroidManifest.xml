@@ -22,6 +22,15 @@
         </activity>
 
         <activity
+            android:name=".Database.AddActivity" />
+
+        <activity
+            android:name=".Database.UpdateActivity" />
+
+        <activity
+            android:name=".Database.DisplayDatabaseData" />
+
+        <activity
             android:name=".Activitys.FilteredGameList.DetailedGameInformationActivity" />
 
         <activity
