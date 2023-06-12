@@ -20,6 +20,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_TITLE = "book_title";
     private static final String COLUMN_AUTHOR = "book_author";
     private static final String COLUMN_PAGES = "book_pages";
+    private static final String COLUMN_CREATOR = "book_creator";
 
     public MyDatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -32,26 +33,33 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                 " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_TITLE + " TEXT, " +
                 COLUMN_AUTHOR + " TEXT, " +
-                COLUMN_PAGES + " INTEGER);";
+                COLUMN_PAGES + " INTEGER, " +
+                COLUMN_CREATOR + " TEXT);";
         db.execSQL(query);
+
+        // Vordefinierte Spiele hinzufügen
+        addDefaultGames(db);
     }
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
 
-    public void addBook(String title, String author, int pages){
+    public void addBook(String title, String author, int pages, String creator) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
         cv.put(COLUMN_TITLE, title);
         cv.put(COLUMN_AUTHOR, author);
         cv.put(COLUMN_PAGES, pages);
-        long result = db.insert(TABLE_NAME,null, cv);
-        if(result == -1){
+        cv.put(COLUMN_CREATOR, creator);
+
+        long result = db.insert(TABLE_NAME, null, cv);
+        if (result == -1) {
             Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
-        }else {
+        } else {
             Toast.makeText(context, "Added Successfully!", Toast.LENGTH_SHORT).show();
         }
     }
@@ -62,7 +70,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         return db.rawQuery(query, null);
     }
 
-    public void updateData(String row_id, String title, String author, String pages){
+    public void updateData(String row_id, String title, String author, String pages) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_TITLE, title);
@@ -70,25 +78,70 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_PAGES, pages);
 
         long result = db.update(TABLE_NAME, cv, "_id=?", new String[]{row_id});
-        if(result == -1){
+        if (result == -1) {
             Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
-        }else {
+        } else {
             Toast.makeText(context, "Updated Successfully!", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void deleteOneRow(String row_id){
+    public void deleteOneRow(String row_id) {
         SQLiteDatabase db = this.getWritableDatabase();
         long result = db.delete(TABLE_NAME, "_id=?", new String[]{row_id});
-        if(result == -1){
+        if (result == -1) {
             Toast.makeText(context, "Failed to Delete.", Toast.LENGTH_SHORT).show();
-        }else{
+        } else {
             Toast.makeText(context, "Successfully Deleted.", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void deleteAllData(){
+    public void deleteAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_NAME);
+    }
+
+    private void addDefaultGames(SQLiteDatabase db) {
+        // Überprüfen, ob die Tabelle bereits Einträge enthält
+        String countQuery = "SELECT count(*) FROM " + TABLE_NAME;
+        Cursor cursor = db.rawQuery(countQuery, null);
+        cursor.moveToFirst();
+        int rowCount = cursor.getInt(0);
+        cursor.close();
+
+        // Vordefinierte Spiele hinzufügen, falls die Tabelle noch leer ist
+        if (rowCount == 0) {
+            db.beginTransaction();
+            try {
+                ContentValues cv = new ContentValues();
+
+                // Spiel 1
+                cv.put(COLUMN_TITLE, "Spiel 1");
+                cv.put(COLUMN_AUTHOR, "Autor 1");
+                cv.put(COLUMN_PAGES, 100);
+                cv.put(COLUMN_CREATOR, "Entwickler");
+                db.insert(TABLE_NAME, null, cv);
+
+                // Spiel 2
+                cv.put(COLUMN_TITLE, "Spiel 2");
+                cv.put(COLUMN_AUTHOR, "Autor 2");
+                cv.put(COLUMN_PAGES, 150);
+                cv.put(COLUMN_CREATOR, "Entwickler");
+                db.insert(TABLE_NAME, null, cv);
+
+                // Spiel 3
+                cv.put(COLUMN_TITLE, "Spiel 3");
+                cv.put(COLUMN_AUTHOR, "Autor 3");
+                cv.put(COLUMN_PAGES, 200);
+                cv.put(COLUMN_CREATOR, "Entwickler");
+                db.insert(TABLE_NAME, null, cv);
+
+                db.setTransactionSuccessful();
+                Toast.makeText(context, "Default games added successfully!", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                Toast.makeText(context, "Failed to add default games.", Toast.LENGTH_SHORT).show();
+            } finally {
+                db.endTransaction();
+            }
+        }
     }
 }

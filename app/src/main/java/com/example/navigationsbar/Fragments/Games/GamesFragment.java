@@ -35,7 +35,7 @@ public class GamesFragment extends Fragment implements ArticleAdapter.OnClickLis
                 // Here, the method to create articles is called
             recyclerView = root.findViewById(R.id.articleRecyclerView);
             recyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
-            ArticleCreator articleCreator = new ArticleCreator(resources);
+            ArticleCreator articleCreator = new ArticleCreator(resources, getContext());
             articles = articleCreator.createArticles();
             articleAdapter = new ArticleAdapter(articles, this);
             recyclerView.setAdapter(articleAdapter);

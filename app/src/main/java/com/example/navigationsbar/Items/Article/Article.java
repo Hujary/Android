@@ -51,5 +51,4 @@ public class Article {
     public String getSpielregeln() {
         return spielregel;
     }
-
 }

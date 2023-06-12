@@ -1,13 +1,11 @@
 package com.example.navigationsbar.Items.Article;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.database.Cursor;
-import android.view.View;
+import android.util.Log;
 
-import com.example.navigationsbar.Database.DisplayDatabaseData;
 import com.example.navigationsbar.Database.MyDatabaseHelper;
-import com.example.navigationsbar.Fragments.Games.GamesFragment;
-import com.example.navigationsbar.Items.Article.Article;
 import com.example.navigationsbar.R;
 
 import org.json.JSONArray;
@@ -22,35 +20,31 @@ import java.util.List;
 
 public class ArticleCreator {
     private Resources resources;
-    MyDatabaseHelper myDB;
-    ArrayList<String> book_id, book_title, book_author, book_pages;
+    private MyDatabaseHelper myDB;
 
-    public ArticleCreator(Resources resources) {
+    public ArticleCreator(Resources resources, Context context) {
         this.resources = resources;
+        myDB = new MyDatabaseHelper(context);
     }
 
     public List<Article> createArticles() {
         List<Article> articles = new ArrayList<>();
 
-        myDB = new MyDatabaseHelper(GamesFragment.this);
-        book_id = new ArrayList<>();
-        book_title = new ArrayList<>();
-        book_author = new ArrayList<>();
-        book_pages = new ArrayList<>();
-        storeDataInArrays();
+        // Daten aus der Datenbank abrufen
+        List<Article> databaseArticles = readDatabaseData();
 
         try {
-                // JSON-Daten aus der Ressource laden
+            // JSON-Daten aus der Ressource laden
             String jsonData = loadJSONFromResource();
             JSONObject jsonObject = new JSONObject(jsonData);
 
             for (int i = 1; i <= 6; i++) {
-                    // Den Schlüssel für jedes Spiel dynamisch generieren (z.B. "Game_1", "Game_2")
+                // Den Schlüssel für jedes Spiel dynamisch generieren (z.B. "Game_1", "Game_2")
                 String gameKey = "Game_" + i;
                 JSONArray gameArray = jsonObject.getJSONArray(gameKey);
                 JSONObject game = gameArray.getJSONObject(0);
 
-                    // Daten für das Spiel aus dem JSON-Objekt auslesen
+                // Daten für das Spiel aus dem JSON-Objekt auslesen
                 String name = game.getString("name");
                 String spielregeln = game.getString("Regeln");
                 int minSpieleranzahl = game.getInt("Spielerzahl_Min");
@@ -60,17 +54,19 @@ public class ArticleCreator {
                 int maxSpieldauer = game.getInt("SpieldauerMax");
                 String schwierigkeitsgrad = game.getString("Schwierigkeitsgrad");
 
-                    // Artikel erstellen und der Liste hinzufügen
+                // Artikel erstellen und der Liste hinzufügen
                 Article article = new Article(name, spielregeln, benötigteKarten, maxSpieleranzahl, minSpieleranzahl, maxSpieldauer, minSpieldauer, schwierigkeitsgrad);
                 articles.add(article);
             }
 
+            // Datenbank-Artikel zur Liste hinzufügen
+            articles.addAll(databaseArticles);
+
             return articles;
         } catch (JSONException e) {
             e.printStackTrace();
-            System.out.println("Fehler: " + e);
+            Log.d("ArticleCreator", "Fehler: " + e);
         }
-
         return new ArrayList<>();
     }
 
@@ -86,22 +82,39 @@ public class ArticleCreator {
             json = new String(buffer, StandardCharsets.UTF_8);
         } catch (IOException ex) {
             ex.printStackTrace();
-            System.out.println("Fehler beim Lesen der JSON-Datei: " + ex);
+            Log.d("ArticleCreator", "Fehler beim Lesen der JSON-Datei: " + ex);
         }
         return json;
     }
 
-    void storeDataInArrays(){
+    private List<Article> readDatabaseData() {
+        List<Article> databaseArticles = new ArrayList<>();
+
         Cursor cursor = myDB.readAllData();
-        if(cursor.getCount() == 0){
-        }else{
-            while (cursor.moveToNext()){
-                book_id.add(cursor.getString(0));
-                book_title.add(cursor.getString(1));
-                book_author.add(cursor.getString(2));
-                book_pages.add(cursor.getString(3));
+        if (cursor.getCount() == 0) {
+            Log.d("ArticleCreator", "Die Datenbank ist leer.");
+        } else {
+            while (cursor.moveToNext()) {
+                String id = cursor.getString(0);
+                String title = cursor.getString(1);
+                String author = cursor.getString(2);
+                String pages = cursor.getString(3);
+
+                    // Pseudo-Werte für die fehlenden Informationen
+                int minSpieleranzahl = 1;
+                int maxSpieleranzahl = 2;
+                int minSpieldauer = 30;
+                int maxSpieldauer = 60;
+                String schwierigkeitsgrad = "Information aus Datenbank";
+
+                Article article = new Article(title, author, pages, maxSpieleranzahl, minSpieleranzahl, maxSpieldauer, minSpieldauer, schwierigkeitsgrad);
+                databaseArticles.add(article);
+
+                String data = "ID: " + id + ", Title: " + title + ", Author: " + author + ", Pages: " + pages;
+                Log.d("ArticleCreator", data);
             }
-            System.out.println(book_title);
         }
+
+        return databaseArticles;
     }
 }

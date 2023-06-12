@@ -27,9 +27,12 @@ public class AddActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 MyDatabaseHelper myDB = new MyDatabaseHelper(AddActivity.this);
-                myDB.addBook(title_input.getText().toString().trim(),
+                myDB.addBook(
+                        title_input.getText().toString().trim(),
                         author_input.getText().toString().trim(),
-                        Integer.valueOf(pages_input.getText().toString().trim()));
+                        Integer.parseInt(pages_input.getText().toString().trim()),
+                        "Benutzer" // Replace "Benutzer" with the appropriate value for the creator
+                );
             }
         });
     }
