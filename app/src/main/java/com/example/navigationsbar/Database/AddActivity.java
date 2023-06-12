@@ -11,7 +11,8 @@ import com.example.navigationsbar.R;
 
 public class AddActivity extends AppCompatActivity {
 
-    EditText title_input, author_input, pages_input;
+    EditText title_input, spielregel_input, benötigteKarten_input, spieleranzahlMin_input, spieleranzahlMax_input,
+            spieldauerMin_input, spieldauerMax_input, schwierigkeitsgrad_input;
     Button add_button;
 
     @Override
@@ -20,18 +21,27 @@ public class AddActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add);
 
         title_input = findViewById(R.id.title_input);
-        author_input = findViewById(R.id.author_input);
-        pages_input = findViewById(R.id.pages_input);
+        spielregel_input = findViewById(R.id.spielregel_input);
+        benötigteKarten_input = findViewById(R.id.benötigteKarten_input);
+        spieleranzahlMin_input = findViewById(R.id.spieleranzahlMin_input);
+        spieleranzahlMax_input = findViewById(R.id.spieleranzahlMax_input);
+        spieldauerMin_input = findViewById(R.id.spieldauerMin_input);
+        spieldauerMax_input = findViewById(R.id.spieldauerMax_input);
+        schwierigkeitsgrad_input = findViewById(R.id.schwierigkeitsgrad_input);
         add_button = findViewById(R.id.add_button);
         add_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 MyDatabaseHelper myDB = new MyDatabaseHelper(AddActivity.this);
-                myDB.addBook(
+                myDB.addArticle(
                         title_input.getText().toString().trim(),
-                        author_input.getText().toString().trim(),
-                        Integer.parseInt(pages_input.getText().toString().trim()),
-                        "Benutzer" // Replace "Benutzer" with the appropriate value for the creator
+                        spielregel_input.getText().toString().trim(),
+                        benötigteKarten_input.getText().toString().trim(),
+                        Integer.parseInt(spieleranzahlMin_input.getText().toString().trim()),
+                        Integer.parseInt(spieleranzahlMax_input.getText().toString().trim()),
+                        Integer.parseInt(spieldauerMin_input.getText().toString().trim()),
+                        Integer.parseInt(spieldauerMax_input.getText().toString().trim()),
+                        schwierigkeitsgrad_input.getText().toString().trim()
                 );
             }
         });

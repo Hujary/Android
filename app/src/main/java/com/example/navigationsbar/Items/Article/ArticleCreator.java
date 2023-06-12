@@ -97,20 +97,18 @@ public class ArticleCreator {
             while (cursor.moveToNext()) {
                 String id = cursor.getString(0);
                 String title = cursor.getString(1);
-                String author = cursor.getString(2);
-                String pages = cursor.getString(3);
+                String spielregel = cursor.getString(2);
+                String benötigteKarten = cursor.getString(3);
+                int spieleranzahlMin = cursor.getInt(4);
+                int spieleranzahlMax = cursor.getInt(5);
+                int spieldauerMin = cursor.getInt(6);
+                int spieldauerMax = cursor.getInt(7);
+                String schwierigkeitsgrad = cursor.getString(8);
 
-                    // Pseudo-Werte für die fehlenden Informationen
-                int minSpieleranzahl = 1;
-                int maxSpieleranzahl = 2;
-                int minSpieldauer = 30;
-                int maxSpieldauer = 60;
-                String schwierigkeitsgrad = "Information aus Datenbank";
-
-                Article article = new Article(title, author, pages, maxSpieleranzahl, minSpieleranzahl, maxSpieldauer, minSpieldauer, schwierigkeitsgrad);
+                Article article = new Article(title, spielregel, benötigteKarten, spieleranzahlMin, spieleranzahlMax, spieldauerMin, spieldauerMax, schwierigkeitsgrad);
                 databaseArticles.add(article);
 
-                String data = "ID: " + id + ", Title: " + title + ", Author: " + author + ", Pages: " + pages;
+                String data = "ID: " + id + ", Title: " + title + ", Spielregel: " + spielregel + ", Benötigte Karten: " + benötigteKarten + ", Spieleranzahl: " + spieleranzahlMin + "-" + spieleranzahlMax + ", Spieldauer: " + spieldauerMin + "-" + spieldauerMax + ", Schwierigkeitsgrad: " + schwierigkeitsgrad;
                 Log.d("ArticleCreator", data);
             }
         }
