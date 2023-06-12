@@ -1,5 +1,7 @@
 package com.example.navigationsbar.Adapter;
 
+import android.app.Activity;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,7 @@ import com.example.navigationsbar.Activitys.FilteredGameList.DetailedGameInforma
 import com.example.navigationsbar.Items.Article.Article;
 import com.example.navigationsbar.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder> {

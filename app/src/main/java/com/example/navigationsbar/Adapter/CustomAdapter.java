@@ -1,4 +1,4 @@
-package com.example.navigationsbar.Database;
+package com.example.navigationsbar.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.navigationsbar.Database.UpdateActivity;
 import com.example.navigationsbar.R;
 
 import java.util.ArrayList;
@@ -51,6 +52,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.book_title_txt.setText(String.valueOf(book_title.get(position)));
         holder.book_author_txt.setText(String.valueOf(book_author.get(position)));
         holder.book_pages_txt.setText(String.valueOf(book_pages.get(position)));
+
         //Recyclerview onClickListener
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override

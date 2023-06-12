@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.navigationsbar.Adapter.CustomAdapter;
 import com.example.navigationsbar.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 

@@ -3,33 +3,51 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".Fragments.Games.GamesFragment">
 
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="187dp"
-        android:layout_height="193dp"
-        android:layout_marginStart="4dp"
+        android:layout_width="228dp"
+        android:layout_height="245dp"
         android:layout_marginTop="4dp"
+        android:background="@drawable/icon_circle"
         android:rotation="0"
         android:rotationY="0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/kreis_background" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="204dp"
-        android:layout_height="151dp"
-        android:layout_marginTop="28dp"
+        android:id="@+id/textViewAlle"
+        android:layout_width="162dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="4dp"
         android:fontFamily="sans-serif-condensed"
         android:paddingStart="16dp"
         android:paddingTop="8dp"
         android:paddingEnd="16dp"
         android:paddingBottom="8dp"
-        android:text="Alle Spiele"
+        android:text="Alle"
+        android:textColor="@color/darkgrey"
+        android:textSize="50dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewSpiele"
+        android:layout_width="188dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="148dp"
+        android:layout_marginEnd="4dp"
+        android:fontFamily="sans-serif-condensed"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp"
+        android:text="Spiele"
         android:textColor="@color/darkgrey"
         android:textSize="50dp"
         android:textStyle="bold"
@@ -38,12 +56,13 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/articleRecyclerView"
-        android:layout_width="377dp"
-        android:layout_height="470dp"
+        android:layout_width="367dp"
+        android:layout_height="424dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.266"></androidx.recyclerview.widget.RecyclerView>
+        app:layout_constraintVertical_bias="1.0"></androidx.recyclerview.widget.RecyclerView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

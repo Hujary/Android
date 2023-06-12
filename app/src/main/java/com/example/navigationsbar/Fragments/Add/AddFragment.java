@@ -16,8 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.navigationsbar.Database.AddActivity;
-import com.example.navigationsbar.Database.CustomAdapter;
-import com.example.navigationsbar.Database.DisplayDatabaseData;
+import com.example.navigationsbar.Adapter.CustomAdapter;
 import com.example.navigationsbar.Database.MyDatabaseHelper;
 import com.example.navigationsbar.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
