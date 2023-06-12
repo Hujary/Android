@@ -34,10 +34,10 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
 
     @Override
     public void onBindViewHolder(@NonNull ArticleViewHolder holder, int position) {
-        Animation animation = AnimationUtils.loadAnimation(holder.itemView.getContext(), android.R.anim.slide_in_left);
+        Animation translate_anim = AnimationUtils.loadAnimation(holder.itemView.getContext(), R.anim.translate_anim);
         Article article = articles.get(position);
         holder.bindArticle(article);
-        holder.itemView.startAnimation(animation);
+        holder.itemView.setAnimation(translate_anim);
     }
 
     @Override

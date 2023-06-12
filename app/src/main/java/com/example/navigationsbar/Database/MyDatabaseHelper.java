@@ -21,7 +21,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_AUTHOR = "book_author";
     private static final String COLUMN_PAGES = "book_pages";
 
-    MyDatabaseHelper(@Nullable Context context) {
+    public MyDatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
     }
@@ -41,7 +41,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    void addBook(String title, String author, int pages){
+    public void addBook(String title, String author, int pages){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
@@ -56,18 +56,13 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    Cursor readAllData(){
-        String query = "SELECT * FROM " + TABLE_NAME;
+    public Cursor readAllData() {
         SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = null;
-        if(db != null){
-            cursor = db.rawQuery(query, null);
-        }
-        return cursor;
+        String query = "SELECT * FROM " + TABLE_NAME;
+        return db.rawQuery(query, null);
     }
 
-    void updateData(String row_id, String title, String author, String pages){
+    public void updateData(String row_id, String title, String author, String pages){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_TITLE, title);
@@ -82,7 +77,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    void deleteOneRow(String row_id){
+    public void deleteOneRow(String row_id){
         SQLiteDatabase db = this.getWritableDatabase();
         long result = db.delete(TABLE_NAME, "_id=?", new String[]{row_id});
         if(result == -1){
@@ -92,9 +87,8 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    void deleteAllData(){
+    public void deleteAllData(){
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_NAME);
     }
-
 }

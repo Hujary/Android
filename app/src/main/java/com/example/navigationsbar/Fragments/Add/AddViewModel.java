@@ -1,14 +1,14 @@
-package com.example.navigationsbar.Fragments.Settings;
+package com.example.navigationsbar.Fragments.Add;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class SettingsViewModel extends ViewModel {
+public class AddViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public SettingsViewModel() {
+    public AddViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is notifications fragment");
     }
