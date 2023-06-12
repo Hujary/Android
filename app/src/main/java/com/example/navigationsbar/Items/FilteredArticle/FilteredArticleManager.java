@@ -7,16 +7,10 @@ public class FilteredArticleManager {
     public static List<filteredArticle> getFilteredArticles(int numberOfPlayers, boolean haveCards, boolean missingCards, String difficulty) {
         List<filteredArticle> filteredGamesList = new ArrayList<>();
 
-            // Filter basierend auf der Spieleranzahl
-        if (numberOfPlayers >= 1 && numberOfPlayers <= 5) {
-            System.out.println("Spieler 2-4");
-                // Filter basierend auf dem Besitz von Spielkarten
-            if (haveCards) {
-                System.out.println("Spieler hat Karten");
-                    // Filter basierend auf fehlenden Spielkarten
-                if (!missingCards) {
-                    System.out.println("es fehlen keine Karten");
-
+            // Eror handling
+        if (difficulty == null) {
+            difficulty = "Egal";
+        }
                         // Artikel hinzufügen, die den Bedingungen entsprechen
                     if (difficulty.equals("Einfach")) {
                         System.out.println("Schwierigkeit: Einfach");
@@ -44,14 +38,7 @@ public class FilteredArticleManager {
                         filteredGamesList.add(new filteredArticle("Titel6", "Spielregeln", "12", 3, 10, 20, 30, "schwer"));
                         filteredGamesList.add(new filteredArticle("Titel5", "Spielregeln", "32", 2, 10, 20, 30, "Extrem"));
                         filteredGamesList.add(new filteredArticle("Titel6", "Spielregeln", "16", 2, 8, 20, 30, "Extrem"));
-                    }
-                }
-            } else {
-                filteredGamesList.add(new filteredArticle("Keine Karten Example", "Spielregeln", "16", 3, 6, 20, 30, "leicht"));
-                filteredGamesList.add(new filteredArticle("Keine Karten Example", "Spielregeln", "16", 3, 8, 20, 30, "leicht"));
-                filteredGamesList.add(new filteredArticle("Keine Karten Example", "Spielregeln", "12", 3, 10, 20, 30, "mittel"));
-            }
-        }
+                     }
         return filteredGamesList;
     }
 }
