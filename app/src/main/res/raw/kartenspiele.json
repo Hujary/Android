@@ -128,26 +128,5 @@
       "SpieldauerMax": 30,
       "Schwierigkeitsgrad": "medium"
     }
-  ],
-  "Game_7": [
-    {
-      "name": "Süfy boxen",
-      "Regeln": [
-        "Es werden 5 Karten nebeneinander und offen auf den Tisch gelegt.",
-        "Ein Spieler beginnt und rät ob eine Karte höher oder niedriger ist als eine der 5 Karten auf dem Tisch",
-        "Das Ziel ist es 3 mal in Folge richtig zu raten. Man darf aber auch öfter raten",
-        "Bei jeder richtigen Karte wird diese an den jeweiligen Stapel angelegt. Es kann immer nur an die beiden Enden jedes Stapels angelegt werden",
-        "Außerdem muss mindestens eine von 3 Karten an den höchsten Stapel angelegt werden. Man darf auch einen kurzen Stapel zum längsten machen und dann dort anlegen",
-        "Schafft es der Spieler mind 3 Karten erfolgreich zu erraten kann er seinen Zug beenden und der nächste Spieler ist an der Reihe",
-        "Rät der Spieler eine Karte falsch, so muss er so viele Schlücke trinken, wie Karten an diesem Stapel liegen",
-        "Der Spieler startet dann erneut und zwar solange, bis er mind 3 Karten in Folge richtig erraten hat"
-      ],
-      "Spielerzahl_Min": 2,
-      "Spieleranzahl_Max": 10,
-      "Benötigte Karten": "Nicht relevant",
-      "SpieldauerMin": 10,
-      "SpieldauerMax": 30,
-      "Schwierigkeitsgrad": "ez"
-    }
   ]
 }

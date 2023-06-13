@@ -30,7 +30,7 @@ public class AddFragment extends Fragment {
     ImageView empty_imageview;
     TextView no_data;
     MyDatabaseHelper myDB;
-    ArrayList<String> book_id, book_title, book_author, book_pages, user;
+    ArrayList<String> game_id, game_title, user;
     DatabaseAdapter databaseAdapter;
 
     @Override
@@ -45,20 +45,18 @@ public class AddFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(requireActivity(), AddActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 1);
             }
         });
 
         myDB = new MyDatabaseHelper(requireActivity());
-        book_id = new ArrayList<>();
-        book_title = new ArrayList<>();
-        book_author = new ArrayList<>();
-        book_pages = new ArrayList<>();
-        user = new ArrayList<>(); // Initialisiere das user ArrayList
-
+        game_id = new ArrayList<>();
+        game_title = new ArrayList<>();
+        user = new ArrayList<>(); // Initialize the user ArrayList
         storeDataInArrays();
 
-        databaseAdapter = new DatabaseAdapter(requireActivity(), getContext(), book_id, book_title, user);
+            //  hier wird dem Adapter der Wert des aktuellen  Spiels übergeben
+        databaseAdapter = new DatabaseAdapter(requireActivity(), getContext(), game_id, game_title, user);
         recyclerView.setAdapter(databaseAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
         return root;
@@ -75,28 +73,47 @@ public class AddFragment extends Fragment {
         }
     }
 
-    void storeDataInArrays() {
-        Cursor cursor = myDB.readUserAddedData();  // Hole die neuesten Daten aus der Datenbank
+    @Override
+    public void onResume() {
+        super.onResume();
+        storeDataInArrays();
+        databaseAdapter.notifyDataSetChanged();
+    }
 
-        book_id.clear();
-        book_title.clear();
+    void storeDataInArrays() {
+        Cursor cursor = myDB.readUserAddedData();  // Get the latest data from the database
+
+        game_id.clear();
+        game_title.clear();
         user.clear();
 
         if (cursor != null && cursor.moveToFirst()) {
+            int columnCount = cursor.getColumnCount();
             do {
-                book_id.add(cursor.getString(0));
-                book_title.add(cursor.getString(1));
-                user.add(cursor.getString(4));
+                for (int i = 0; i < columnCount; i++) {
+                    String value = cursor.getString(i);
+                    System.out.println("Column " + i + ": " + value);
+                    //game_id.add(cursor.getString(0));
+                    //game_title.add(cursor.getString(1));
+                    //user.add(cursor.getString(4));
+                }
             } while (cursor.moveToNext());
             cursor.close();
         }
 
-        if (book_id.isEmpty()) {
+            //  prüfe ob noch ein Element in der Liste ist
+        if (game_id.isEmpty()) {
             empty_imageview.setVisibility(View.VISIBLE);
             no_data.setVisibility(View.VISIBLE);
         } else {
             empty_imageview.setVisibility(View.GONE);
             no_data.setVisibility(View.GONE);
         }
+    }
+
+        //  Aktuallisiere den Fragment
+    public void refreshFragment() {
+        storeDataInArrays();
+        databaseAdapter.notifyDataSetChanged();
     }
 }

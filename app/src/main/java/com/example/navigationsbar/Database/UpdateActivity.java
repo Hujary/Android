@@ -9,8 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
+import com.example.navigationsbar.Fragments.AddFragment;
 import com.example.navigationsbar.Items.Article.Article;
 import com.example.navigationsbar.R;
 
@@ -39,7 +39,7 @@ public class UpdateActivity extends AppCompatActivity {
         update_button = findViewById(R.id.update_button);
         delete_button = findViewById(R.id.delete_button);
 
-            //  Methode um die Werte des intents zu speichern.
+        // Methode um die Werte des intents zu speichern.
         getAndSetIntentData();
 
         update_button.setOnClickListener(new View.OnClickListener() {
@@ -58,64 +58,74 @@ public class UpdateActivity extends AppCompatActivity {
 
                 String creator = "user";
                 myDB.updateData(id, new Article(id, title, spielregel, benötigteKarten, spieleranzahlMin, spieleranzahlMax, spieldauerMin, spieldauerMax, schwierigkeitsgrad, creator));
+
+                // Refresh the fragment to update the data
+                refreshFragment();
+                finish();
             }
         });
 
         delete_button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                confirmDialog();
-            }
+            public void onClick(View view) { confirmDialog(); }
         });
     }
 
     void getAndSetIntentData() {
-        // Check if all required extras are present
-        if (getIntent().hasExtra("id") && getIntent().hasExtra("title") && getIntent().hasExtra("spielregel")
-                && getIntent().hasExtra("benötigteKarten") && getIntent().hasExtra("spieleranzahlMin")
-                && getIntent().hasExtra("spieleranzahlMax") && getIntent().hasExtra("spieldauerMin")
-                && getIntent().hasExtra("spieldauerMax") && getIntent().hasExtra("schwierigkeitsgrad")) {
-            System.out.println("IF Bedingung erfüllt.");
-            id = getIntent().getStringExtra("id");
-            title = getIntent().getStringExtra("title");
-            spielregel = getIntent().getStringExtra("spielregel");
-            benötigteKarten = getIntent().getStringExtra("benötigteKarten");
-            spieleranzahlMin = getIntent().getIntExtra("spieleranzahlMin", 0);
-            spieleranzahlMax = getIntent().getIntExtra("spieleranzahlMax", 0);
-            spieldauerMin = getIntent().getIntExtra("spieldauerMin", 0);
-            spieldauerMax = getIntent().getIntExtra("spieldauerMax", 0);
-            schwierigkeitsgrad = getIntent().getStringExtra("schwierigkeitsgrad");
+        id = getIntent().getStringExtra("id");
+        title = getIntent().getStringExtra("title");
+        spielregel = getIntent().getStringExtra("spielregel");
+        benötigteKarten = getIntent().getStringExtra("benötigteKarten");
+        spieleranzahlMin = getIntent().getIntExtra("spieleranzahlMin", 0);
+        spieleranzahlMax = getIntent().getIntExtra("spieleranzahlMax", 0);
+        spieldauerMin = getIntent().getIntExtra("spieldauerMin", 0);
+        spieldauerMax = getIntent().getIntExtra("spieldauerMax", 0);
+        schwierigkeitsgrad = getIntent().getStringExtra("schwierigkeitsgrad");
 
-            title_input.setText("pseudotitel");
-            spielregel_input.setText(spielregel);
-            benötigteKarten_input.setText(benötigteKarten);
-            spieleranzahlMin_input.setText(String.valueOf(spieleranzahlMin));
-            spieleranzahlMax_input.setText(String.valueOf(spieleranzahlMax));
-            spieldauerMin_input.setText(String.valueOf(spieldauerMin));
-            spieldauerMax_input.setText(String.valueOf(spieldauerMax));
-            schwierigkeitsgrad_input.setText(schwierigkeitsgrad);
-            Log.d("stev", title + " " + spielregel + " " + benötigteKarten + " " + spieleranzahlMin + " " +
-                    spieleranzahlMax + " " + spieldauerMin + " " + spieldauerMax + " " + schwierigkeitsgrad);
-        }
+        spielregel_input.setText(spielregel);
+        benötigteKarten_input.setText(benötigteKarten);
+        spieleranzahlMin_input.setText(String.valueOf(spieleranzahlMin));
+        spieleranzahlMax_input.setText(String.valueOf(spieleranzahlMax));
+        spieldauerMin_input.setText(String.valueOf(spieldauerMin));
+        spieldauerMax_input.setText(String.valueOf(spieldauerMax));
+        schwierigkeitsgrad_input.setText(schwierigkeitsgrad);
+
+        Log.d("stev", title + " " + spielregel + " " + benötigteKarten + " " + spieleranzahlMin + " " +
+                spieleranzahlMax + " " + spieldauerMin + " " + spieldauerMax + " " + schwierigkeitsgrad);
     }
     void confirmDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        System.out.println(title);
         builder.setTitle("Delete " + title + " ?");
         builder.setMessage("Are you sure you want to delete " + title + " ?");
+
+            //  User möchte Löschvorgang weiter machen.
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 MyDatabaseHelper myDB = new MyDatabaseHelper(UpdateActivity.this);
                 myDB.deleteOneRow(id);
+
+                    // Refresh the fragment to update the data
+                refreshFragment();
                 finish();
             }
         });
+            //  User möchte Löschvorgang abbrechen.
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
+                // Do nothing
             }
         });
         builder.create().show();
+    }
+
+    void refreshFragment() {
+        // Get the parent fragment
+        AddFragment addFragment = (AddFragment) getSupportFragmentManager().findFragmentByTag("AddFragment");
+        if (addFragment != null) {
+            addFragment.refreshFragment();
+        }
     }
 }
