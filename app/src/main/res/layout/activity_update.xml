@@ -93,24 +93,23 @@
                 android:inputType="text" />
 
 
-
             <Button
                 android:id="@+id/update_button"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_marginTop="40dp"
-                android:text="Add"
-                android:textSize="20sp"
-                android:textAllCaps="false" />
+                android:text="Update"
+                android:textAllCaps="false"
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/delete_button"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_marginTop="40dp"
-                android:text="Add"
-                android:textSize="20sp"
-                android:textAllCaps="false" />
+                android:text="Delete"
+                android:textAllCaps="false"
+                android:textSize="20sp" />
 
         </LinearLayout>
     </ScrollView>

@@ -41,7 +41,8 @@ public class AddActivity extends AppCompatActivity {
                         Integer.parseInt(spieleranzahlMax_input.getText().toString().trim()),
                         Integer.parseInt(spieldauerMin_input.getText().toString().trim()),
                         Integer.parseInt(spieldauerMax_input.getText().toString().trim()),
-                        schwierigkeitsgrad_input.getText().toString().trim()
+                        schwierigkeitsgrad_input.getText().toString().trim(),
+                        "user"
                 );
             }
         });

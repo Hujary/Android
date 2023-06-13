@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.navigationsbar.Adapter.CustomAdapter;
+import com.example.navigationsbar.Adapter.DatabaseAdapter;
 import com.example.navigationsbar.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -25,8 +25,8 @@ public class DisplayDatabaseData extends AppCompatActivity {
     ImageView empty_imageview;
     TextView no_data;
     MyDatabaseHelper myDB;
-    ArrayList<String> book_id, book_title, book_author, book_pages;
-    CustomAdapter customAdapter;
+    ArrayList<String> book_id, book_title, book_author, book_pages, user;
+    DatabaseAdapter databaseAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +53,8 @@ public class DisplayDatabaseData extends AppCompatActivity {
 
         storeDataInArrays();
 
-        customAdapter = new CustomAdapter(DisplayDatabaseData.this,this, book_id, book_title, book_author,
-                book_pages);
-        recyclerView.setAdapter(customAdapter);
+        databaseAdapter = new DatabaseAdapter(DisplayDatabaseData.this,this, book_id, book_title, user);
+        recyclerView.setAdapter(databaseAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(DisplayDatabaseData.this));
 
     }

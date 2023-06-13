@@ -11,6 +11,17 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import com.example.navigationsbar.Items.Article.Article;
+import com.example.navigationsbar.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MyDatabaseHelper extends SQLiteOpenHelper {
 
@@ -28,6 +39,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_SPIELDAUER_MIN = "spieldauer_min";
     private static final String COLUMN_SPIELDAUER_MAX = "spieldauer_max";
     private static final String COLUMN_SCHWIERIGKEITSGRAD = "schwierigkeitsgrad";
+    private static final String COLUMN_CREATOR = "creator";
 
     public MyDatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -45,11 +57,12 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_SPIELERANZAHL_MAX + " INTEGER, " +
                 COLUMN_SPIELDAUER_MIN + " INTEGER, " +
                 COLUMN_SPIELDAUER_MAX + " INTEGER, " +
-                COLUMN_SCHWIERIGKEITSGRAD + " TEXT);";
+                COLUMN_SCHWIERIGKEITSGRAD + " TEXT, " +
+                COLUMN_CREATOR + " TEXT);";
         db.execSQL(query);
 
-        // Vordefinierte Spiele hinzufügen
-        addDefaultGames(db);
+            // JSON-Datenbank laden
+        addJsonDataToDatabase(db);
     }
 
     @Override
@@ -58,7 +71,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void addArticle(String title, String spielregel, String benötigteKarten, int spieleranzahlMin, int spieleranzahlMax, int spieldauerMin, int spieldauerMax, String schwierigkeitsgrad) {
+    public void addArticle(String title, String spielregel, String benötigteKarten, int spieleranzahlMin, int spieleranzahlMax, int spieldauerMin, int spieldauerMax, String schwierigkeitsgrad, String creator) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
@@ -70,6 +83,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_SPIELDAUER_MIN, spieldauerMin);
         cv.put(COLUMN_SPIELDAUER_MAX, spieldauerMax);
         cv.put(COLUMN_SCHWIERIGKEITSGRAD, schwierigkeitsgrad);
+        cv.put(COLUMN_CREATOR, creator);
 
         long result = db.insert(TABLE_NAME, null, cv);
         if (result == -1) {
@@ -79,6 +93,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+        //  Alle Daten lesen.
     public Cursor readAllData() {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM " + TABLE_NAME;
@@ -97,6 +112,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_SPIELDAUER_MIN, article.getSpieldauerMin());
         cv.put(COLUMN_SPIELDAUER_MAX, article.getSpieldauerMax());
         cv.put(COLUMN_SCHWIERIGKEITSGRAD, article.getSchwierigkeitsgrad());
+        cv.put(COLUMN_CREATOR, "user"); // Wert sollte nie verändert werden, nur bugfixing.
 
         long result = db.update(TABLE_NAME, cv, COLUMN_ID + "=?", new String[]{row_id});
         if (result == -1) {
@@ -106,6 +122,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+        //  Eine Zeile in meiner DB löschen
     public void deleteOneRow(String row_id) {
         SQLiteDatabase db = this.getWritableDatabase();
         long result = db.delete(TABLE_NAME, COLUMN_ID + "=?", new String[]{row_id});
@@ -116,65 +133,77 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void deleteAllData() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("DELETE FROM " + TABLE_NAME);
-    }
-
-    private void addDefaultGames(SQLiteDatabase db) {
-        // Überprüfen, ob die Tabelle bereits Einträge enthält
-        String countQuery = "SELECT count(*) FROM " + TABLE_NAME;
-        Cursor cursor = db.rawQuery(countQuery, null);
-        cursor.moveToFirst();
-        int rowCount = cursor.getInt(0);
-        cursor.close();
-
-        // Vordefinierte Spiele hinzufügen, falls die Tabelle noch leer ist
-        if (rowCount == 0) {
+        //  JSON Code zur Datenbank hinzuzufügen.
+    public void addJsonDataToDatabase(SQLiteDatabase db) {
+        List<Article> articles = new ArrayList<>();
+        try {
+                // JSON-Daten aus der Ressource laden
+            String jsonData = loadJSONFromResource();
+            JSONObject jsonObject = new JSONObject(jsonData);
             db.beginTransaction();
+
             try {
                 ContentValues cv = new ContentValues();
+                for (int i = 1; i <= 6; i++) {
+                        // Den Schlüssel für jedes Spiel dynamisch generieren (z.B. "Game_1", "Game_2")
+                    String gameKey = "Game_" + i;
+                    JSONArray gameArray = jsonObject.getJSONArray(gameKey);
+                    JSONObject game = gameArray.getJSONObject(0);
 
-                // Spiel 1
-                cv.put(COLUMN_TITLE, "Spiel 1");
-                cv.put(COLUMN_SPIELREGEL, "Spielregel 1");
-                cv.put(COLUMN_BENÖTIGTE_KARTEN, "Karten 1");
-                cv.put(COLUMN_SPIELERANZAHL_MIN, 2);
-                cv.put(COLUMN_SPIELERANZAHL_MAX, 4);
-                cv.put(COLUMN_SPIELDAUER_MIN, 30);
-                cv.put(COLUMN_SPIELDAUER_MAX, 60);
-                cv.put(COLUMN_SCHWIERIGKEITSGRAD, "Einfach");
-                db.insert(TABLE_NAME, null, cv);
+                        // Daten für das Spiel aus dem JSON-Objekt auslesen
+                    String name = game.getString("name");
+                    String spielregeln = game.getString("Regeln");
+                    int minSpieleranzahl = game.getInt("Spielerzahl_Min");
+                    int maxSpieleranzahl = game.getInt("Spieleranzahl_Max");
+                    String benötigteKarten = game.getString("Benötigte Karten");
+                    int minSpieldauer = game.getInt("SpieldauerMin");
+                    int maxSpieldauer = game.getInt("SpieldauerMax");
+                    String schwierigkeitsgrad = game.getString("Schwierigkeitsgrad");
+                    String creator = "creator";
 
-                // Spiel 2
-                cv.put(COLUMN_TITLE, "Spiel 2");
-                cv.put(COLUMN_SPIELREGEL, "Spielregel 2");
-                cv.put(COLUMN_BENÖTIGTE_KARTEN, "Karten 2");
-                cv.put(COLUMN_SPIELERANZAHL_MIN, 2);
-                cv.put(COLUMN_SPIELERANZAHL_MAX, 6);
-                cv.put(COLUMN_SPIELDAUER_MIN, 45);
-                cv.put(COLUMN_SPIELDAUER_MAX, 90);
-                cv.put(COLUMN_SCHWIERIGKEITSGRAD, "Mittel");
-                db.insert(TABLE_NAME, null, cv);
+                        // Artikel erstellen und der Liste hinzufügen
+                    Article article = new Article(name, spielregeln, benötigteKarten, maxSpieleranzahl, minSpieleranzahl, maxSpieldauer, minSpieldauer, schwierigkeitsgrad, creator);
+                    articles.add(article);
 
-                // Spiel 3
-                cv.put(COLUMN_TITLE, "Spiel 3");
-                cv.put(COLUMN_SPIELREGEL, "Spielregel 3");
-                cv.put(COLUMN_BENÖTIGTE_KARTEN, "Karten 3");
-                cv.put(COLUMN_SPIELERANZAHL_MIN, 3);
-                cv.put(COLUMN_SPIELERANZAHL_MAX, 8);
-                cv.put(COLUMN_SPIELDAUER_MIN, 60);
-                cv.put(COLUMN_SPIELDAUER_MAX, 120);
-                cv.put(COLUMN_SCHWIERIGKEITSGRAD, "Schwer");
-                db.insert(TABLE_NAME, null, cv);
+                        // Artikel zur Datenbank hinzufügen
+                    cv.clear();
+                    cv.put(COLUMN_TITLE, name);
+                    cv.put(COLUMN_SPIELREGEL, spielregeln);
+                    cv.put(COLUMN_BENÖTIGTE_KARTEN, benötigteKarten);
+                    cv.put(COLUMN_SPIELERANZAHL_MIN, minSpieleranzahl);
+                    cv.put(COLUMN_SPIELERANZAHL_MAX, maxSpieleranzahl);
+                    cv.put(COLUMN_SPIELDAUER_MIN, minSpieldauer);
+                    cv.put(COLUMN_SPIELDAUER_MAX, maxSpieldauer);
+                    cv.put(COLUMN_SCHWIERIGKEITSGRAD, schwierigkeitsgrad);
+                    cv.put(COLUMN_CREATOR, creator);
+
+                    db.insert(TABLE_NAME, null, cv);
+                }
 
                 db.setTransactionSuccessful();
-                Toast.makeText(context, "Default games added successfully!", Toast.LENGTH_SHORT).show();
-            } catch (Exception e) {
-                Toast.makeText(context, "Failed to add default games.", Toast.LENGTH_SHORT).show();
             } finally {
                 db.endTransaction();
             }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Log.d("ArticleCreator", "Fehler: " + e);
         }
+    }
+
+    private String loadJSONFromResource() {
+        String json = null;
+        try {
+                // JSON-Datei aus der Ressource lesen
+            InputStream is = context.getResources().openRawResource(R.raw.kartenspiele);
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, StandardCharsets.UTF_8);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            Log.d("ArticleCreator", "Fehler beim Lesen der JSON-Datei: " + ex);
+        }
+        return json;
     }
 }

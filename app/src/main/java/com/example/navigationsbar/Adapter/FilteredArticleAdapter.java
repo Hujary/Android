@@ -68,7 +68,7 @@ public class FilteredArticleAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     @Override
     public int getItemCount() {
-        // Add 1 for the footer view
+            // Add 1 for the footer view
         return articles.size() + 1;
     }
 

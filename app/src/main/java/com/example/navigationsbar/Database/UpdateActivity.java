@@ -55,8 +55,9 @@ public class UpdateActivity extends AppCompatActivity {
                 spieldauerMax = Integer.parseInt(spieldauerMax_input.getText().toString().trim());
                 schwierigkeitsgrad = schwierigkeitsgrad_input.getText().toString().trim();
 
+                String creator = "user";
                 myDB.updateData(id, new Article(title, spielregel, benötigteKarten, spieleranzahlMin,
-                        spieleranzahlMax, spieldauerMin, spieldauerMax, schwierigkeitsgrad));
+                        spieleranzahlMax, spieldauerMin, spieldauerMax, schwierigkeitsgrad, creator));
             }
         });
 

@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.navigationsbar.Database.AddActivity;
-import com.example.navigationsbar.Adapter.CustomAdapter;
+import com.example.navigationsbar.Adapter.DatabaseAdapter;
 import com.example.navigationsbar.Database.MyDatabaseHelper;
 import com.example.navigationsbar.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -30,8 +30,8 @@ public class AddFragment extends Fragment {
     ImageView empty_imageview;
     TextView no_data;
     MyDatabaseHelper myDB;
-    ArrayList<String> book_id, book_title, book_author, book_pages;
-    CustomAdapter customAdapter;
+    ArrayList<String> book_id, book_title, book_author, book_pages, user;
+    DatabaseAdapter databaseAdapter;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -58,8 +58,8 @@ public class AddFragment extends Fragment {
 
         storeDataInArrays();
 
-        customAdapter = new CustomAdapter(requireActivity(), getContext(), book_id, book_title, book_author, book_pages);
-        recyclerView.setAdapter(customAdapter);
+        databaseAdapter = new DatabaseAdapter(requireActivity(), getContext(), book_id, book_title, user);
+        recyclerView.setAdapter(databaseAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
         return root;
     }
@@ -70,7 +70,7 @@ public class AddFragment extends Fragment {
         if (requestCode == 1) {
             if (resultCode == AddActivity.RESULT_OK) {
                 storeDataInArrays();
-                customAdapter.notifyDataSetChanged();
+                databaseAdapter.notifyDataSetChanged();
             }
         }
     }

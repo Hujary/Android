@@ -10,7 +10,7 @@ public class Article {
     private int spieldauerMax;
     private String schwierigkeitsgrad;
 
-    public Article(String title, String spielregel, String benötigteKarten, int spieleranzahlMin, int spieleranzahlMax, int spieldauerMin, int spieldauerMax, String schwierigkeitsgrad) {
+    public Article(String title, String spielregel, String benötigteKarten, int spieleranzahlMin, int spieleranzahlMax, int spieldauerMin, int spieldauerMax, String schwierigkeitsgrad, String creator) {
         this.title = title;
         this.spielregel = spielregel;
         this.benötigteKarten = benötigteKarten;
