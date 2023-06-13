@@ -1,4 +1,4 @@
-package com.example.navigationsbar.Fragments.Games;
+package com.example.navigationsbar.Fragments;
 
 import android.content.Intent;
 import android.content.res.Resources;

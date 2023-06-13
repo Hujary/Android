@@ -1,4 +1,4 @@
-package com.example.navigationsbar.Fragments.Add;
+package com.example.navigationsbar.Fragments;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -34,8 +34,7 @@ public class AddFragment extends Fragment {
     DatabaseAdapter databaseAdapter;
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_add, container, false);
 
         recyclerView = root.findViewById(R.id.recyclerView);
@@ -55,6 +54,7 @@ public class AddFragment extends Fragment {
         book_title = new ArrayList<>();
         book_author = new ArrayList<>();
         book_pages = new ArrayList<>();
+        user = new ArrayList<>(); // Initialisiere das user ArrayList
 
         storeDataInArrays();
 
@@ -76,23 +76,27 @@ public class AddFragment extends Fragment {
     }
 
     void storeDataInArrays() {
-        Cursor cursor = myDB.readAllData();
-        if (cursor.getCount() == 0) {
+        Cursor cursor = myDB.readUserAddedData();  // Hole die neuesten Daten aus der Datenbank
+
+        book_id.clear();
+        book_title.clear();
+        user.clear();
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                book_id.add(cursor.getString(0));
+                book_title.add(cursor.getString(1));
+                user.add(cursor.getString(4));
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+
+        if (book_id.isEmpty()) {
             empty_imageview.setVisibility(View.VISIBLE);
             no_data.setVisibility(View.VISIBLE);
         } else {
             empty_imageview.setVisibility(View.GONE);
             no_data.setVisibility(View.GONE);
-            book_id.clear();
-            book_title.clear();
-            book_author.clear();
-            book_pages.clear();
-            while (cursor.moveToNext()) {
-                book_id.add(cursor.getString(0));
-                book_title.add(cursor.getString(1));
-                book_author.add(cursor.getString(2));
-                book_pages.add(cursor.getString(3));
-            }
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.navigationsbar.Fragments.Home;
+package com.example.navigationsbar.Fragments.HomeFragment;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -11,7 +11,6 @@ public class HomeViewModel extends ViewModel {
 
     public HomeViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
     }
 
     public LiveData<String> getText() {

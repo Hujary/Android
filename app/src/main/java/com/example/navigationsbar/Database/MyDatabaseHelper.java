@@ -93,12 +93,22 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-        //  Alle Daten lesen.
+        //  Alle (User & Creator) Daten lesen.
     public Cursor readAllData() {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM " + TABLE_NAME;
         return db.rawQuery(query, null);
     }
+
+        //  Nur (User) Data auslesen
+        public Cursor readUserAddedData() {
+            SQLiteDatabase db = this.getReadableDatabase();
+            String selection = COLUMN_CREATOR + " = ?";
+            String[] selectionArgs = {"user"};
+            return db.query(TABLE_NAME, null, selection, selectionArgs, null, null, null);
+        }
+
+
 
     public void updateData(String row_id, Article article) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -144,7 +154,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
             try {
                 ContentValues cv = new ContentValues();
-                for (int i = 1; i <= 6; i++) {
+                for (int i = 1; i <= 7; i++) {
                         // Den Schlüssel für jedes Spiel dynamisch generieren (z.B. "Game_1", "Game_2")
                     String gameKey = "Game_" + i;
                     JSONArray gameArray = jsonObject.getJSONArray(gameKey);
@@ -176,7 +186,6 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                     cv.put(COLUMN_SPIELDAUER_MAX, maxSpieldauer);
                     cv.put(COLUMN_SCHWIERIGKEITSGRAD, schwierigkeitsgrad);
                     cv.put(COLUMN_CREATOR, creator);
-
                     db.insert(TABLE_NAME, null, cv);
                 }
 

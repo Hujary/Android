@@ -24,7 +24,6 @@ import java.util.ArrayList;
 
 public class DatabaseAdapter extends RecyclerView.Adapter<DatabaseAdapter.MyViewHolder> {
 
-
     private Context context;
     private Activity activity;
     private ArrayList<String> bookIdList;
@@ -37,7 +36,7 @@ public class DatabaseAdapter extends RecyclerView.Adapter<DatabaseAdapter.MyView
         this.context = context;
         this.bookIdList = bookIdList;           //  Id des Artikel
         this.bookTitleList = bookTitleList;     //  Titel des Artikel.
-        this.creatorList = creator;                 //  String welcher entweder "creator" oder "user" ist.
+        this.creatorList = creator;             //  String welcher entweder "creator" oder "user" ist.
     }
 
     @NonNull

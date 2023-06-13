@@ -1,4 +1,4 @@
-package com.example.navigationsbar.Fragments.Home;
+package com.example.navigationsbar.Fragments.HomeFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
