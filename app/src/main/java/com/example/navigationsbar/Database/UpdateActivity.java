@@ -20,9 +20,8 @@ public class UpdateActivity extends AppCompatActivity {
             spieldauerMin_input, spieldauerMax_input, schwierigkeitsgrad_input;
     Button update_button, delete_button;
 
-    String id, title, spielregel, benötigteKarten;
+    String id, title, spielregel, benötigteKarten, schwierigkeitsgrad;
     int spieleranzahlMin, spieleranzahlMax, spieldauerMin, spieldauerMax;
-    String schwierigkeitsgrad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +39,14 @@ public class UpdateActivity extends AppCompatActivity {
         update_button = findViewById(R.id.update_button);
         delete_button = findViewById(R.id.delete_button);
 
+            //  Methode um die Werte des intents zu speichern.
         getAndSetIntentData();
 
         update_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 MyDatabaseHelper myDB = new MyDatabaseHelper(UpdateActivity.this);
+                id = "id";
                 title = title_input.getText().toString().trim();
                 spielregel = spielregel_input.getText().toString().trim();
                 benötigteKarten = benötigteKarten_input.getText().toString().trim();
@@ -56,8 +57,7 @@ public class UpdateActivity extends AppCompatActivity {
                 schwierigkeitsgrad = schwierigkeitsgrad_input.getText().toString().trim();
 
                 String creator = "user";
-                myDB.updateData(id, new Article(title, spielregel, benötigteKarten, spieleranzahlMin,
-                        spieleranzahlMax, spieldauerMin, spieldauerMax, schwierigkeitsgrad, creator));
+                myDB.updateData(id, new Article(id, title, spielregel, benötigteKarten, spieleranzahlMin, spieleranzahlMax, spieldauerMin, spieldauerMax, schwierigkeitsgrad, creator));
             }
         });
 
@@ -70,21 +70,23 @@ public class UpdateActivity extends AppCompatActivity {
     }
 
     void getAndSetIntentData() {
+        // Check if all required extras are present
         if (getIntent().hasExtra("id") && getIntent().hasExtra("title") && getIntent().hasExtra("spielregel")
                 && getIntent().hasExtra("benötigteKarten") && getIntent().hasExtra("spieleranzahlMin")
                 && getIntent().hasExtra("spieleranzahlMax") && getIntent().hasExtra("spieldauerMin")
                 && getIntent().hasExtra("spieldauerMax") && getIntent().hasExtra("schwierigkeitsgrad")) {
+            System.out.println("IF Bedingung erfüllt.");
             id = getIntent().getStringExtra("id");
             title = getIntent().getStringExtra("title");
             spielregel = getIntent().getStringExtra("spielregel");
             benötigteKarten = getIntent().getStringExtra("benötigteKarten");
-            spieleranzahlMin = Integer.parseInt(getIntent().getStringExtra("spieleranzahlMin"));
-            spieleranzahlMax = Integer.parseInt(getIntent().getStringExtra("spieleranzahlMax"));
-            spieldauerMin = Integer.parseInt(getIntent().getStringExtra("spieldauerMin"));
-            spieldauerMax = Integer.parseInt(getIntent().getStringExtra("spieldauerMax"));
+            spieleranzahlMin = getIntent().getIntExtra("spieleranzahlMin", 0);
+            spieleranzahlMax = getIntent().getIntExtra("spieleranzahlMax", 0);
+            spieldauerMin = getIntent().getIntExtra("spieldauerMin", 0);
+            spieldauerMax = getIntent().getIntExtra("spieldauerMax", 0);
             schwierigkeitsgrad = getIntent().getStringExtra("schwierigkeitsgrad");
 
-            title_input.setText(title);
+            title_input.setText("pseudotitel");
             spielregel_input.setText(spielregel);
             benötigteKarten_input.setText(benötigteKarten);
             spieleranzahlMin_input.setText(String.valueOf(spieleranzahlMin));
@@ -94,11 +96,8 @@ public class UpdateActivity extends AppCompatActivity {
             schwierigkeitsgrad_input.setText(schwierigkeitsgrad);
             Log.d("stev", title + " " + spielregel + " " + benötigteKarten + " " + spieleranzahlMin + " " +
                     spieleranzahlMax + " " + spieldauerMin + " " + spieldauerMax + " " + schwierigkeitsgrad);
-        } else {
-            Toast.makeText(this, "No data.", Toast.LENGTH_SHORT).show();
         }
     }
-
     void confirmDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Delete " + title + " ?");

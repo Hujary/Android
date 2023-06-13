@@ -161,6 +161,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                     JSONObject game = gameArray.getJSONObject(0);
 
                         // Daten für das Spiel aus dem JSON-Objekt auslesen
+                    String id = "";
                     String name = game.getString("name");
                     String spielregeln = game.getString("Regeln");
                     int minSpieleranzahl = game.getInt("Spielerzahl_Min");
@@ -172,7 +173,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                     String creator = "creator";
 
                         // Artikel erstellen und der Liste hinzufügen
-                    Article article = new Article(name, spielregeln, benötigteKarten, maxSpieleranzahl, minSpieleranzahl, maxSpieldauer, minSpieldauer, schwierigkeitsgrad, creator);
+                    Article article = new Article(id, name, spielregeln, benötigteKarten, maxSpieleranzahl, minSpieleranzahl, maxSpieldauer, minSpieldauer, schwierigkeitsgrad, creator);
                     articles.add(article);
 
                         // Artikel zur Datenbank hinzufügen

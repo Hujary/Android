@@ -29,7 +29,8 @@ public class GamesFragment extends Fragment implements ArticleAdapter.OnClickLis
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentGamesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        resources = getResources(); // Get the resources object
+            // Get the resources object
+        resources = getResources();
 
         try {
                 // Here, the method to create articles is called
@@ -37,7 +38,7 @@ public class GamesFragment extends Fragment implements ArticleAdapter.OnClickLis
             recyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
             ArticleCreator articleCreator = new ArticleCreator(resources, getContext());
             articles = articleCreator.createArticles();
-            articleAdapter = new ArticleAdapter(articles, this);
+            articleAdapter = new ArticleAdapter(articles, this, requireContext());
             recyclerView.setAdapter(articleAdapter);
         } catch (Exception e) {
             e.printStackTrace();

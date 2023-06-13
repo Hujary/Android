@@ -51,7 +51,7 @@ public class ArticleCreator {
                 String schwierigkeitsgrad = cursor.getString(8);
                 String creator = cursor.getString(9);;
 
-                Article article = new Article(title, spielregel, benötigteKarten, spieleranzahlMin, spieleranzahlMax, spieldauerMin, spieldauerMax, schwierigkeitsgrad, creator);
+                Article article = new Article(id, title, spielregel, benötigteKarten, spieleranzahlMin, spieleranzahlMax, spieldauerMin, spieldauerMax, schwierigkeitsgrad, creator);
                 databaseArticles.add(article);
 
                 String data = "ID: " + id + ", Title: " + title + ", Spielregel: " + spielregel + ", Benötigte Karten: " + benötigteKarten + ", Spieleranzahl: " + spieleranzahlMin + "-" + spieleranzahlMax + ", Spieldauer: " + spieldauerMin + "-" + spieldauerMax + ", Schwierigkeitsgrad: " + schwierigkeitsgrad + "Creator: " + creator;

@@ -2,6 +2,7 @@ package com.example.navigationsbar.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.navigationsbar.Activitys.FilteredGameList.DetailedGameInformationActivity;
+import com.example.navigationsbar.Database.UpdateActivity;
 import com.example.navigationsbar.Items.Article.Article;
 import com.example.navigationsbar.R;
 
@@ -22,10 +24,12 @@ import java.util.List;
 public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder> {
     private final List<Article> articles;
     private final OnClickListener onClickListener;
+    private final Context context;
 
-    public ArticleAdapter(List<Article> articles, OnClickListener onClickListener) {
+    public ArticleAdapter(List<Article> articles, OnClickListener onClickListener, Context context) {
         this.articles = articles;
         this.onClickListener = onClickListener;
+        this.context = context;
     }
 
     @NonNull
@@ -66,6 +70,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
         }
 
         public void bindArticle(Article article) {
+                //  Werte des Aktuellen Artikel im layout hinzufügen
             titleTextView.setText("Spiel: " + article.getTitle());
             cardNumberTextView.setText("Benötigte Karten: " + article.getBenötigteKarten());
             playerNumberTextView.setText("Benötigte Spieler: " + article.getSpieleranzahlMin() + " - " + article.getSpieleranzahlMax());
@@ -79,6 +84,19 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
             if (position != RecyclerView.NO_POSITION) {
                 Article article = articles.get(position);
                 onClickListener.onItemClick(article);
+
+                    // öffnet die UpdateActivity mit den entsprechenden Daten
+                Intent intent = new Intent(context, UpdateActivity.class);
+                intent.putExtra("id", article.getId());
+                intent.putExtra("title", article.getTitle());
+                intent.putExtra("spielregel", article.getSpielregel());
+                intent.putExtra("benötigteKarten", article.getBenötigteKarten());
+                intent.putExtra("spieleranzahlMin", String.valueOf(article.getSpieleranzahlMin()));
+                intent.putExtra("spieleranzahlMax", String.valueOf(article.getSpieleranzahlMax()));
+                intent.putExtra("spieldauerMin", String.valueOf(article.getSpieldauerMin()));
+                intent.putExtra("spieldauerMax", String.valueOf(article.getSpieldauerMax()));
+                intent.putExtra("schwierigkeitsgrad", article.getSchwierigkeitsgrad());
+                context.startActivity(intent);
             }
         }
     }
