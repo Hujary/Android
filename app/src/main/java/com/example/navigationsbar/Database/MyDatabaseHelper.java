@@ -109,21 +109,23 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }
 
 
-
-    public void updateData(String row_id, Article article) {
+    public void updateData(String row_id, String title, String spielregel, String benötigteKarten, int spieleranzahlMin, int spieleranzahlMax, int spieldauerMin, int spieldauerMax, String schwierigkeitsgrad) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(COLUMN_TITLE, article.getTitle());
-        cv.put(COLUMN_SPIELREGEL, article.getSpielregeln());
-        cv.put(COLUMN_BENÖTIGTE_KARTEN, article.getBenötigteKarten());
-        cv.put(COLUMN_SPIELERANZAHL_MIN, article.getSpieleranzahlMin());
-        cv.put(COLUMN_SPIELERANZAHL_MAX, article.getSpieleranzahlMax());
-        cv.put(COLUMN_SPIELDAUER_MIN, article.getSpieldauerMin());
-        cv.put(COLUMN_SPIELDAUER_MAX, article.getSpieldauerMax());
-        cv.put(COLUMN_SCHWIERIGKEITSGRAD, article.getSchwierigkeitsgrad());
-        cv.put(COLUMN_CREATOR, "user"); // Wert sollte nie verändert werden, nur bugfixing.
 
+            // füge neue Werte der DB hinzu.
+        cv.put(COLUMN_TITLE, title);
+        cv.put(COLUMN_SPIELREGEL, spielregel);
+        cv.put(COLUMN_BENÖTIGTE_KARTEN, benötigteKarten);
+        cv.put(COLUMN_SPIELERANZAHL_MIN, spieleranzahlMin);
+        cv.put(COLUMN_SPIELERANZAHL_MAX, spieleranzahlMax);
+        cv.put(COLUMN_SPIELDAUER_MIN, spieldauerMin);
+        cv.put(COLUMN_SPIELDAUER_MAX, spieldauerMax);
+        cv.put(COLUMN_SCHWIERIGKEITSGRAD, schwierigkeitsgrad);
+        cv.put(COLUMN_CREATOR, "user");
+
+            // Prüfe ob Update erfolgreich war.
         long result = db.update(TABLE_NAME, cv, COLUMN_ID + "=?", new String[]{row_id});
         if (result == -1) {
             Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();

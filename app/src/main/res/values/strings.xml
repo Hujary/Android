@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">PartySaver</string>
     <string name="title_home">Home</string>
-    <string name="title_games">games</string>
-    <string name="title_settings">settings</string>
+    <string name="title_games">Games</string>
+    <string name="title_settings">Add</string>
     <string name="Home_Start_Game">Hier kannst du herausfinden welches Partyspiel zu eurer Gruppe Passt </string>
     <string name="question_1_wie_viele">Wie viele Spieler seit ihr ? </string>
     <string name="question_2_welche_Karten">Habt ihr Spielkarten ? </string>

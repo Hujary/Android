@@ -10,6 +10,7 @@ public class Article {
     private int spieldauerMin;
     private int spieldauerMax;
     private String schwierigkeitsgrad;
+    private String creator;
 
     public Article(String id, String title, String spielregel, String benötigteKarten, int spieleranzahlMin, int spieleranzahlMax, int spieldauerMin, int spieldauerMax, String schwierigkeitsgrad, String creator) {
         this.id = id;
@@ -21,6 +22,7 @@ public class Article {
         this.spieldauerMin = spieldauerMin;
         this.spieldauerMax = spieldauerMax;
         this.schwierigkeitsgrad = schwierigkeitsgrad;
+        this.creator = creator;
     }
 
     public String getId() {
@@ -29,32 +31,28 @@ public class Article {
     public String getTitle() {
         return title;
     }
-    public String getSpielregel(){ return spielregel; }
-
+    public String getSpielregeln() {
+        return spielregel;
+    }
     public String getBenötigteKarten() {
         return benötigteKarten;
     }
-
     public int getSpieleranzahlMin() {
         return spieleranzahlMin;
     }
-
     public int getSpieleranzahlMax() {
         return spieleranzahlMax;
     }
-
     public int getSpieldauerMin() {
         return spieldauerMin;
     }
-
     public int getSpieldauerMax() {
         return spieldauerMax;
     }
-
     public String getSchwierigkeitsgrad() {
         return schwierigkeitsgrad;
     }
-    public String getSpielregeln() {
-        return spielregel;
+    public String getCreator() {
+        return creator;
     }
 }

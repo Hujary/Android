@@ -29,11 +29,11 @@ public class GamesFragment extends Fragment implements ArticleAdapter.OnClickLis
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentGamesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-            // Get the resources object
+        // Get the resources object
         resources = getResources();
 
         try {
-                // Here, the method to create articles is called
+            // Here, the method to create articles is called
             recyclerView = root.findViewById(R.id.articleRecyclerView);
             recyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
             ArticleCreator articleCreator = new ArticleCreator(resources, getContext());
@@ -54,7 +54,7 @@ public class GamesFragment extends Fragment implements ArticleAdapter.OnClickLis
 
     @Override
     public void onItemClick(Article article) {
-            // Intent und Variablen übergeben
+        // Intent und Variablen übergeben
         Intent intent = new Intent(requireContext(), DetailedGameInformationActivity.class);
         intent.putExtra("title", article.getTitle());
         intent.putExtra("cardNumber", article.getBenötigteKarten());

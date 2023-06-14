@@ -1,9 +1,12 @@
 package com.example.navigationsbar.Fragments;
 
+import static androidx.core.app.ActivityCompat.recreate;
+
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -16,7 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.navigationsbar.Database.AddActivity;
-import com.example.navigationsbar.Adapter.DatabaseAdapter;
+import com.example.navigationsbar.Adapter.AddRecyclerAdapter;
 import com.example.navigationsbar.Database.MyDatabaseHelper;
 import com.example.navigationsbar.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -29,9 +32,10 @@ public class AddFragment extends Fragment {
     FloatingActionButton add_button;
     ImageView empty_imageview;
     TextView no_data;
+
     MyDatabaseHelper myDB;
-    ArrayList<String> game_id, game_title, user;
-    DatabaseAdapter databaseAdapter;
+    ArrayList<String> game_id, game_title, game_spielregel, game_benötigteKarten, game_spieleranzahlMin, game_spieleranzahlMax, game_spieldauerMin, game_spieldauerMax, game_schwierigkeitsgrad, game_creator;
+    AddRecyclerAdapter addRecyclerAdapter;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,20 +48,28 @@ public class AddFragment extends Fragment {
         add_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(requireActivity(), AddActivity.class);
-                startActivityForResult(intent, 1);
+                System.out.println("Add button funktioniert");
+                Intent intentAdd = new Intent(requireActivity(), AddActivity.class);
+                requireActivity().startActivity(intentAdd);
             }
         });
 
         myDB = new MyDatabaseHelper(requireActivity());
         game_id = new ArrayList<>();
         game_title = new ArrayList<>();
-        user = new ArrayList<>(); // Initialize the user ArrayList
+        game_spielregel = new ArrayList<>();
+        game_benötigteKarten = new ArrayList<>();
+        game_spieleranzahlMin = new ArrayList<>();
+        game_spieleranzahlMax = new ArrayList<>();
+        game_spieldauerMin = new ArrayList<>();
+        game_spieldauerMax = new ArrayList<>();
+        game_schwierigkeitsgrad = new ArrayList<>();
+        game_creator = new ArrayList<>();
+
         storeDataInArrays();
 
-            //  hier wird dem Adapter der Wert des aktuellen  Spiels übergeben
-        databaseAdapter = new DatabaseAdapter(requireActivity(), getContext(), game_id, game_title, user);
-        recyclerView.setAdapter(databaseAdapter);
+        addRecyclerAdapter = new AddRecyclerAdapter(requireActivity(), getContext() , game_id, game_title, game_spielregel, game_benötigteKarten, game_spieleranzahlMin, game_spieleranzahlMax, game_spieldauerMin, game_spieldauerMax, game_schwierigkeitsgrad, game_creator);
+        recyclerView.setAdapter(addRecyclerAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
         return root;
     }
@@ -66,54 +78,31 @@ public class AddFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
-            if (resultCode == AddActivity.RESULT_OK) {
-                storeDataInArrays();
-                databaseAdapter.notifyDataSetChanged();
-            }
+            requireActivity().recreate();
         }
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        storeDataInArrays();
-        databaseAdapter.notifyDataSetChanged();
-    }
 
     void storeDataInArrays() {
-        Cursor cursor = myDB.readUserAddedData();  // Get the latest data from the database
-
-        game_id.clear();
-        game_title.clear();
-        user.clear();
-
-        if (cursor != null && cursor.moveToFirst()) {
-            int columnCount = cursor.getColumnCount();
-            do {
-                for (int i = 0; i < columnCount; i++) {
-                    String value = cursor.getString(i);
-                    System.out.println("Column " + i + ": " + value);
-                    //game_id.add(cursor.getString(0));
-                    //game_title.add(cursor.getString(1));
-                    //user.add(cursor.getString(4));
-                }
-            } while (cursor.moveToNext());
-            cursor.close();
-        }
-
-            //  prüfe ob noch ein Element in der Liste ist
-        if (game_id.isEmpty()) {
+        Cursor cursor = myDB.readUserAddedData();
+        if (cursor.getCount() == 0) {
             empty_imageview.setVisibility(View.VISIBLE);
             no_data.setVisibility(View.VISIBLE);
         } else {
+            while (cursor.moveToNext()) {
+                game_id.add(cursor.getString(0));
+                game_title.add(cursor.getString(1));
+                game_spielregel.add(cursor.getString(2));
+                game_benötigteKarten.add(cursor.getString(3));
+                game_spieleranzahlMin.add(cursor.getString(4));
+                game_spieleranzahlMax.add(cursor.getString(5));
+                game_spieldauerMin.add(cursor.getString(6));
+                game_spieldauerMax.add(cursor.getString(7));
+                game_schwierigkeitsgrad.add(cursor.getString(8));
+                game_creator.add(cursor.getString(9));
+            }
             empty_imageview.setVisibility(View.GONE);
             no_data.setVisibility(View.GONE);
         }
-    }
-
-        //  Aktuallisiere den Fragment
-    public void refreshFragment() {
-        storeDataInArrays();
-        databaseAdapter.notifyDataSetChanged();
     }
 }

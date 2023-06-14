@@ -52,8 +52,8 @@
 
             <TextView
                 android:id="@+id/spieleranzahl_txt"
-                android:layout_width="51dp"
-                android:layout_height="25dp"
+                android:layout_width="109dp"
+                android:layout_height="28dp"
                 android:text="0-20 "
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"

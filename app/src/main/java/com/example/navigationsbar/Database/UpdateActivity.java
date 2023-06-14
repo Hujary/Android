@@ -16,10 +16,8 @@ import com.example.navigationsbar.R;
 
 public class UpdateActivity extends AppCompatActivity {
 
-    EditText title_input, spielregel_input, benötigteKarten_input, spieleranzahlMin_input, spieleranzahlMax_input,
-            spieldauerMin_input, spieldauerMax_input, schwierigkeitsgrad_input;
+    EditText title_input, spielregel_input, benötigteKarten_input, spieleranzahlMin_input, spieleranzahlMax_input, spieldauerMin_input, spieldauerMax_input, schwierigkeitsgrad_input;
     Button update_button, delete_button;
-
     String id, title, spielregel, benötigteKarten, schwierigkeitsgrad;
     int spieleranzahlMin, spieleranzahlMax, spieldauerMin, spieldauerMax;
 
@@ -28,6 +26,7 @@ public class UpdateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
 
+            //  hier Variablen für Layout Elemente erstellen.
         title_input = findViewById(R.id.title_input2);
         spielregel_input = findViewById(R.id.spielregel_input2);
         benötigteKarten_input = findViewById(R.id.benötigteKarten_input2);
@@ -39,14 +38,15 @@ public class UpdateActivity extends AppCompatActivity {
         update_button = findViewById(R.id.update_button);
         delete_button = findViewById(R.id.delete_button);
 
-        // Methode um die Werte des intents zu speichern.
+            // Methode um die Werte des Intents zu speichern.
         getAndSetIntentData();
 
+
+            //  "Update" Click listener
         update_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 MyDatabaseHelper myDB = new MyDatabaseHelper(UpdateActivity.this);
-                id = "id";
                 title = title_input.getText().toString().trim();
                 spielregel = spielregel_input.getText().toString().trim();
                 benötigteKarten = benötigteKarten_input.getText().toString().trim();
@@ -56,32 +56,44 @@ public class UpdateActivity extends AppCompatActivity {
                 spieldauerMax = Integer.parseInt(spieldauerMax_input.getText().toString().trim());
                 schwierigkeitsgrad = schwierigkeitsgrad_input.getText().toString().trim();
 
-                String creator = "user";
-                myDB.updateData(id, new Article(id, title, spielregel, benötigteKarten, spieleranzahlMin, spieleranzahlMax, spieldauerMin, spieldauerMax, schwierigkeitsgrad, creator));
-
-                // Refresh the fragment to update the data
-                refreshFragment();
+                myDB.updateData(id, title, spielregel, benötigteKarten, spieleranzahlMin, spieleranzahlMax, spieldauerMin, spieldauerMax, schwierigkeitsgrad);
                 finish();
             }
         });
 
+            //  "Delete" Click listener
         delete_button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { confirmDialog(); }
+            public void onClick(View view) {
+                confirmDialog();
+            }
         });
     }
 
     void getAndSetIntentData() {
+
+            // Values from Intent
         id = getIntent().getStringExtra("id");
         title = getIntent().getStringExtra("title");
         spielregel = getIntent().getStringExtra("spielregel");
         benötigteKarten = getIntent().getStringExtra("benötigteKarten");
-        spieleranzahlMin = getIntent().getIntExtra("spieleranzahlMin", 0);
-        spieleranzahlMax = getIntent().getIntExtra("spieleranzahlMax", 0);
-        spieldauerMin = getIntent().getIntExtra("spieldauerMin", 0);
-        spieldauerMax = getIntent().getIntExtra("spieldauerMax", 0);
+
+        String spieleranzahlMinString = getIntent().getStringExtra("spieleranzahlMin");
+        spieleranzahlMin = Integer.parseInt(spieleranzahlMinString);
+
+        String spieleranzahlMaxString = getIntent().getStringExtra("spieleranzahlMax");
+        spieleranzahlMax = Integer.parseInt(spieleranzahlMaxString);
+
+        String spieldauerMinString = getIntent().getStringExtra("spieldauerMin");
+        spieldauerMin = Integer.parseInt(spieldauerMinString);
+
+        String spieldauerMaxString = getIntent().getStringExtra("spieldauerMax");
+        spieldauerMax = Integer.parseInt(spieldauerMaxString);
+
         schwierigkeitsgrad = getIntent().getStringExtra("schwierigkeitsgrad");
 
+            // Set values in EditText
+        title_input.setText(title);
         spielregel_input.setText(spielregel);
         benötigteKarten_input.setText(benötigteKarten);
         spieleranzahlMin_input.setText(String.valueOf(spieleranzahlMin));
@@ -89,10 +101,8 @@ public class UpdateActivity extends AppCompatActivity {
         spieldauerMin_input.setText(String.valueOf(spieldauerMin));
         spieldauerMax_input.setText(String.valueOf(spieldauerMax));
         schwierigkeitsgrad_input.setText(schwierigkeitsgrad);
-
-        Log.d("stev", title + " " + spielregel + " " + benötigteKarten + " " + spieleranzahlMin + " " +
-                spieleranzahlMax + " " + spieldauerMin + " " + spieldauerMax + " " + schwierigkeitsgrad);
     }
+
     void confirmDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         System.out.println(title);
@@ -105,9 +115,6 @@ public class UpdateActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 MyDatabaseHelper myDB = new MyDatabaseHelper(UpdateActivity.this);
                 myDB.deleteOneRow(id);
-
-                    // Refresh the fragment to update the data
-                refreshFragment();
                 finish();
             }
         });
@@ -119,13 +126,5 @@ public class UpdateActivity extends AppCompatActivity {
             }
         });
         builder.create().show();
-    }
-
-    void refreshFragment() {
-        // Get the parent fragment
-        AddFragment addFragment = (AddFragment) getSupportFragmentManager().findFragmentByTag("AddFragment");
-        if (addFragment != null) {
-            addFragment.refreshFragment();
-        }
     }
 }
