@@ -23,10 +23,10 @@ public class ArticleCreator {
     public List<Article> createArticles() {
         List<Article> articles = new ArrayList<>();
 
-        // Daten aus der Datenbank abrufen
+            // Daten aus der Datenbank abrufen
         List<Article> databaseArticles = readDatabaseData();
 
-        // Datenbank-Artikel zur Liste hinzufügen
+            // Datenbank-Artikel zur Liste hinzufügen
         articles.addAll(databaseArticles);
 
         return articles;
@@ -53,9 +53,6 @@ public class ArticleCreator {
 
                 Article article = new Article(id, title, spielregel, benötigteKarten, spieleranzahlMin, spieleranzahlMax, spieldauerMin, spieldauerMax, schwierigkeitsgrad, creator);
                 databaseArticles.add(article);
-
-                String data = "ID: " + id + ", Title: " + title + ", Spielregel: " + spielregel + ", Benötigte Karten: " + benötigteKarten + ", Spieleranzahl: " + spieleranzahlMin + "-" + spieleranzahlMax + ", Spieldauer: " + spieldauerMin + "-" + spieldauerMax + ", Schwierigkeitsgrad: " + schwierigkeitsgrad + "Creator: " + creator;
-                Log.d("ArticleCreator", data);
             }
         }
         return databaseArticles;

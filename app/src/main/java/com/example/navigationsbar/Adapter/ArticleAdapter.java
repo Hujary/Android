@@ -65,7 +65,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
         }
 
         public void bindArticle(Article article) {
-            // Werte des Aktuellen Artikels im Layout hinzufügen
+                // Werte des Aktuellen Artikels im Layout hinzufügen
             titleTextView.setText("Spiel: " + article.getTitle());
             cardNumberTextView.setText("Benötigte Karten: " + article.getBenötigteKarten());
             playerNumberTextView.setText("Benötigte Spieler: " + article.getSpieleranzahlMin() + " - " + article.getSpieleranzahlMax());

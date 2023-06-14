@@ -93,6 +93,10 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+
+    //  -------------------------------------------------------------------------- Methoden für SQL Abfragen ----------------------------------------------------------------------------------------------------------------
+
+
         //  Alle (User & Creator) Daten lesen.
     public Cursor readAllData() {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -101,18 +105,36 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     }
 
         //  Nur (User) Data auslesen
-        public Cursor readUserAddedData() {
-            SQLiteDatabase db = this.getReadableDatabase();
-            String selection = COLUMN_CREATOR + " = ?";
-            String[] selectionArgs = {"user"};
-            return db.query(TABLE_NAME, null, selection, selectionArgs, null, null, null);
-        }
+    public Cursor readUserAddedData() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selection = COLUMN_CREATOR + " = ?";
+        String[] selectionArgs = {"user"};
+        return db.query(TABLE_NAME, null, selection, selectionArgs, null, null, null);
+    }
+
+
+            //  übel komplizierte SQL abfrage abhängig der Eingabe
+            public Cursor readFilteredData(String playerNumber, String difficulty) {
+                SQLiteDatabase db = this.getReadableDatabase();
+
+                String selection = COLUMN_SPIELERANZAHL_MIN + " <= ? AND " + COLUMN_SPIELERANZAHL_MAX + " >= ?";
+                String[] selectionArgs = {playerNumber, playerNumber};
+
+                if (difficulty != null && !difficulty.equalsIgnoreCase("egal")) {
+                    selection += " AND " + COLUMN_SCHWIERIGKEITSGRAD + " = ?";
+                    selectionArgs = new String[]{playerNumber, playerNumber, difficulty.toLowerCase()};
+                }
+
+                return db.query(TABLE_NAME, null, selection, selectionArgs, null, null, null);
+            }
+
+    //  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 
     public void updateData(String row_id, String title, String spielregel, String benötigteKarten, int spieleranzahlMin, int spieleranzahlMax, int spieldauerMin, int spieldauerMax, String schwierigkeitsgrad) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-
 
             // füge neue Werte der DB hinzu.
         cv.put(COLUMN_TITLE, title);
@@ -191,7 +213,6 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                     cv.put(COLUMN_CREATOR, creator);
                     db.insert(TABLE_NAME, null, cv);
                 }
-
                 db.setTransactionSuccessful();
             } finally {
                 db.endTransaction();

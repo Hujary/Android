@@ -11,9 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.navigationsbar.Activitys.GameData;
-import com.example.navigationsbar.Activitys.Questions.QuestionFourActivity;
 import com.example.navigationsbar.Adapter.FilteredArticleAdapter;
-import com.example.navigationsbar.Items.FilteredArticle.FilteredArticleManager;
+import com.example.navigationsbar.Items.FilteredArticle.FilteredArticleCreator;
 import com.example.navigationsbar.Items.FilteredArticle.filteredArticle;
 import com.example.navigationsbar.R;
 
@@ -43,49 +42,6 @@ public class FilteredGamesListActivity extends AppCompatActivity implements Filt
             // Convert "Fehlen Karten?" to boolean
         boolean bol_answer_missingCards = missingCards.equals("Ja");
 
-            // Output the selected positions of the Herz cards
-        if (gameData.getSelectedHerzCards() != null) {
-            StringBuilder selectedHerzPositions = new StringBuilder("Selected Herz Positions: ");
-            for (Integer selectedHerzPosition : gameData.getSelectedHerzCards()) {
-                selectedHerzPositions.append(selectedHerzPosition).append(", ");
-            }
-            Log.d("QuestionFourActivity", selectedHerzPositions.toString());
-        } else {
-            System.out.println("Keine Herz Karten ausgewählt");
-        }
-
-        // Output the selected positions of the Pik cards
-        if (gameData.getSelectedPikCards() != null) {
-            StringBuilder selectedPikPositions = new StringBuilder("Selected Pik Positions: ");
-            for (Integer selectedPikPosition : gameData.getSelectedPikCards()) {
-                selectedPikPositions.append(selectedPikPosition).append(", ");
-            }
-            Log.d("QuestionFourActivity", selectedPikPositions.toString());
-        } else {
-            System.out.println("Keine Pik Karten ausgewählt");
-        }
-
-        // Output the selected positions of the Kreuz cards
-        if (gameData.getSelectedKreuzCards() != null) {
-            StringBuilder selectedKreuzPositions = new StringBuilder("Selected Kreuz Positions: ");
-            for (Integer selectedKreuzPosition : gameData.getSelectedKreuzCards()) {
-                selectedKreuzPositions.append(selectedKreuzPosition).append(", ");
-            }
-            Log.d("QuestionFourActivity", selectedKreuzPositions.toString());
-        } else {
-            System.out.println("Keine Kreuz Karten ausgewählt");
-        }
-
-        // Output the selected positions of the Karo cards
-        if (gameData.getSelectedKaroCards() != null) {
-            StringBuilder selectedKaroPositions = new StringBuilder("Selected Karo Positions: ");
-            for (Integer selectedKaroPosition : gameData.getSelectedKaroCards()) {
-                selectedKaroPositions.append(selectedKaroPosition).append(", ");
-            }
-            Log.d("QuestionFourActivity", selectedKaroPositions.toString());
-        } else {
-            System.out.println("Keine Karo Karten ausgewählt");
-        }
 
         Button buttonReturn = findViewById(R.id.button_return);
         buttonReturn.setOnClickListener(new View.OnClickListener() {
@@ -95,12 +51,14 @@ public class FilteredGamesListActivity extends AppCompatActivity implements Filt
             }
         });
 
-            // Apply filtering logic using FilteredArticleManager class
-        List<filteredArticle> filteredGamesList = FilteredArticleManager.getFilteredArticles(playerNumber, bol_answer_haveCards, bol_answer_missingCards, difficulty);
 
         recyclerView = findViewById(R.id.filteredArticleRecyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+
+            //  Liste erzeugen in der meine gefilterten Artikel gespeichert werden.
+        FilteredArticleCreator f1 = new FilteredArticleCreator(this);
+        List<filteredArticle> filteredGamesList = f1.getFilteredArticle(playerNumber, difficulty, bol_answer_haveCards, bol_answer_missingCards);
 
             // Add the filtered games list to the adapter
         FilteredArticleAdapter filteredArticleAdapter = new FilteredArticleAdapter(filteredGamesList, this);

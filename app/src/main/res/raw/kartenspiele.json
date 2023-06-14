@@ -38,7 +38,7 @@
       "Benötigte Karten": "Vollständiges Deck mit 52 Karten ; optional 32 Karten Deck -> 2 wird zu 7",
       "SpieldauerMin": 5,
       "SpieldauerMax": 20,
-      "Schwierigkeitsgrad": "easy - kein Trinkspiel"
+      "Schwierigkeitsgrad": "einfach"
     }
   ],
   "Game_3": [
@@ -80,7 +80,7 @@
       "Benötigte Karten": "Vollständiges Deck mit 52 Karten",
       "SpieldauerMin": 10,
       "SpieldauerMax": 15,
-      "Schwierigkeitsgrad": "easy - Kein Trinkspiel"
+      "Schwierigkeitsgrad": "einfach"
     }
   ],
   "Game_5": [
@@ -105,7 +105,7 @@
       "Benötigte Karten": "Vollständiges Deck mit 52 Karten ; optional 32 Karten Deck ; möglich solang von jeder Zahl 4 Karten da sind. -> höchste Karte wird zum 'Ass'.",
       "SpieldauerMin": 10,
       "SpieldauerMax": 30,
-      "Schwierigkeitsgrad": "easy - Kein Trinkspiel"
+      "Schwierigkeitsgrad": "einfach"
     }
   ],
   "Game_6": [
@@ -126,7 +126,7 @@
       "Benötigte Karten": "Nicht relevant",
       "SpieldauerMin": 10,
       "SpieldauerMax": 30,
-      "Schwierigkeitsgrad": "medium"
+      "Schwierigkeitsgrad": "Schwer"
     }
   ]
 }

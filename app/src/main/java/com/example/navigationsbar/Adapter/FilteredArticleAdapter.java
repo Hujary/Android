@@ -43,6 +43,7 @@ public class FilteredArticleAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 
+            //  Logik das unten das Textfeld erscheint.
         if (viewType == VIEW_TYPE_ARTICLE) {
             View view = inflater.inflate(R.layout.item_filtered_article, parent, false);
             return new ArticleViewHolder(view);
@@ -59,6 +60,7 @@ public class FilteredArticleAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             filteredArticle article = articles.get(position);
             articleViewHolder.bindArticle(article);
 
+                //  Animation für die gefilterten Artikel.
             Animation animation = AnimationUtils.loadAnimation(articleViewHolder.itemView.getContext(), android.R.anim.slide_in_left);
             articleViewHolder.itemView.startAnimation(animation);
         } else {

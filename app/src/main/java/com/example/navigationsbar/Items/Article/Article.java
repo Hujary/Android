@@ -1,16 +1,8 @@
 package com.example.navigationsbar.Items.Article;
 
 public class Article {
-    private String id;
-    private String title;
-    private String spielregel;
-    private String benötigteKarten;
-    private int spieleranzahlMin;
-    private int spieleranzahlMax;
-    private int spieldauerMin;
-    private int spieldauerMax;
-    private String schwierigkeitsgrad;
-    private String creator;
+    private String id, title, spielregel, benötigteKarten, schwierigkeitsgrad, creator;
+    private int spieleranzahlMin, spieleranzahlMax, spieldauerMin, spieldauerMax;
 
     public Article(String id, String title, String spielregel, String benötigteKarten, int spieleranzahlMin, int spieleranzahlMax, int spieldauerMin, int spieldauerMax, String schwierigkeitsgrad, String creator) {
         this.id = id;

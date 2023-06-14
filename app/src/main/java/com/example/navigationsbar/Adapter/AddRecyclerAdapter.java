@@ -57,6 +57,7 @@ public class AddRecyclerAdapter extends RecyclerView.Adapter<AddRecyclerAdapter.
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, @SuppressLint("RecyclerView") final int position) {
+
             //  Setze dem View Inhalt -> User muss seine Spielinhalte nicht nochmal schreiben.
         holder.gameIdTxt.setText(String.valueOf(idList.get(position)));
         holder.gameTitleTxt.setText(String.valueOf(titleList.get(position)));
