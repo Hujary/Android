@@ -2,8 +2,8 @@ package com.example.navigationsbar.Activitys;
 
 import java.util.List;
 
-public class GameData {
-    private static GameData instance;
+public class GameDataSingelton {
+    private static GameDataSingelton instance;
     private int numberOfPlayers;
     private String haveCards;
     private String fehlenKarten;
@@ -14,15 +14,14 @@ public class GameData {
     private List<Integer> selectedKreuzCards;
 
 
-
-    private GameData() {
+    private GameDataSingelton() {
         // Private Konstruktor, um direkte Instanziierung zu verhindern
     }
 
         // Singelton Logik
-    public static GameData getInstance() {
+    public static GameDataSingelton getInstance() {
         if (instance == null) {
-            instance = new GameData();
+            instance = new GameDataSingelton();
         }
         return instance;
     }
@@ -81,6 +80,4 @@ public class GameData {
         //  Getter und Setter für selectedKaroCards
     public List<Integer> getSelectedKaroCards() { return selectedKaroCards; }
     public void setSelectedKaroCards(List<Integer> selectedKaroCards) { this.selectedKaroCards = selectedKaroCards; }
-
-
 }

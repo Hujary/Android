@@ -9,8 +9,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.navigationsbar.Activitys.FilteredGameList.FilteredGamesListActivity;
-import com.example.navigationsbar.Activitys.GameData;
+import com.example.navigationsbar.Activitys.GameDataSingelton;
 import com.example.navigationsbar.R;
 
 public class QuestionThreeActivity extends AppCompatActivity {
@@ -19,13 +18,13 @@ public class QuestionThreeActivity extends AppCompatActivity {
     String[] antwortenArray = {"Ja", "Nein"};
     String chosenAnswer = "Ja";
 
-    private GameData gameData; // Das GameData-Objekt als Feld deklarieren
+    private GameDataSingelton gameDataSingelton; // Das GameData-Objekt als Feld deklarieren
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.question3_layout);
-        gameData = GameData.getInstance();
+        gameDataSingelton = GameDataSingelton.getInstance();
 
             // NumberPicker Werte einsetzen
         numberPickerLocation = findViewById(R.id.answerPicker);
@@ -49,7 +48,7 @@ public class QuestionThreeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (chosenAnswer != null && chosenAnswer.equals("Ja")) {
                     try {
-                        gameData.setFehlenKarten(chosenAnswer);
+                        gameDataSingelton.setFehlenKarten(chosenAnswer);
                         Intent intent = new Intent(QuestionThreeActivity.this, QuestionFourActivity.class);
                         startActivity(intent);
                     } catch (Exception e) {
@@ -57,7 +56,7 @@ public class QuestionThreeActivity extends AppCompatActivity {
                     }
                 } else {
                     try {
-                        gameData.setFehlenKarten(chosenAnswer);
+                        gameDataSingelton.setFehlenKarten(chosenAnswer);
                         Intent intent = new Intent(QuestionThreeActivity.this, QuestionFiveActivity.class);
                         startActivity(intent);
                     } catch (Exception e) {

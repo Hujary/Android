@@ -33,16 +33,38 @@ public class AddActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 MyDatabaseHelper myDB = new MyDatabaseHelper(AddActivity.this);
+                String title = title_input.getText().toString().trim();
+                String spielregel = spielregel_input.getText().toString().trim();
+                String benötigteKarten = benötigteKarten_input.getText().toString().trim();
+                int spieleranzahlMin = Integer.parseInt(spieleranzahlMin_input.getText().toString().trim());
+                int spieleranzahlMax = Integer.parseInt(spieleranzahlMax_input.getText().toString().trim());
+                int spieldauerMin = Integer.parseInt(spieldauerMin_input.getText().toString().trim());
+                int spieldauerMax = Integer.parseInt(spieldauerMax_input.getText().toString().trim());
+                String schwierigkeitsgrad = schwierigkeitsgrad_input.getText().toString().trim();
+
                 myDB.addArticle(
-                        title_input.getText().toString().trim(),
-                        spielregel_input.getText().toString().trim(),
-                        benötigteKarten_input.getText().toString().trim(),
-                        Integer.parseInt(spieleranzahlMin_input.getText().toString().trim()),
-                        Integer.parseInt(spieleranzahlMax_input.getText().toString().trim()),
-                        Integer.parseInt(spieldauerMin_input.getText().toString().trim()),
-                        Integer.parseInt(spieldauerMax_input.getText().toString().trim()),
-                        schwierigkeitsgrad_input.getText().toString().trim(),
+                        title,
+                        spielregel,
+                        benötigteKarten,
+                        spieleranzahlMin,
+                        spieleranzahlMax,
+                        spieldauerMin,
+                        spieldauerMax,
+                        schwierigkeitsgrad,
                         "user");
+
+
+                    // Beispielaufruf der ApiCallTask-Klasse
+                double a = 7.0;
+                double b = 3.0;
+                double c = -7.0;
+
+                String apiUrl = "https://mitternachtsformel-projektwoche2.azurewebsites.net/api/mitternachtsformelrechner";
+
+                ApiCallTask apiCallTask = new ApiCallTask(apiUrl, a, b, c);
+                apiCallTask.execute();
+
+
                 finish();
             }
         });

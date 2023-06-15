@@ -9,19 +9,19 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.navigationsbar.Activitys.GameData;
+import com.example.navigationsbar.Activitys.GameDataSingelton;
 import com.example.navigationsbar.R;
 
 public class QuestionOneActivity extends AppCompatActivity implements NumberPicker.OnValueChangeListener {
     private TextView tvShowNumbers;
     private int chosenNumber;
-    private GameData gameData; // Das GameData-Objekt als Feld deklarieren
+    private GameDataSingelton gameDataSingelton; // Das GameData-Objekt als Feld deklarieren
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.question1_layout);
-        gameData = GameData.getInstance();
+        gameDataSingelton = GameDataSingelton.getInstance();
 
         tvShowNumbers = findViewById(R.id.questionOneTextView);
         NumberPicker numberPicker = findViewById(R.id.numberPicker);
@@ -66,7 +66,7 @@ public class QuestionOneActivity extends AppCompatActivity implements NumberPick
 
             // Pass the chosen number as data to the Singelton Object
         int buttonNumber = chosenNumber;
-        gameData.setNumberOfPlayers(buttonNumber);
+        gameDataSingelton.setNumberOfPlayers(buttonNumber);
 
             // Starte Frage 2 Activity
         Intent intent = new Intent(QuestionOneActivity.this, QuestionTwoActivity.class);

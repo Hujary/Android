@@ -10,22 +10,22 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.navigationsbar.Activitys.FilteredGameList.FilteredGamesListActivity;
-import com.example.navigationsbar.Activitys.GameData;
+import com.example.navigationsbar.Activitys.GameDataSingelton;
 import com.example.navigationsbar.R;
 
 public class QuestionFiveActivity extends AppCompatActivity {
     NumberPicker numberPickerLocation;
     String[] antwortenArray = {"Egal", "Einfach", "Medium", "Schwer", "Extrem"};
     String chosenAnswer;
-    private GameData gameData; // Das GameData-Objekt als Feld deklarieren
+    private GameDataSingelton gameDataSingelton; // Das GameData-Objekt als Feld deklarieren
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.question5_layout);
-        gameData = GameData.getInstance();
+        gameDataSingelton = GameDataSingelton.getInstance();
             //  todo: fix the Schwierigkeit Null problem if nothing was selected
-        gameData.setSchwierigkeit(antwortenArray[0]);
+        gameDataSingelton.setSchwierigkeit(antwortenArray[0]);
 
             // NumberPicker Werte einsetzen
         numberPickerLocation = findViewById(R.id.answerPicker);
@@ -60,7 +60,7 @@ public class QuestionFiveActivity extends AppCompatActivity {
 
         // Start the intent and pass the value
     private void startNextActivity() {
-        gameData.setSchwierigkeit(chosenAnswer);
+        gameDataSingelton.setSchwierigkeit(chosenAnswer);
         Intent intent = new Intent(QuestionFiveActivity.this, FilteredGamesListActivity.class);
         startActivity(intent);
     }

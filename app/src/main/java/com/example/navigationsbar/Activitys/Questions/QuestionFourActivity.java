@@ -6,14 +6,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.navigationsbar.Activitys.FilteredGameList.FilteredGamesListActivity;
-import com.example.navigationsbar.Activitys.GameData;
+import com.example.navigationsbar.Activitys.GameDataSingelton;
 import com.example.navigationsbar.Adapter.PlayCardAdapter;
 import com.example.navigationsbar.Items.Spielkarten.SpielKarten;
 import com.example.navigationsbar.R;
@@ -28,13 +25,13 @@ public class QuestionFourActivity extends AppCompatActivity {
     private List<Integer> selectedKaroPositions = new ArrayList<>();
     private List<Integer> selectedPikPositions = new ArrayList<>();
     private List<Integer> selectedKreuzPositions = new ArrayList<>();
-    private GameData gameData; // Das GameData-Objekt als Feld deklarieren
+    private GameDataSingelton gameDataSingelton; // Das GameData-Objekt als Feld deklarieren
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.question4_layout);
-        gameData = GameData.getInstance();
+        gameDataSingelton = GameDataSingelton.getInstance();
 
             // Herz RecyclerView
         herzRecyclerView = findViewById(R.id.HerzRecyclerView);
@@ -86,7 +83,7 @@ public class QuestionFourActivity extends AppCompatActivity {
                     selectedHerzPositions.add(position);
                 }
                 herzAdapter.notifyDataSetChanged();
-                gameData.setSelectedHerzCards(selectedHerzPositions);
+                gameDataSingelton.setSelectedHerzCards(selectedHerzPositions);
             }
         });
 
@@ -120,7 +117,7 @@ public class QuestionFourActivity extends AppCompatActivity {
                     selectedKaroPositions.add(position);
                 }
                 karoAdapter.notifyDataSetChanged();
-                gameData.setSelectedKaroCards(selectedKaroPositions);
+                gameDataSingelton.setSelectedKaroCards(selectedKaroPositions);
             }
         });
 
@@ -154,7 +151,7 @@ public class QuestionFourActivity extends AppCompatActivity {
                     selectedPikPositions.add(position);
                 }
                 pikAdapter.notifyDataSetChanged();
-                gameData.setSelectedPikCards(selectedPikPositions);
+                gameDataSingelton.setSelectedPikCards(selectedPikPositions);
             }
         });
 
@@ -188,7 +185,7 @@ public class QuestionFourActivity extends AppCompatActivity {
                     selectedKreuzPositions.add(position);
                 }
                 kreuzAdapter.notifyDataSetChanged();
-                gameData.setSelectedKreuzCards(selectedKreuzPositions);
+                gameDataSingelton.setSelectedKreuzCards(selectedKreuzPositions);
             }
         });
         // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

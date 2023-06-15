@@ -2,7 +2,6 @@ package com.example.navigationsbar.Activitys.FilteredGameList;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -10,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.navigationsbar.Activitys.GameData;
+import com.example.navigationsbar.Activitys.GameDataSingelton;
 import com.example.navigationsbar.Adapter.FilteredArticleAdapter;
 import com.example.navigationsbar.Items.FilteredArticle.FilteredArticleCreator;
 import com.example.navigationsbar.Items.FilteredArticle.filteredArticle;
@@ -21,20 +20,20 @@ import java.util.List;
 public class FilteredGamesListActivity extends AppCompatActivity implements FilteredArticleAdapter.OnClickListener {
 
     private RecyclerView recyclerView;
-    private GameData gameData;
+    private GameDataSingelton gameDataSingelton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.filtered_gamelist);
-        gameData = GameData.getInstance();
+        gameDataSingelton = GameDataSingelton.getInstance();
 
             // Retrieve variables from Singleton and print them in the console
         System.out.println("------------------------------------------------------------------------------------------------------------------------------------");
-        int playerNumber = gameData.getNumberOfPlayers();
-        String difficulty = gameData.getSchwierigkeit();
-        String missingCards = gameData.getFehlenKarten();
-        String haveCards = gameData.getHaveCards();
+        int playerNumber = gameDataSingelton.getNumberOfPlayers();
+        String difficulty = gameDataSingelton.getSchwierigkeit();
+        String missingCards = gameDataSingelton.getFehlenKarten();
+        String haveCards = gameDataSingelton.getHaveCards();
 
             // Convert "Hast du Karten?" to boolean
         boolean bol_answer_haveCards = haveCards.equals("Ja");

@@ -53,7 +53,7 @@ public class GamesFragment extends Fragment implements ArticleAdapter.OnClickLis
 
     @Override
     public void onItemClick(Article article) {
-        // Intent und Variablen übergeben
+            // Intent und Variablen übergeben
         Intent intent = new Intent(requireContext(), DetailedGameInformationActivity.class);
         intent.putExtra("title", article.getTitle());
         intent.putExtra("cardNumber", article.getBenötigteKarten());
