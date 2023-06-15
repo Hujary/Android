@@ -124,7 +124,6 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                     selection += " AND " + COLUMN_SCHWIERIGKEITSGRAD + " = ?";
                     selectionArgs = new String[]{playerNumber, playerNumber, difficulty.toLowerCase()};
                 }
-
                 return db.query(TABLE_NAME, null, selection, selectionArgs, null, null, null);
             }
 

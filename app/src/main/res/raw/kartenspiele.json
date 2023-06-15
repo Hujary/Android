@@ -10,10 +10,10 @@
       ],
       "Spielerzahl_Min": 2,
       "Spieleranzahl_Max": 10,
-      "Benötigte Karten": "Nicht relevant",
+      "Benötigte Karten": null,
       "SpieldauerMin": 1,
       "SpieldauerMax": 5,
-      "Schwierigkeitsgrad": "medium"
+      "Schwierigkeitsgrad": "einfach"
     }
   ],
   "Game_2": [
@@ -35,7 +35,7 @@
       ],
       "Spielerzahl_Min": 2,
       "Spieleranzahl_Max": 6,
-      "Benötigte Karten": "Vollständiges Deck mit 52 Karten ; optional 32 Karten Deck -> 2 wird zu 7",
+      "Benötigte Karten": "Herz2, Herz3, Herz4, Herz5, Herz6, Herz7, Herz8, Herz9, Herz10, HerzB, HerzD, HerzK, HerzA, Pik2, Pik3, Pik4, Pik5, Pik6, Pik7, Pik8, Pik9, Pik10, PikB, PikD, PikK, PikA, Kreuz2, Kreuz3, Kreuz4, Kreuz5, Kreuz6, Kreuz7, Kreuz8, Kreuz9, Kreuz10, KreuzB, KreuzD, KreuzK, KreuzA, Karo2, Karo3, Karo4, Karo5, Karo6, Karo7, Karo8, Karo9, Karo10, KaroB, KaroD, KaroK, KaroA",
       "SpieldauerMin": 5,
       "SpieldauerMax": 20,
       "Schwierigkeitsgrad": "einfach"
@@ -65,7 +65,7 @@
       ],
       "Spielerzahl_Min": 4,
       "Spieleranzahl_Max": 8,
-      "Benötigte Karten": "Vollständiges Deck mit 52 Karten ; optional 32 Karten Deck -> Aufgaben können beliebig getauscht werden",
+      "Benötigte Karten": "Herz2, Herz3, Herz4, Herz5, Herz6, Herz7, Herz8, Herz9, Herz10, HerzB, HerzD, HerzK, HerzA, Pik2, Pik3, Pik4, Pik5, Pik6, Pik7, Pik8, Pik9, Pik10, PikB, PikD, PikK, PikA, Kreuz2, Kreuz3, Kreuz4, Kreuz5, Kreuz6, Kreuz7, Kreuz8, Kreuz9, Kreuz10, KreuzB, KreuzD, KreuzK, KreuzA, Karo2, Karo3, Karo4, Karo5, Karo6, Karo7, Karo8, Karo9, Karo10, KaroB, KaroD, KaroK, KaroA",
       "SpieldauerMin": 15,
       "SpieldauerMax": 30,
       "Schwierigkeitsgrad": "medium"
@@ -77,7 +77,7 @@
       "Regeln": "siehe Google - Viel zu lang, einf Durak standart Regeln",
       "Spielerzahl_Min": 3,
       "Spieleranzahl_Max": 8,
-      "Benötigte Karten": "Vollständiges Deck mit 52 Karten",
+      "Benötigte Karten": "Herz2, Herz3, Herz4, Herz5, Herz6, Herz7, Herz8, Herz9, Herz10, HerzB, HerzD, HerzK, HerzA, Pik2, Pik3, Pik4, Pik5, Pik6, Pik7, Pik8, Pik9, Pik10, PikB, PikD, PikK, PikA, Kreuz2, Kreuz3, Kreuz4, Kreuz5, Kreuz6, Kreuz7, Kreuz8, Kreuz9, Kreuz10, KreuzB, KreuzD, KreuzK, KreuzA, Karo2, Karo3, Karo4, Karo5, Karo6, Karo7, Karo8, Karo9, Karo10, KaroB, KaroD, KaroK, KaroA",
       "SpieldauerMin": 10,
       "SpieldauerMax": 15,
       "Schwierigkeitsgrad": "einfach"
@@ -102,10 +102,10 @@
       ],
       "Spielerzahl_Min": 3,
       "Spieleranzahl_Max": 8,
-      "Benötigte Karten": "Vollständiges Deck mit 52 Karten ; optional 32 Karten Deck ; möglich solang von jeder Zahl 4 Karten da sind. -> höchste Karte wird zum 'Ass'.",
+      "Benötigte Karten": "Herz2, Herz3, Herz4, Herz5, Herz6, Herz7, Herz8, Herz9, Herz10, HerzB, HerzD, HerzK, HerzA, Pik2, Pik3, Pik4, Pik5, Pik6, Pik7, Pik8, Pik9, Pik10, PikB, PikD, PikK, PikA, Kreuz2, Kreuz3, Kreuz4, Kreuz5, Kreuz6, Kreuz7, Kreuz8, Kreuz9, Kreuz10, KreuzB, KreuzD, KreuzK, KreuzA, Karo2, Karo3, Karo4, Karo5, Karo6, Karo7, Karo8, Karo9, Karo10, KaroB, KaroD, KaroK, KaroA",
       "SpieldauerMin": 10,
       "SpieldauerMax": 30,
-      "Schwierigkeitsgrad": "einfach"
+      "Schwierigkeitsgrad": "medium"
     }
   ],
   "Game_6": [
@@ -123,7 +123,7 @@
       ],
       "Spielerzahl_Min": 2,
       "Spieleranzahl_Max": 10,
-      "Benötigte Karten": "Nicht relevant",
+      "Benötigte Karten": null,
       "SpieldauerMin": 10,
       "SpieldauerMax": 30,
       "Schwierigkeitsgrad": "Schwer"
