@@ -5,15 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Database.AddActivity"
-    android:padding="30dp">
+    android:padding="30dp" >
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.266"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,9 +26,8 @@
                 android:id="@+id/title_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="150dp"
                 android:ems="10"
-                android:hint="Title"
+                android:hint="Spielname"
                 android:inputType="textPersonName" />
 
             <EditText
@@ -83,14 +84,19 @@
                 android:hint="Spieldauer (Max)"
                 android:inputType="number" />
 
-            <EditText
-                android:id="@+id/schwierigkeitsgrad_input"
+            <Spinner
+                android:id="@+id/schwierigkeitsgrad_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:ems="10"
-                android:hint="Schwierigkeitsgrad"
-                android:inputType="text" />
+                android:layout_marginTop="25dp" />
+
+            <CheckBox
+                android:id="@+id/checkBox2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="Spiel als Vorschlag einreichen"
+                android:theme="@style/CustomCheckBoxStyle" />
 
             <Button
                 android:id="@+id/add_button"
@@ -98,10 +104,8 @@
                 android:layout_height="70dp"
                 android:layout_marginTop="40dp"
                 android:text="Add"
-                android:textSize="20sp"
-                android:textAllCaps="false" />
-
+                android:textAllCaps="false"
+                android:textSize="20sp" />
         </LinearLayout>
     </ScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

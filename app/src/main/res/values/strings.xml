@@ -9,4 +9,10 @@
     <string name="question_3_fehlen_karten">fehlen Karten in deinem Set ? </string>
     <string name="question_4_welche_Karten_fehlen">welche Karten genau fehlen in deinem Set? </string>
     <string name="Spiel_nicht_dabei">Dein Spiel ist nicht dabei ? dann füg es einfach selbst hinzu </string>
+
+    <string-array name="schwierigkeitsgrade_array">
+        <item>einfach</item>
+        <item>medium</item>
+        <item>schwer</item>
+    </string-array>
 </resources>

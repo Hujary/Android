@@ -59,10 +59,10 @@ public class AddRecyclerAdapter extends RecyclerView.Adapter<AddRecyclerAdapter.
     public void onBindViewHolder(@NonNull final MyViewHolder holder, @SuppressLint("RecyclerView") final int position) {
 
             //  Setze dem View Inhalt -> User muss seine Spielinhalte nicht nochmal schreiben.
-        holder.gameIdTxt.setText(String.valueOf(idList.get(position)));
+        int displayedPosition = position + 1; // Add 1 to the position to display the current item count
+        holder.gameIdTxt.setText(String.valueOf(displayedPosition));
         holder.gameTitleTxt.setText(String.valueOf(titleList.get(position)));
         holder.gameAuthorTxt.setText(String.valueOf(schwierigkeitsgradList.get(position)));
-        holder.gamePagesTxt.setText(String.valueOf(creatorList.get(position)));
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -102,7 +102,6 @@ public class AddRecyclerAdapter extends RecyclerView.Adapter<AddRecyclerAdapter.
             gameIdTxt = itemView.findViewById(R.id.id_txt);
             gameTitleTxt = itemView.findViewById(R.id.title_txt);
             gameAuthorTxt = itemView.findViewById(R.id.schwierigkeit_txt);
-            gamePagesTxt = itemView.findViewById(R.id.spieleranzahl_txt);
             mainLayout = itemView.findViewById(R.id.mainLayout);
 
             Animation translateAnim = AnimationUtils.loadAnimation(itemView.getContext(), R.anim.translate_anim);

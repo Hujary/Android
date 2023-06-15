@@ -6,17 +6,22 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.navigationsbar.Activitys.FilteredGameList.DetailedGameInformationActivity;
-import com.example.navigationsbar.Items.Article.Article;
 import com.example.navigationsbar.Adapter.ArticleAdapter;
+import com.example.navigationsbar.Items.Article.Article;
 import com.example.navigationsbar.Items.Article.ArticleCreator;
 import com.example.navigationsbar.R;
 import com.example.navigationsbar.databinding.FragmentGamesBinding;
+
 import java.util.List;
+import java.util.Random;
 
 public class GamesFragment extends Fragment implements ArticleAdapter.OnClickListener {
 
@@ -32,7 +37,6 @@ public class GamesFragment extends Fragment implements ArticleAdapter.OnClickLis
         resources = getResources();
 
         try {
-                // Here, the method to create articles is called
             recyclerView = root.findViewById(R.id.articleRecyclerView);
             recyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
             ArticleCreator articleCreator = new ArticleCreator(resources, getContext());
@@ -42,6 +46,7 @@ public class GamesFragment extends Fragment implements ArticleAdapter.OnClickLis
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         return root;
     }
 
@@ -53,7 +58,6 @@ public class GamesFragment extends Fragment implements ArticleAdapter.OnClickLis
 
     @Override
     public void onItemClick(Article article) {
-            // Intent und Variablen übergeben
         Intent intent = new Intent(requireContext(), DetailedGameInformationActivity.class);
         intent.putExtra("title", article.getTitle());
         intent.putExtra("cardNumber", article.getBenötigteKarten());

@@ -15,7 +15,7 @@ import com.example.navigationsbar.R;
 
 public class QuestionFiveActivity extends AppCompatActivity {
     NumberPicker numberPickerLocation;
-    String[] antwortenArray = {"Egal", "Einfach", "Medium", "Schwer", "Extrem"};
+    String[] antwortenArray = {"egal", "einfach", "medium", "schwer"};
     String chosenAnswer;
     private GameDataSingelton gameDataSingelton; // Das GameData-Objekt als Feld deklarieren
 
@@ -24,7 +24,6 @@ public class QuestionFiveActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.question5_layout);
         gameDataSingelton = GameDataSingelton.getInstance();
-            //  todo: fix the Schwierigkeit Null problem if nothing was selected
         gameDataSingelton.setSchwierigkeit(antwortenArray[0]);
 
             // NumberPicker Werte einsetzen

@@ -2,8 +2,11 @@ package com.example.navigationsbar.Database;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,13 +16,19 @@ import com.example.navigationsbar.R;
 public class AddActivity extends AppCompatActivity implements ApiCallTask.ApiCallTaskCallback {
 
     EditText title_input, spielregel_input, benötigteKarten_input, spieleranzahlMin_input, spieleranzahlMax_input,
-            spieldauerMin_input, spieldauerMax_input, schwierigkeitsgrad_input;
+            spieldauerMin_input, spieldauerMax_input;
     Button add_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
+
+        // Hier Variablen für Layout-Elemente erstellen.
+        Spinner schwierigkeitsgradSpinner = findViewById(R.id.schwierigkeitsgrad_spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.schwierigkeitsgrade_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        schwierigkeitsgradSpinner.setAdapter(adapter);
 
         title_input = findViewById(R.id.title_input);
         spielregel_input = findViewById(R.id.spielregel_input);
@@ -28,7 +37,7 @@ public class AddActivity extends AppCompatActivity implements ApiCallTask.ApiCal
         spieleranzahlMax_input = findViewById(R.id.spieleranzahlMax_input);
         spieldauerMin_input = findViewById(R.id.spieldauerMin_input);
         spieldauerMax_input = findViewById(R.id.spieldauerMax_input);
-        schwierigkeitsgrad_input = findViewById(R.id.schwierigkeitsgrad_input);
+        CheckBox checkBox = findViewById(R.id.checkBox2);
         add_button = findViewById(R.id.add_button);
         add_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,7 +50,7 @@ public class AddActivity extends AppCompatActivity implements ApiCallTask.ApiCal
                 int spieleranzahlMax = Integer.parseInt(spieleranzahlMax_input.getText().toString().trim());
                 int spieldauerMin = Integer.parseInt(spieldauerMin_input.getText().toString().trim());
                 int spieldauerMax = Integer.parseInt(spieldauerMax_input.getText().toString().trim());
-                String schwierigkeitsgrad = schwierigkeitsgrad_input.getText().toString().trim();
+                String schwierigkeitsgrad = schwierigkeitsgradSpinner.getSelectedItem().toString().trim();
 
                 myDB.addArticle(
                         title,
@@ -54,11 +63,12 @@ public class AddActivity extends AppCompatActivity implements ApiCallTask.ApiCal
                         schwierigkeitsgrad,
                         "user");
 
-                // Beispielaufruf der ApiCallTask-Klasse
-                String apiUrl = "https://androidpartysaverbackend.azurewebsites.net/api/androidAPITrigger";
-                ApiCallTask apiCallTask = new ApiCallTask(apiUrl, title, spielregel, spieleranzahlMin, spieleranzahlMax, benötigteKarten, spieldauerMin, spieldauerMax, schwierigkeitsgrad, AddActivity.this);
-                apiCallTask.execute();
-
+                if (checkBox.isChecked()) {
+                        // Checkbox ist ausgewählt, führe den API-Aufruf aus
+                    String apiUrl = "https://androidpartysaverbackend.azurewebsites.net/api/androidAPITrigger";
+                    ApiCallTask apiCallTask = new ApiCallTask(apiUrl, title, spielregel, spieleranzahlMin, spieleranzahlMax, benötigteKarten, spieldauerMin, spieldauerMax, schwierigkeitsgrad, AddActivity.this);
+                    apiCallTask.execute();
+                }
                 finish();
             }
         });
