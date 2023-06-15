@@ -1,98 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    tools:context=".Database.AddActivity"
+    android:padding="30dp">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
-            android:id="@+id/cardContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Hier werden die Bild-Widgets für die Karten dynamisch hinzugefügt -->
+            <EditText
+                android:id="@+id/title_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="150dp"
+                android:ems="10"
+                android:hint="Title"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/spielregel_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:hint="Spielregel"
+                android:inputType="textMultiLine" />
+
+            <EditText
+                android:id="@+id/benötigteKarten_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:hint="Benötigte Karten"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/spieleranzahlMin_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:hint="Spieleranzahl (Min)"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/spieleranzahlMax_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:hint="Spieleranzahl (Max)"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/spieldauerMin_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:hint="Spieldauer (Min)"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/spieldauerMax_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:hint="Spieldauer (Max)"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/schwierigkeitsgrad_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:hint="Schwierigkeitsgrad"
+                android:inputType="text" />
+
+            <Button
+                android:id="@+id/add_button"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="40dp"
+                android:text="Add"
+                android:textSize="20sp"
+                android:textAllCaps="false" />
 
         </LinearLayout>
-
     </ScrollView>
 
-    <EditText
-        android:id="@+id/title_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Title"
-        android:inputType="textPersonName" />
-
-    <EditText
-        android:id="@+id/spielregel_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="Spielregel"
-        android:inputType="textMultiLine" />
-
-    <EditText
-        android:id="@+id/benötigteKarten_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="Benötigte Karten"
-        android:inputType="text" />
-
-    <EditText
-        android:id="@+id/spieleranzahlMin_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="Spieleranzahl (Min)"
-        android:inputType="number" />
-
-    <EditText
-        android:id="@+id/spieleranzahlMax_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="Spieleranzahl (Max)"
-        android:inputType="number" />
-
-    <EditText
-        android:id="@+id/spieldauerMin_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="Spieldauer (Min)"
-        android:inputType="number" />
-
-    <EditText
-        android:id="@+id/spieldauerMax_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="Spieldauer (Max)"
-        android:inputType="number" />
-
-    <EditText
-        android:id="@+id/schwierigkeitsgrad_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="Schwierigkeitsgrad"
-        android:inputType="text" />
-
-    <Button
-        android:id="@+id/add_button"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginTop="40dp"
-        android:text="Add"
-        android:textSize="20sp"
-        android:textAllCaps="false" />
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
