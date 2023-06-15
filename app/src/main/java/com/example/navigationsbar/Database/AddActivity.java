@@ -4,12 +4,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.navigationsbar.R;
 
-public class AddActivity extends AppCompatActivity {
+public class AddActivity extends AppCompatActivity implements ApiCallTask.ApiCallTaskCallback {
 
     EditText title_input, spielregel_input, benötigteKarten_input, spieleranzahlMin_input, spieleranzahlMax_input,
             spieldauerMin_input, spieldauerMax_input, schwierigkeitsgrad_input;
@@ -53,20 +54,19 @@ public class AddActivity extends AppCompatActivity {
                         schwierigkeitsgrad,
                         "user");
 
-
-                    // Beispielaufruf der ApiCallTask-Klasse
-                double a = 7.0;
-                double b = 3.0;
-                double c = -7.0;
-
-                String apiUrl = "https://mitternachtsformel-projektwoche2.azurewebsites.net/api/mitternachtsformelrechner";
-
-                ApiCallTask apiCallTask = new ApiCallTask(apiUrl, a, b, c);
+                // Beispielaufruf der ApiCallTask-Klasse
+                String apiUrl = "https://androidpartysaverbackend.azurewebsites.net/api/androidAPITrigger";
+                ApiCallTask apiCallTask = new ApiCallTask(apiUrl, title, spielregel, spieleranzahlMin, spieleranzahlMax, benötigteKarten, spieldauerMin, spieldauerMax, schwierigkeitsgrad, AddActivity.this);
                 apiCallTask.execute();
-
 
                 finish();
             }
         });
+    }
+
+    @Override
+    public void onApiCallComplete(String result) {
+        // Hier kannst du den Toast anzeigen
+        Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
     }
 }

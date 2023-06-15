@@ -10,21 +10,32 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLEncoder;
 
 public class ApiCallTask extends AsyncTask<Void, Void, String> {
     private static final String TAG = "ApiCallTask";
 
     private String apiUrl;
-    private double a;
-    private double b;
-    private double c;
+    private String name;
+    private String rules;
+    private int playerNumberMin;
+    private int playerNumberMax;
+    private String cards;
+    private int playtimeMin;
+    private int playtimeMax;
+    private String difficulty;
+    private ApiCallTaskCallback callback;
 
-    public ApiCallTask(String apiUrl, double a, double b, double c) {
+    public ApiCallTask(String apiUrl, String name, String rules, int playerNumberMin, int playerNumberMax, String cards, int playtimeMin, int playtimeMax, String difficulty, ApiCallTaskCallback callback) {
         this.apiUrl = apiUrl;
-        this.a = a;
-        this.b = b;
-        this.c = c;
+        this.name = name;
+        this.rules = rules;
+        this.playerNumberMin = playerNumberMin;
+        this.playerNumberMax = playerNumberMax;
+        this.cards = cards;
+        this.playtimeMin = playtimeMin;
+        this.playtimeMax = playtimeMax;
+        this.difficulty = difficulty;
+        this.callback = callback;
     }
 
     @Override
@@ -41,9 +52,14 @@ public class ApiCallTask extends AsyncTask<Void, Void, String> {
 
             // Erstellen des Request-Body als JSON
             JSONObject requestBody = new JSONObject();
-            requestBody.put("a", a);
-            requestBody.put("b", b);
-            requestBody.put("c", c);
+            requestBody.put("name", name);
+            requestBody.put("rules", rules);
+            requestBody.put("playernumber_min", playerNumberMin);
+            requestBody.put("playernumber_max", playerNumberMax);
+            requestBody.put("cards", cards);
+            requestBody.put("playtime_min", playtimeMin);
+            requestBody.put("playtime_max", playtimeMax);
+            requestBody.put("difficulty", difficulty);
 
             // Senden des Request-Body an die API
             OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
@@ -70,7 +86,14 @@ public class ApiCallTask extends AsyncTask<Void, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
-            // Der API-Aufruf ist abgeschlossen, und das Ergebnis kann hier verarbeitet werden
-        Log.d(TAG, "API response: " + result);
+        // Der API-Aufruf ist abgeschlossen, und das Ergebnis kann hier verarbeitet werden
+        if (callback != null) {
+            callback.onApiCallComplete(result);
+        }
+    }
+
+    // Schnittstelle für die Callback-Methode
+    interface ApiCallTaskCallback {
+        void onApiCallComplete(String result);
     }
 }
