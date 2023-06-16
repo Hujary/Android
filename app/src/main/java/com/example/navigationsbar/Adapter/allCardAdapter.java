@@ -12,20 +12,20 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class PlayCardAdapter extends RecyclerView.Adapter<PlayCardAdapter.BestSellerViewHolder> {
+public class allCardAdapter extends RecyclerView.Adapter<allCardAdapter.BestSellerViewHolder> {
 
     private List<SpielKarten> spielKartenList;
     private Set<Integer> selectedPositions = new HashSet<>();
     private OnItemClickListener onItemClickListener;
 
-    public PlayCardAdapter(List<SpielKarten> spielKartenList) {
+    public allCardAdapter(List<SpielKarten> spielKartenList) {
         this.spielKartenList = spielKartenList;
     }
 
     @NonNull
     @Override
     public BestSellerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_playcards, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_playcards_small, parent, false);
         return new BestSellerViewHolder(view);
     }
 
@@ -37,6 +37,7 @@ public class PlayCardAdapter extends RecyclerView.Adapter<PlayCardAdapter.BestSe
         if (selectedPositions.contains(position)) {
             holder.mImageview.setImageResource(R.drawable.card_back);
         } else {
+            holder.mImageview.setImageResource(spielKarte.getImage());
         }
     }
 

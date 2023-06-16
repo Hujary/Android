@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MyDatabaseHelper extends SQLiteOpenHelper {
@@ -114,19 +115,59 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
 
             //  übel komplizierte SQL abfrage abhängig der Eingabe
-            public Cursor readFilteredData(String playerNumber, String difficulty) {
+            public Cursor readFilteredData(String playerNumber, String difficulty, boolean haveCards, String fehlendeKartenString) {
+                System.out.println("------------------------ Information aus Datenbankmethode() ---------------------------------- ");
+                System.out.println("Spieler " + playerNumber);
+                System.out.println("Schwierigkeit " + difficulty);
+                System.out.println("hast du Karten ? " + haveCards);
+                System.out.println("Fehlende Karten: " + fehlendeKartenString);
+
+                    // Öffnet eine Verbindung zur SQLite-Datenbank
                 SQLiteDatabase db = this.getReadableDatabase();
 
+                    // Erstellt die selection-Zeichenkette
                 String selection = COLUMN_SPIELERANZAHL_MIN + " <= ? AND " + COLUMN_SPIELERANZAHL_MAX + " >= ?";
-                String[] selectionArgs = {playerNumber, playerNumber};
+                List<String> selectionArgsList = new ArrayList<>();
+                selectionArgsList.add(playerNumber);
+                selectionArgsList.add(playerNumber);
 
+                    // Überprüft die Schwierigkeitsstufe, falls angegeben
                 if (difficulty != null && !difficulty.equalsIgnoreCase("egal")) {
                     selection += " AND " + COLUMN_SCHWIERIGKEITSGRAD + " = ?";
-                    selectionArgs = new String[]{playerNumber, playerNumber, difficulty.toLowerCase()};
+                    selectionArgsList.add(difficulty.toLowerCase());
                 }
-                return db.query(TABLE_NAME, null, selection, selectionArgs, null, null, null);
-            }
 
+                    // Überprüft, ob der Spieler Karten benötigt oder nicht
+                if (haveCards) {
+                    System.out.println("DB: Spieler hat Karten");
+                    if (fehlendeKartenString != null && !fehlendeKartenString.isEmpty()) {
+                        // Teilt den fehlendeKartenString in einzelne Karten auf
+                        String[] fehlendeKarten = fehlendeKartenString.split(",");
+
+                        // Erzeugt eine Bedingung, um Spiele auszuschließen, die fehlende Karten benötigen
+                        StringBuilder excludeCondition = new StringBuilder();
+                        for (String karte : fehlendeKarten) {
+                            excludeCondition.append(" AND (" + COLUMN_BENÖTIGTE_KARTEN + " IS NULL OR " + COLUMN_BENÖTIGTE_KARTEN + " = '' OR " + COLUMN_BENÖTIGTE_KARTEN + " NOT LIKE '%" + karte.trim() + "%')");
+                        }
+
+                        selection += excludeCondition.toString();
+                        System.out.println("Exclude Condition: " + excludeCondition.toString());
+                    } else {
+                        selection += " AND (" + COLUMN_BENÖTIGTE_KARTEN + " IS NULL OR " + COLUMN_BENÖTIGTE_KARTEN + " = '')";
+                    }
+                } else {
+                    System.out.println("DB: Spieler hat keine Karten");
+                }
+
+                    // Konvertiert die selectionArgsList in ein String-Array
+                String[] selectionArgs = selectionArgsList.toArray(new String[0]);
+
+                System.out.println("Selection: " + selection);
+                System.out.println("SelectionArgs: " + Arrays.toString(selectionArgs));
+
+                Cursor cursor = db.query(TABLE_NAME, null, selection, selectionArgs, null, null, null);
+                return cursor;
+            }
     //  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -219,6 +260,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         } catch (JSONException e) {
             e.printStackTrace();
             Log.d("ArticleCreator", "Fehler: " + e);
+            db.endTransaction();
         }
     }
 

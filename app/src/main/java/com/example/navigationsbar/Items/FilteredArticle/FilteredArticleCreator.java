@@ -16,7 +16,7 @@ public class FilteredArticleCreator {
         myDB = new MyDatabaseHelper(context);
     }
 
-    public List<filteredArticle> getFilteredArticle(int playerNumber, String difficulty, Boolean missingCards, Boolean haveCards) {
+    public List<filteredArticle> getFilteredArticle(int playerNumber, String difficulty, Boolean missingCards, Boolean haveCards, String missingCardsString) {
 
           //  Standart Values zuweisen
         if (difficulty == null) {
@@ -30,18 +30,19 @@ public class FilteredArticleCreator {
         String playerNumberString = String.valueOf(playerNumber);
         Log.d("YourTag", "Player Number: " + playerNumberString +
                 ", Difficulty: " + difficulty +
-                ", Missing Cards: " + missingCards +
-                ", Have Cards: " + haveCards);
+                ", Fehlen Karten? : " + missingCards +
+                ", hast du Karten? : " + haveCards +
+                ", missing Cards: " + missingCardsString);
 
             //  Datenbank abfrage Methode aufrufen.
-        List<filteredArticle> articles = readDatabaseDataWithValues(playerNumberString, difficulty);
+        List<filteredArticle> articles = readDatabaseDataWithValues(playerNumberString, difficulty, haveCards, missingCardsString);
         return articles;
     }
 
         // Datenbankabruf mit gefilterten Daten
-    private List<filteredArticle> readDatabaseDataWithValues(String playerNumber, String difficulty) {
+    private List<filteredArticle> readDatabaseDataWithValues(String playerNumber, String difficulty, boolean haveCards, String missingCardsString) {
         List<filteredArticle> databaseArticles = new ArrayList<>();
-        Cursor cursor = myDB.readFilteredData(playerNumber, difficulty);
+        Cursor cursor = myDB.readFilteredData(playerNumber, difficulty, haveCards, missingCardsString);
 
         if (cursor.getCount() == 0) {
             Log.d("ArticleCreator", "Die Datenbank ist leer.");

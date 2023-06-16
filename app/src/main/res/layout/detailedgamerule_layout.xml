@@ -18,19 +18,12 @@
             <TextView
                 android:id="@+id/gameNameTextView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="49dp"
                 android:text="Spielname" />
 
             <!-- Spieleranzahl -->
             <TextView
                 android:id="@+id/playerCountTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Spieleranzahl" />
-
-            <!-- Spieleranzahl -->
-            <TextView
-                android:id="@+id/cardCountTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Spieleranzahl" />
@@ -46,8 +39,28 @@
             <TextView
                 android:id="@+id/difficultyTextView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="53dp"
                 android:text="Schwierigkeitsgrad" />
+
+
+            <TextView
+                android:id="@+id/justTextKarten"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="benötigte Karten: " />
+
+            <!-- Recycler View für Spielkarten -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/CardsRecyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/justTextRegeln"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="Spielregeln:: " />
 
             <!-- Regeln -->
             <TextView
@@ -55,7 +68,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="[placeholder]" />
-
         </LinearLayout>
     </ScrollView>
 
@@ -68,6 +80,6 @@
         android:layout_alignParentStart="true"
         android:layout_marginBottom="16dp"
         android:layout_marginStart="16dp"
-        android:src="@drawable/ic_notifications_black_24dp" />
-
+        android:backgroundTint="@color/lightblueButton"
+        android:src="@drawable/ic_back" />
 </RelativeLayout>

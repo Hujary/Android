@@ -34,12 +34,65 @@ public class FilteredGamesListActivity extends AppCompatActivity implements Filt
         String difficulty = gameDataSingelton.getSchwierigkeit();
         String missingCards = gameDataSingelton.getFehlenKarten();
         String haveCards = gameDataSingelton.getHaveCards();
+        List<Integer> herzCards = gameDataSingelton.getSelectedHerzCards();
+        List<Integer> pikCards = gameDataSingelton.getSelectedPikCards();
+        List<Integer> kreuzCards = gameDataSingelton.getSelectedKreuzCards();
+        List<Integer> karoCards = gameDataSingelton.getSelectedKaroCards();
 
-            // Convert "Hast du Karten?" to boolean
-        boolean bol_answer_haveCards = haveCards.equals("Ja");
 
-            // Convert "Fehlen Karten?" to boolean
-        boolean bol_answer_missingCards = missingCards.equals("Ja");
+            //  baue aus zb. [0,3,6] ein String mit den tatsächlichen Spielkarten
+        StringBuilder missingCardsBuilder = new StringBuilder();
+        if (herzCards != null && !herzCards.isEmpty()) {
+            appendCardsToStringBuilder(herzCards, "herz", missingCardsBuilder);
+        }
+        if (pikCards != null && !pikCards.isEmpty()) {
+            if (missingCardsBuilder.length() > 0) {
+                missingCardsBuilder.append(", ");
+            }
+            appendCardsToStringBuilder(pikCards, "pik", missingCardsBuilder);
+        }
+        if (kreuzCards != null && !kreuzCards.isEmpty()) {
+            if (missingCardsBuilder.length() > 0) {
+                missingCardsBuilder.append(", ");
+            }
+            appendCardsToStringBuilder(kreuzCards, "kreuz", missingCardsBuilder);
+        }
+        if (karoCards != null && !karoCards.isEmpty()) {
+            if (missingCardsBuilder.length() > 0) {
+                missingCardsBuilder.append(", ");
+            }
+            appendCardsToStringBuilder(karoCards, "karo", missingCardsBuilder);
+        }
+
+        String missingCardsString;
+        if (missingCardsBuilder.length() > 0) {
+            missingCardsString = missingCardsBuilder.toString();
+        } else {
+            missingCardsString = "null";
+        }
+
+
+        System.out.println("------------------------ Information aus Singelton() ---------------------------------- " );
+        System.out.println("Spieler " + playerNumber);
+        System.out.println("Schwieirigkeit " + difficulty);
+        System.out.println("hast du Karten ? " + haveCards);
+        System.out.println("Fehlen dir Karten ?  " + missingCards);     //  eig unrelevant
+        System.out.println("Fehlende Karten:  " + missingCardsString);
+
+
+            // Convert to boolean
+        boolean bol_answer_haveCards = "Ja".equals(haveCards != null ? haveCards : "Nein");
+        boolean bol_answer_missingCards = "Ja".equals(missingCards != null ? missingCards : "Nein");
+
+
+        System.out.println("------------------------ Information konvertiert(): ---------------------------------- " );
+        System.out.println("Spieler " + playerNumber);
+        System.out.println("Schwieirigkeit " + difficulty);
+        System.out.println("hast du Karten ? " + bol_answer_haveCards);
+        System.out.println("Fehlen dir Karten ?  " + bol_answer_missingCards);
+        System.out.println("Fehlende Karten:  " + missingCardsString);
+
+
 
 
         Button buttonReturn = findViewById(R.id.button_return);
@@ -57,7 +110,7 @@ public class FilteredGamesListActivity extends AppCompatActivity implements Filt
 
             //  Liste erzeugen in der meine gefilterten Artikel gespeichert werden.
         FilteredArticleCreator f1 = new FilteredArticleCreator(this);
-        List<filteredArticle> filteredGamesList = f1.getFilteredArticle(playerNumber, difficulty, bol_answer_haveCards, bol_answer_missingCards);
+        List<filteredArticle> filteredGamesList = f1.getFilteredArticle(playerNumber, difficulty, bol_answer_missingCards, bol_answer_haveCards, missingCardsString );
 
             // Add the filtered games list to the adapter
         FilteredArticleAdapter filteredArticleAdapter = new FilteredArticleAdapter(filteredGamesList, this);
@@ -71,7 +124,7 @@ public class FilteredGamesListActivity extends AppCompatActivity implements Filt
 
     @Override
     public void onItemClick(filteredArticle article) {
-        // Pass the current article information to the intent
+            // Pass the current article information to the intent
         Intent intent = new Intent(this, DetailedGameInformationActivity.class);
         intent.putExtra("title", article.getTitle());
         intent.putExtra("cardNumber", article.getBenötigteKarten());
@@ -84,9 +137,28 @@ public class FilteredGamesListActivity extends AppCompatActivity implements Filt
         startActivity(intent);
     }
 
+    private String getCardName(String cardType, int cardValue) {
+        String[] cardNames = {"zwei", "drei", "vier", "fuenf", "sechs", "sieben", "acht", "neun", "zehn", "bube", "dame", "koenig", "ass"};
+        String typeName = cardType.toLowerCase();
+        String valueName = cardNames[cardValue];
+        return typeName + "_" + valueName;
+    }
+
+    private void appendCardsToStringBuilder(List<Integer> cards, String cardType, StringBuilder stringBuilder) {
+        int size = cards.size();
+        for (int i = 0; i < size; i++) {
+            int cardValue = cards.get(i);
+            String cardName = getCardName(cardType, cardValue);
+            stringBuilder.append(cardName);
+            if (i < size - 1) {
+                stringBuilder.append(", ");
+            }
+        }
+    }
+
     @Override
     public void onFooterClick() {
-        // TODO: Implement footer click logic
+            // TODO: Implement footer click logic to link to addArticle
         System.out.println("Working");
     }
 }

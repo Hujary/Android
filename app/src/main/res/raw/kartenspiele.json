@@ -10,7 +10,7 @@
       ],
       "Spielerzahl_Min": 2,
       "Spieleranzahl_Max": 10,
-      "Benötigte Karten": null,
+      "Benötigte Karten": "",
       "SpieldauerMin": 1,
       "SpieldauerMax": 5,
       "Schwierigkeitsgrad": "einfach"
@@ -35,10 +35,10 @@
       ],
       "Spielerzahl_Min": 2,
       "Spieleranzahl_Max": 6,
-      "Benötigte Karten": "Herz2, Herz3, Herz4, Herz5, Herz6, Herz7, Herz8, Herz9, Herz10, HerzB, HerzD, HerzK, HerzA, Pik2, Pik3, Pik4, Pik5, Pik6, Pik7, Pik8, Pik9, Pik10, PikB, PikD, PikK, PikA, Kreuz2, Kreuz3, Kreuz4, Kreuz5, Kreuz6, Kreuz7, Kreuz8, Kreuz9, Kreuz10, KreuzB, KreuzD, KreuzK, KreuzA, Karo2, Karo3, Karo4, Karo5, Karo6, Karo7, Karo8, Karo9, Karo10, KaroB, KaroD, KaroK, KaroA",
+      "Benötigte Karten": "herz_zwei, herz_drei, herz_vier, herz_fuenf, herz_sechs, herz_sieben, herz_acht, herz_neun, herz_zehn, herz_bube, herz_dame, herz_koenig, herz_ass, pik_zwei, pik_drei, pik_vier, pik_fuenf, pik_sechs, pik_sieben, pik_acht, pik_neun, pik_zehn, pik_bube, pik_dame, pik_koenig, pik_ass, kreuz_zwei, kreuz_drei, kreuz_vier, kreuz_fuenf, kreuz_sechs, kreuz_sieben, kreuz_acht, kreuz_neun, kreuz_zehn, kreuz_bube, kreuz_dame, kreuz_koenig, kreuz_ass, karo_zwei, karo_drei, karo_vier, karo_fuenf, karo_sechs, karo_sieben, karo_acht, karo_neun, karo_zehn, karo_bube, karo_dame, karo_koenig, karo_ass",
       "SpieldauerMin": 5,
       "SpieldauerMax": 20,
-      "Schwierigkeitsgrad": "einfach"
+      "Schwierigkeitsgrad": "medium"
     }
   ],
   "Game_3": [
@@ -65,10 +65,10 @@
       ],
       "Spielerzahl_Min": 4,
       "Spieleranzahl_Max": 8,
-      "Benötigte Karten": "Herz2, Herz3, Herz4, Herz5, Herz6, Herz7, Herz8, Herz9, Herz10, HerzB, HerzD, HerzK, HerzA, Pik2, Pik3, Pik4, Pik5, Pik6, Pik7, Pik8, Pik9, Pik10, PikB, PikD, PikK, PikA, Kreuz2, Kreuz3, Kreuz4, Kreuz5, Kreuz6, Kreuz7, Kreuz8, Kreuz9, Kreuz10, KreuzB, KreuzD, KreuzK, KreuzA, Karo2, Karo3, Karo4, Karo5, Karo6, Karo7, Karo8, Karo9, Karo10, KaroB, KaroD, KaroK, KaroA",
+      "Benötigte Karten": "herz_zwei, herz_drei, herz_vier, herz_fuenf, herz_sechs, herz_sieben, herz_acht, herz_neun, herz_zehn, herz_bube, herz_dame, herz_koenig, herz_ass, pik_zwei, pik_drei, pik_vier, pik_fuenf, pik_sechs, pik_sieben, pik_acht, pik_neun, pik_zehn, pik_bube, pik_dame, pik_koenig, pik_ass, kreuz_zwei, kreuz_drei, kreuz_vier, kreuz_fuenf, kreuz_sechs, kreuz_sieben, kreuz_acht, kreuz_neun, kreuz_zehn, kreuz_bube, kreuz_dame, kreuz_koenig, kreuz_ass, karo_zwei, karo_drei, karo_vier, karo_fuenf, karo_sechs, karo_sieben, karo_acht, karo_neun, karo_zehn, karo_bube, karo_dame, karo_koenig, karo_ass",
       "SpieldauerMin": 15,
       "SpieldauerMax": 30,
-      "Schwierigkeitsgrad": "medium"
+      "Schwierigkeitsgrad": "schwer"
     }
   ],
   "Game_4": [
@@ -77,10 +77,10 @@
       "Regeln": "siehe Google - Viel zu lang, einf Durak standart Regeln",
       "Spielerzahl_Min": 3,
       "Spieleranzahl_Max": 8,
-      "Benötigte Karten": "Herz2, Herz3, Herz4, Herz5, Herz6, Herz7, Herz8, Herz9, Herz10, HerzB, HerzD, HerzK, HerzA, Pik2, Pik3, Pik4, Pik5, Pik6, Pik7, Pik8, Pik9, Pik10, PikB, PikD, PikK, PikA, Kreuz2, Kreuz3, Kreuz4, Kreuz5, Kreuz6, Kreuz7, Kreuz8, Kreuz9, Kreuz10, KreuzB, KreuzD, KreuzK, KreuzA, Karo2, Karo3, Karo4, Karo5, Karo6, Karo7, Karo8, Karo9, Karo10, KaroB, KaroD, KaroK, KaroA",
+      "Benötigte Karten": "herz_zwei, herz_drei, herz_vier, herz_fuenf, herz_sechs, herz_sieben, herz_acht, herz_neun, herz_zehn, herz_bube, herz_dame, herz_koenig, herz_ass, pik_zwei, pik_drei, pik_vier, pik_fuenf, pik_sechs, pik_sieben, pik_acht, pik_neun, pik_zehn, pik_bube, pik_dame, pik_koenig, pik_ass, kreuz_zwei, kreuz_drei, kreuz_vier, kreuz_fuenf, kreuz_sechs, kreuz_sieben, kreuz_acht, kreuz_neun, kreuz_zehn, kreuz_bube, kreuz_dame, kreuz_koenig, kreuz_ass, karo_zwei, karo_drei, karo_vier, karo_fuenf, karo_sechs, karo_sieben, karo_acht, karo_neun, karo_zehn, karo_bube, karo_dame, karo_koenig, karo_ass",
       "SpieldauerMin": 10,
       "SpieldauerMax": 15,
-      "Schwierigkeitsgrad": "einfach"
+      "Schwierigkeitsgrad": "medium"
     }
   ],
   "Game_5": [
@@ -102,7 +102,7 @@
       ],
       "Spielerzahl_Min": 3,
       "Spieleranzahl_Max": 8,
-      "Benötigte Karten": "Herz2, Herz3, Herz4, Herz5, Herz6, Herz7, Herz8, Herz9, Herz10, HerzB, HerzD, HerzK, HerzA, Pik2, Pik3, Pik4, Pik5, Pik6, Pik7, Pik8, Pik9, Pik10, PikB, PikD, PikK, PikA, Kreuz2, Kreuz3, Kreuz4, Kreuz5, Kreuz6, Kreuz7, Kreuz8, Kreuz9, Kreuz10, KreuzB, KreuzD, KreuzK, KreuzA, Karo2, Karo3, Karo4, Karo5, Karo6, Karo7, Karo8, Karo9, Karo10, KaroB, KaroD, KaroK, KaroA",
+      "Benötigte Karten": "herz_zwei, herz_drei, herz_vier, herz_fuenf, herz_sechs, herz_sieben, herz_acht, herz_neun, herz_zehn, herz_bube, herz_dame, herz_koenig, herz_ass, pik_zwei, pik_drei, pik_vier, pik_fuenf, pik_sechs, pik_sieben, pik_acht, pik_neun, pik_zehn, pik_bube, pik_dame, pik_koenig, pik_ass, kreuz_zwei, kreuz_drei, kreuz_vier, kreuz_fuenf, kreuz_sechs, kreuz_sieben, kreuz_acht, kreuz_neun, kreuz_zehn, kreuz_bube, kreuz_dame, kreuz_koenig, kreuz_ass, karo_zwei, karo_drei, karo_vier, karo_fuenf, karo_sechs, karo_sieben, karo_acht, karo_neun, karo_zehn, karo_bube, karo_dame, karo_koenig, karo_ass",
       "SpieldauerMin": 10,
       "SpieldauerMax": 30,
       "Schwierigkeitsgrad": "medium"
@@ -123,10 +123,10 @@
       ],
       "Spielerzahl_Min": 2,
       "Spieleranzahl_Max": 10,
-      "Benötigte Karten": null,
+      "Benötigte Karten": "herz_zwei, herz_drei, herz_vier, herz_fuenf, herz_sechs, herz_sieben, herz_acht, herz_neun, herz_zehn, herz_bube, herz_dame, herz_koenig, herz_ass, pik_zwei, pik_drei, pik_vier, pik_fuenf, pik_sechs, pik_sieben, pik_acht, pik_neun, pik_zehn, pik_bube, pik_dame, pik_koenig, pik_ass, kreuz_zwei, kreuz_drei, kreuz_vier, kreuz_fuenf, kreuz_sechs, kreuz_sieben, kreuz_acht, kreuz_neun, kreuz_zehn, kreuz_bube, kreuz_dame, kreuz_koenig, kreuz_ass, karo_zwei, karo_drei, karo_vier, karo_fuenf, karo_sechs, karo_sieben, karo_acht, karo_neun, karo_zehn, karo_bube, karo_dame, karo_koenig, karo_ass",
       "SpieldauerMin": 10,
       "SpieldauerMax": 30,
-      "Schwierigkeitsgrad": "Schwer"
+      "Schwierigkeitsgrad": "einfach"
     }
   ]
 }
