@@ -218,7 +218,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
             try {
                 ContentValues cv = new ContentValues();
-                for (int i = 1; i <= 6; i++) {
+                for (int i = 1; i <= 15; i++) {
                         // Den Schlüssel für jedes Spiel dynamisch generieren (z.B. "Game_1", "Game_2")
                     String gameKey = "Game_" + i;
                     JSONArray gameArray = jsonObject.getJSONArray(gameKey);
