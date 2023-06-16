@@ -136,8 +136,8 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
         public void bindArticle(Article article) {
             // Werte des aktuellen Artikels im Layout hinzufügen
             titleTextView.setText(article.getTitle());
-            playerNumberTextView.setText("Benötigte Spieler: " + article.getSpieleranzahlMin() + " - " + article.getSpieleranzahlMax());
-            playTimeTextView.setText("Spielzeit: " + article.getSpieldauerMin() + "min - " + article.getSpieldauerMax() + "min");
+            playerNumberTextView.setText(+ article.getSpieleranzahlMin() + " - " + article.getSpieleranzahlMax());
+            playTimeTextView.setText(article.getSpieldauerMin() + " - " + article.getSpieldauerMax());
             difficultyTextView.setText(article.getSchwierigkeitsgrad());
         }
 

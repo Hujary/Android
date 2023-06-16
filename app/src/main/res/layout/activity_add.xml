@@ -98,14 +98,44 @@
                 android:text="Spiel als Vorschlag einreichen"
                 android:theme="@style/CustomCheckBoxStyle" />
 
-            <Button
-                android:id="@+id/add_button"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_marginTop="40dp"
-                android:text="Add"
-                android:textAllCaps="false"
-                android:textSize="20sp" />
+            <LinearLayout
+                android:layout_width="411dp"
+                android:layout_height="111dp"
+                android:orientation="horizontal">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/textView_back2"
+                        android:layout_width="99dp"
+                        android:layout_height="61dp"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_weight="1"
+                        android:paddingTop="20dp"
+                        android:text="zurück"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <Button
+                        android:id="@+id/add_button"
+                        android:layout_width="152dp"
+                        android:layout_height="65dp"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginTop="24dp"
+                        android:padding="20dp"
+                        android:text="hinzufügen"
+                        android:textAllCaps="false"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toEndOf="@+id/textView_back2"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
