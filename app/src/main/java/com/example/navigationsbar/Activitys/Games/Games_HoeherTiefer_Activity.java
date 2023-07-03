@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.navigationsbar.Activitys.GameDataSingelton;
 import com.example.navigationsbar.R;
 
 import java.util.Random;
@@ -206,12 +207,12 @@ public class Games_HoeherTiefer_Activity extends AppCompatActivity {
             currentNumber = newNumber;
             currentNumberToName = NewNumberToName; // Aktualisieren des aktuellen Kartenwertes
             streakNumber++;
-            textViewStreak.setText("aktueller Streak: " + streakNumber);
+            textViewStreak.setText("aktuelle Streak: " + streakNumber);
         } else {
             // You lose
             textViewInfo.setText("Dein Tipp war leider falsch");
             streakNumber = 0;
-            textViewStreak.setText("aktueller Streak: " + streakNumber);
+            textViewStreak.setText("aktuelle Streak: " + streakNumber);
         }
     }
 }

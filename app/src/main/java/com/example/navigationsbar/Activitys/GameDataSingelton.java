@@ -13,6 +13,7 @@ public class GameDataSingelton {
     private List<Integer> selectedPikCards;
     private List<Integer> selectedKreuzCards;
 
+    private int playerStreakHL;
 
     private GameDataSingelton() {
         // Private Konstruktor, um direkte Instanziierung zu verhindern
@@ -80,4 +81,9 @@ public class GameDataSingelton {
         //  Getter und Setter für selectedKaroCards
     public List<Integer> getSelectedKaroCards() { return selectedKaroCards; }
     public void setSelectedKaroCards(List<Integer> selectedKaroCards) { this.selectedKaroCards = selectedKaroCards; }
+
+        // Getter und Setter für playerStreakHL
+    public int getPlayerStreakHL() { return playerStreakHL; }
+    public void setPlayerStreakHL(int Streak) { this.playerStreakHL = Streak; }
+
 }
