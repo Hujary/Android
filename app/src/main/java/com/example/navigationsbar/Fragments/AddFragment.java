@@ -82,7 +82,7 @@ public class AddFragment extends Fragment {
         }
     }
 
-
+    // Speichert die Eingabe in der DB
     void storeDataInArrays() {
         Cursor cursor = myDB.readUserAddedData();
         if (cursor.getCount() == 0) {
