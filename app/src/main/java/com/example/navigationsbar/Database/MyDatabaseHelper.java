@@ -125,7 +125,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                     // Öffnet eine Verbindung zur SQLite-Datenbank
                 SQLiteDatabase db = this.getReadableDatabase();
 
-                    // Erstellt die selection-Zeichenkette
+                    // Erstellt die selection-Zeichenkette und filtert nach Spieleranzahl
                 String selection = COLUMN_SPIELERANZAHL_MIN + " <= ? AND " + COLUMN_SPIELERANZAHL_MAX + " >= ?";
                 List<String> selectionArgsList = new ArrayList<>();
                 selectionArgsList.add(playerNumber);
@@ -152,11 +152,11 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
                         selection += excludeCondition.toString();
                         System.out.println("Exclude Condition: " + excludeCondition.toString());
-                    } else {
-                        selection += " AND (" + COLUMN_BENÖTIGTE_KARTEN + " IS NULL OR " + COLUMN_BENÖTIGTE_KARTEN + " = '')";
                     }
                 } else {
                     System.out.println("DB: Spieler hat keine Karten");
+                    // Filtert Spiele aus, bei denen Spielkarten benötigt werden
+                    selection += " AND (" + COLUMN_BENÖTIGTE_KARTEN + " IS NULL OR " + COLUMN_BENÖTIGTE_KARTEN + " = 'keine')";
                 }
 
                     // Konvertiert die selectionArgsList in ein String-Array
@@ -218,7 +218,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
             try {
                 ContentValues cv = new ContentValues();
-                for (int i = 1; i <= 15; i++) {
+                for (int i = 1; i <= 13; i++) {
                         // Den Schlüssel für jedes Spiel dynamisch generieren (z.B. "Game_1", "Game_2")
                     String gameKey = "Game_" + i;
                     JSONArray gameArray = jsonObject.getJSONArray(gameKey);

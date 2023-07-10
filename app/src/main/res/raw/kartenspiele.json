@@ -152,35 +152,6 @@
   ],
   "Game_8": [
     {
-      "name": "Kings",
-      "Regeln": [
-        "Bei Kings werden die Karten im Uhrzeigersinn um einen leeren Becher platziert.",
-        "Jede Karte hat eine spezielle Bedeutung und eine damit verbundene Aktion:",
-        "- Ass: Waterfall – Jeder beginnt damit, sein Getränk zu trinken, und niemand darf aufhören, bis der Spieler zu ihrer Rechten aufhört.",
-        "- König: Regel festlegen – Der Spieler kann eine Regel festlegen, die während des Spiels befolgt werden muss.",
-        "- Dame: Mädchen trinken – Alle Mädchen trinken.",
-        "- Bube: Kerl trinkt – Alle Jungs trinken.",
-        "- 10: Sozial – Jeder trinkt.",
-        "- 9: Reim – Der Spieler sagt ein Wort, und die anderen Spieler müssen reihum ein Wort finden, das sich darauf reimt. Der Spieler, der keinen Reim findet, trinkt.",
-        "- 8: Mate – Der Spieler wählt einen anderen Spieler als seinen Mate (Partner) aus. Jedes Mal, wenn der Spieler trinkt, muss der Mate ebenfalls trinken.",
-        "- 7: Heaven – Der Spieler hebt die Hand, und alle anderen Spieler müssen ebenfalls ihre Hand heben. Der langsamste Spieler trinkt.",
-        "- 6: Dicks – Alle Männer trinken.",
-        "- 5: Thumb Master – Der Spieler wird zum Thumb Master und kann zu jeder Zeit seinen Daumen auf den Tisch legen. Die anderen Spieler müssen es ihm gleichtun. Der letzte Spieler, der dies tut, muss trinken.",
-        "- 4: Whores – Alle Frauen trinken.",
-        "- 3: Me – Der Spieler trinkt.",
-        "- 2: You – Der Spieler wählt einen anderen Spieler, der trinkt."
-      ],
-      "Spielerzahl_Min": 3,
-      "Spieleranzahl_Max": 10,
-      "Benötigte Karten": "herz_zwei, herz_drei, herz_vier, herz_fuenf, herz_sechs, herz_sieben, herz_acht, herz_neun, herz_zehn, herz_bube, herz_dame, herz_koenig, herz_ass, pik_zwei, pik_drei, pik_vier, pik_fuenf, pik_sechs, pik_sieben, pik_acht, pik_neun, pik_zehn, pik_bube, pik_dame, pik_koenig, pik_ass, kreuz_zwei, kreuz_drei, kreuz_vier, kreuz_fuenf, kreuz_sechs, kreuz_sieben, kreuz_acht, kreuz_neun, kreuz_zehn, kreuz_bube, kreuz_dame, kreuz_koenig, kreuz_ass, karo_zwei, karo_drei, karo_vier, karo_fuenf, karo_sechs, karo_sieben, karo_acht, karo_neun, karo_zehn, karo_bube, karo_dame, karo_koenig, karo_ass",
-      "SpieldauerMin": 10,
-      "SpieldauerMax": 30,
-      "Schwierigkeitsgrad": "einfach"
-    }
-  ],
-
-  "Game_9": [
-    {
       "name": "Pyramide",
       "Regeln": [
         "Pyramide ist ein Kartenspiel, das mit einem Kartendeck von 52 Karten gespielt wird.",
@@ -200,28 +171,7 @@
       "Schwierigkeitsgrad": "mittel"
     }
   ],
-  "Game_10": [
-    {
-      "name": "Hoch oder Tief",
-      "Regeln": [
-        "Hoch oder Tief ist ein einfaches Kartenspiel, das mit einem Teil eines Pokerkarten-Decks gespielt wird.",
-        "Verwende nur die Karten von 2 bis 9 jeder Farbe, also insgesamt 32 Karten.",
-        "Ein Spieler beginnt und deckt eine Karte vom Stapel auf.",
-        "Der nächste Spieler muss erraten, ob die nächste Karte höher oder niedriger ist als die zuvor aufgedeckte Karte.",
-        "Liegt der Spieler richtig, geht es zum nächsten Spieler. Liegt er falsch, muss er trinken.",
-        "Das Spiel endet, wenn alle Karten aufgedeckt wurden oder die Spieler entscheiden, es zu beenden.",
-        "Der Spieler mit den wenigsten Fehlern gewinnt."
-      ],
-      "Spielerzahl_Min": 2,
-      "Spieleranzahl_Max": 10,
-      "Benötigte Karten": "herz_zwei, herz_drei, herz_vier, herz_fuenf, herz_sechs, herz_sieben, herz_acht, herz_neun, pik_zwei, pik_drei, pik_vier, pik_fuenf, pik_sechs, pik_sieben, pik_acht, pik_neun, kreuz_zwei, kreuz_drei, kreuz_vier, kreuz_fuenf, kreuz_sechs, kreuz_sieben, kreuz_acht, kreuz_neun, karo_zwei, karo_drei, karo_vier, karo_fuenf, karo_sechs, karo_sieben, karo_acht, karo_neun",
-      "SpieldauerMin": 5,
-      "SpieldauerMax": 15,
-      "Schwierigkeitsgrad": "einfach"
-    }
-  ],
-
-  "Game_11": [
+  "Game_9": [
     {
       "name": "Stadt, Land, Fluss",
       "Regeln": [
@@ -241,7 +191,7 @@
       "Schwierigkeitsgrad": "medium"
     }
   ],
-  "Game_12": [
+  "Game_10": [
     {
       "name": "Skat",
       "Regeln": [
@@ -263,13 +213,16 @@
       "Schwierigkeitsgrad": "schwer"
     }
   ],
-  "Game_13": [
+  "Game_11": [
     {
       "name": "Doppelkopf",
       "Regeln": [
         "Doppelkopf ist ein beliebtes Kartenspiel für vier Spieler, die in zwei Teams gegeneinander antreten.",
-        "Es wird ein Skat-Blatt verwendet, das aus 32 Karten besteht.",
+        "Es werden zwei Skat-Blätter verwendet, sodass ein Deck mit 48 Karten entsteht.",
+        "Die Karten haben folgende Reihenfolge: A, 10, K, D, B, 9",
         "Jeder Spieler erhält zunächst 12 Karten, und es werden anschließend noch vier zusätzliche Karten aufgenommen und abgelegt.",
+        "Der Spieler mit dem höchsten Wert beginnt und legt eine Karte ab. Die anderen müssen Karten der selben Farbe legen, oder eine beliebige Farbe falls nötig.",
+        "Die höchste Karte der selben Farbe gewinnt und der Spieler darf weitermachen. ",
         "Ziel des Spiels ist es, möglichst viele Punkte zu sammeln, indem man Stiche macht und bestimmte Kartenkombinationen erzielt.",
         "Es gibt verschiedene Trumpffarben und Sonderkarten, die das Spielgeschehen beeinflussen.",
         "Doppelkopf erfordert strategisches Denken, Teamwork und eine gute Einschätzung der eigenen Karten und der Spielstärke der Gegner.",
@@ -284,7 +237,7 @@
       "Schwierigkeitsgrad": "schwer"
     }
   ],
-  "Game_14": [
+  "Game_12": [
     {
       "name": "Schwimmen",
       "Regeln": [
@@ -304,7 +257,7 @@
       "Schwierigkeitsgrad": "einfach"
     }
   ],
-  "Game_15": [
+  "Game_13": [
     {
       "name": "Sechsundsechzig",
       "Regeln": [
