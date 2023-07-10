@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.navigationsbar.Activitys.GameDataSingelton;
+import com.example.navigationsbar.Activitys.MainActivity;
 import com.example.navigationsbar.Adapter.FilteredArticleAdapter;
 import com.example.navigationsbar.Items.FilteredArticle.FilteredArticleCreator;
 import com.example.navigationsbar.Items.FilteredArticle.filteredArticle;
@@ -94,12 +95,14 @@ public class FilteredGamesListActivity extends AppCompatActivity implements Filt
 
 
 
-
+            // Logik für Zurück Button
         Button buttonReturn = findViewById(R.id.button_return);
         buttonReturn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
             }
         });
 

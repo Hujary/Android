@@ -52,7 +52,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="61dp"
                     android:gravity="center"
-                    android:text="easy"
+                    android:text="🔥easy🔥"
                     android:textColor="@color/white" />
 
                 <Button
@@ -106,7 +106,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="61dp"
                     android:gravity="center"
-                    android:text="Coming Soon!"
+                    android:text="Coming Soon! 🚍"
                     android:textColor="@color/white" />
 
                 <Button

@@ -36,6 +36,10 @@ public class Games_HoeherTiefer_Activity extends AppCompatActivity {
 
     private int streakNumber;
 
+    private int highStreak = 0;
+
+    private int resourceID;
+
     private boolean isCardBackVisible = true;
 
     @Override
@@ -141,7 +145,7 @@ public class Games_HoeherTiefer_Activity extends AppCompatActivity {
     }
 
     private void setImageResourceForNumber(int number) {
-        int resourceID;
+        //int resourceID;
         switch (number) {
             case 2:
                 resourceID = R.drawable.pik_zwei;
@@ -212,10 +216,16 @@ public class Games_HoeherTiefer_Activity extends AppCompatActivity {
             textViewStreak.setText("aktuelle Streak: " + streakNumber);
         } else {
             // You lose
+
+            if(streakNumber >= highStreak){
+                highStreak = streakNumber;
+            }
             textViewInfo.setText("Dein Tipp war leider falsch");
             streakNumber = 0;
             textViewStreak.setText("aktuelle Streak: " + streakNumber);
             Intent intent = new Intent(Games_HoeherTiefer_Activity.this, Games_Hoeher_Tiefer_Overlay_Activity.class);
+            intent.putExtra("highStreak", highStreak);
+            intent.putExtra("resourceID", resourceID);
             startActivity(intent);
         }
     }

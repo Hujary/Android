@@ -251,7 +251,7 @@
       ],
       "Spielerzahl_Min": 2,
       "Spieleranzahl_Max": 8,
-      "Benötigte Karten": "karo_sieben, kreuz_sieben, pik_sieben, herz_sieben, karo_bube, kreuz_bube, pik_bube, herz_bube, karo_könig, kreuz_könig, pik_dame, herz_könig, karo_ass, kreuz_ass, pik_ass, herz_ass",
+      "Benötigte Karten": "karo_sieben, kreuz_sieben, pik_sieben, herz_sieben, karo_bube, kreuz_bube, pik_bube, herz_bube, karo_koenig, kreuz_koenig, pik_dame, herz_koenig, karo_ass, kreuz_ass, pik_ass, herz_ass",
       "SpieldauerMin": 10,
       "SpieldauerMax": 20,
       "Schwierigkeitsgrad": "einfach"
@@ -272,7 +272,7 @@
       ],
       "Spielerzahl_Min": 2,
       "Spieleranzahl_Max": 2,
-      "Benötigte Karten": "karo_sieben, kreuz_sieben, pik_sieben, herz_sieben, karo_acht, kreuz_acht, pik_acht, herz_acht, karo_könig, kreu_zkönig, pik_dame, herz_könig, karo_zehn, kreuz_zehn, pik_bube, herz_zehn",
+      "Benötigte Karten": "karo_sieben, kreuz_sieben, pik_sieben, herz_sieben, karo_acht, kreuz_acht, pik_acht, herz_acht, karo_koenig, kreuz_koenig, pik_dame, herz_koenig, karo_zehn, kreuz_zehn, pik_bube, herz_zehn",
       "SpieldauerMin": 15,
       "SpieldauerMax": 30,
       "Schwierigkeitsgrad": "mittel"
