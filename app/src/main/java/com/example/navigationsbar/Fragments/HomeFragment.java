@@ -2,34 +2,40 @@ package com.example.navigationsbar.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.navigationsbar.Activitys.Games.Games_HoeherTiefer_Activity;
 import com.example.navigationsbar.Activitys.Questions.QuestionOneActivity;
 import com.example.navigationsbar.R;
 
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
-
 public class HomeFragment extends Fragment {
+
+    private static final long TOAST_COOLDOWN = 2000; // 2 seconds
+
+    private Button buttonGame2;
+    private boolean isButton2Clickable = true;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        // Objekte erzeugen
+        // Object references
         Button myButton = root.findViewById(R.id.button);
         TextView textView2 = root.findViewById(R.id.textView2);
         Button buttonGame1 = root.findViewById(R.id.button6);
+        buttonGame2 = root.findViewById(R.id.button15);
 
         buttonGame1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,28 +45,53 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        // Intent für Question View -> Lambda Function
+        buttonGame2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isButton2Clickable) {
+                    String text = "Das Spiel kommt bald..";
+                    makeToast(text);
+                    disableButton2Temporarily();
+                }
+            }
+        });
+
+        // Intent for Question View -> Lambda Function
         Intent intent = new Intent(requireActivity(), QuestionOneActivity.class);
         myButton.setOnClickListener(v -> startActivity(intent));
 
-            // Erstelle den Textinhalt mit dem blauen Punkt
+        // Create the text content with the blue dot
         String text = "Party.Saver";
         SpannableString spannableString = new SpannableString(text);
 
-            // Setze die Farbe des Punkts auf blau
+        // Set the color of the dot to blue
         int dotIndex = text.indexOf(".");
         if (dotIndex != -1) {
             int colorLightBlue = getResources().getColor(R.color.lightblueButton);
             spannableString.setSpan(new ForegroundColorSpan(colorLightBlue), dotIndex, dotIndex + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
-            // Setze den formatierten Text im TextView
+
+        // Set the formatted text in the TextView
         textView2.setText(spannableString);
 
         return root;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
+    private void makeToast(String text) {
+        Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
+    }
+
+    private void disableButton2Temporarily() {
+        isButton2Clickable = false;
+        buttonGame2.setEnabled(false);
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                isButton2Clickable = true;
+                buttonGame2.setEnabled(true);
+            }
+        }, TOAST_COOLDOWN);
     }
 }
