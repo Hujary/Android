@@ -19,6 +19,7 @@ import com.example.navigationsbar.Items.Spielkarten.SpielKarten;
 import com.example.navigationsbar.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class AddActivity extends AppCompatActivity implements allCardAdapter.OnItemClickListener, ApiCallTask.ApiCallTaskCallback {
@@ -27,8 +28,17 @@ public class AddActivity extends AppCompatActivity implements allCardAdapter.OnI
             spieldauerMin_input, spieldauerMax_input;
     Button add_button;
     TextView textView_back2;
-
     List<SpielKarten> selectedCardsList = new ArrayList<>();
+
+        //  alle Spielkarten als vorauswahl
+    String[] allCardsArray = {
+            "herz_zwei", "herz_drei", "herz_vier", "herz_fuenf", "herz_sechs", "herz_sieben", "herz_acht", "herz_neun", "herz_zehn",
+            "herz_bube", "herz_dame", "herz_koenig", "herz_ass", "pik_zwei", "pik_drei", "pik_vier", "pik_fuenf", "pik_sechs",
+            "pik_sieben", "pik_acht", "pik_neun", "pik_zehn", "pik_bube", "pik_dame", "pik_koenig", "pik_ass", "kreuz_zwei",
+            "kreuz_drei", "kreuz_vier", "kreuz_fuenf", "kreuz_sechs", "kreuz_sieben", "kreuz_acht", "kreuz_neun", "kreuz_zehn",
+            "kreuz_bube", "kreuz_dame", "kreuz_koenig", "kreuz_ass", "karo_zwei", "karo_drei", "karo_vier", "karo_fuenf",
+            "karo_sechs", "karo_sieben", "karo_acht", "karo_neun", "karo_zehn", "karo_bube", "karo_dame", "karo_koenig", "karo_ass"
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -204,15 +214,32 @@ public class AddActivity extends AppCompatActivity implements allCardAdapter.OnI
     }
 
         // Methode, um die ausgewählten Karten als einen einzelnen String mit Kommatrennung zurückzugeben
-    private String getSelectedCardNamesAsString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < selectedCardsList.size(); i++) {
-            SpielKarten spielkarte = selectedCardsList.get(i);
-            stringBuilder.append(spielkarte.getName());
-            if (i < selectedCardsList.size() - 1) {
-                stringBuilder.append(", "); // Kommatrennung hinzufügen, außer beim letzten Element
+        private String getSelectedCardNamesAsString() {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            // Überprüfe jede Karte aus dem allCardsArray
+            for (String cardName : allCardsArray) {
+                // Überprüfe, ob die Karte vom Benutzer abgewählt wurde
+                boolean isCardSelected = false;
+                for (SpielKarten selectedCard : selectedCardsList) {
+                    if (selectedCard.getName().equals(cardName)) {
+                        isCardSelected = true;
+                        break;
+                    }
+                }
+
+                // Füge die Karte zum stringBuilder hinzu, wenn sie nicht abgewählt wurde
+                if (!isCardSelected) {
+                    stringBuilder.append(cardName).append(", ");
+                }
             }
+
+            // Entferne das letzte Komma und Leerzeichen, falls sie vorhanden sind
+            int length = stringBuilder.length();
+            if (length > 0) {
+                stringBuilder.delete(length - 2, length);
+            }
+
+            return stringBuilder.toString();
         }
-        return stringBuilder.toString();
-    }
 }
