@@ -86,7 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="70dp"
                 android:layout_weight="1"
-                android:text="aktueller Streak: 0"
+                android:text="aktuelle Streak: 0"
                 android:textAlignment="center"
                 android:textSize="30dp" />
         </LinearLayout>

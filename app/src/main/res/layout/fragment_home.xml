@@ -52,7 +52,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="61dp"
                     android:gravity="center"
-                    android:text="platzhalter"
+                    android:text="easy"
                     android:textColor="@color/white" />
 
                 <Button
@@ -106,7 +106,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="61dp"
                     android:gravity="center"
-                    android:text="platzhalter"
+                    android:text="Coming Soon!"
                     android:textColor="@color/white" />
 
                 <Button
@@ -114,6 +114,7 @@
                     android:layout_width="101dp"
                     android:layout_height="37dp"
                     android:background="@drawable/rounded_button_background_small"
+                    android:backgroundTint="#B7F47B7B"
                     android:gravity="center"
                     android:text="Spielen"
                     android:textColor="@color/white" />
