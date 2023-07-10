@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.navigationsbar.Activitys.GameDataSingelton;
+import com.example.navigationsbar.Activitys.MainActivity;
 import com.example.navigationsbar.R;
 
 public class QuestionThreeActivity extends AppCompatActivity {
@@ -38,6 +39,17 @@ public class QuestionThreeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+            // Logik für Home button
+        TextView buttonHome = findViewById(R.id.TextView_home);
+        buttonHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
             }
         });
 
