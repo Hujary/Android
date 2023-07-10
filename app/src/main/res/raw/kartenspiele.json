@@ -222,7 +222,7 @@
         "Die Karten haben folgende Reihenfolge: A, 10, K, D, B, 9",
         "Jeder Spieler erhält zunächst 12 Karten, und es werden anschließend noch vier zusätzliche Karten aufgenommen und abgelegt.",
         "Der Spieler mit dem höchsten Wert beginnt und legt eine Karte ab. Die anderen müssen Karten der selben Farbe legen, oder eine beliebige Farbe falls nötig.",
-        "Die höchste Karte der selben Farbe gewinnt und der Spieler darf weitermachen. ",
+        "Die höchste Karte der selben Farbe gewinnt und der Spieler nimmt alle Karten auf und darf weitermachen. ",
         "Ziel des Spiels ist es, möglichst viele Punkte zu sammeln, indem man Stiche macht und bestimmte Kartenkombinationen erzielt.",
         "Es gibt verschiedene Trumpffarben und Sonderkarten, die das Spielgeschehen beeinflussen.",
         "Doppelkopf erfordert strategisches Denken, Teamwork und eine gute Einschätzung der eigenen Karten und der Spielstärke der Gegner.",
@@ -251,7 +251,7 @@
       ],
       "Spielerzahl_Min": 2,
       "Spieleranzahl_Max": 8,
-      "Benötigte Karten": "karosieben, kreuzsieben, piksieben, herzsieben, karobube, kreuzbube, pikbube, herzbube, karokönig, kreuzkönig, pikdame, herzkönig, karoass, kreuzass, pikass, herzass",
+      "Benötigte Karten": "karo_sieben, kreuz_sieben, pik_sieben, herz_sieben, karo_bube, kreuz_bube, pik_bube, herz_bube, karo_könig, kreuz_könig, pik_dame, herz_könig, karo_ass, kreuz_ass, pik_ass, herz_ass",
       "SpieldauerMin": 10,
       "SpieldauerMax": 20,
       "Schwierigkeitsgrad": "einfach"
@@ -272,7 +272,7 @@
       ],
       "Spielerzahl_Min": 2,
       "Spieleranzahl_Max": 2,
-      "Benötigte Karten": "karosieben, kreuzsieben, piksieben, herzsieben, karoacht, kreuzacht, pikacht, herzacht, karokönig, kreuzkönig, pikdame, herzkönig, karozehn, kreuzzehn, pikbube, herzzehn",
+      "Benötigte Karten": "karo_sieben, kreuz_sieben, pik_sieben, herz_sieben, karo_acht, kreuz_acht, pik_acht, herz_acht, karo_könig, kreu_zkönig, pik_dame, herz_könig, karo_zehn, kreuz_zehn, pik_bube, herz_zehn",
       "SpieldauerMin": 15,
       "SpieldauerMax": 30,
       "Schwierigkeitsgrad": "mittel"

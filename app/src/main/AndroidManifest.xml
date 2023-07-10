@@ -54,6 +54,9 @@
             android:name=".Activitys.Games.Games_HoeherTiefer_Activity" />
 
         <activity
+            android:name=".Activitys.Games.Games_Hoeher_Tiefer_Overlay_Activity" />
+
+        <activity
             android:name=".Activitys.FilteredGameList.FilteredGamesListActivity" />
 
     </application>

@@ -3,6 +3,7 @@ package com.example.navigationsbar.Activitys.Games;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -48,6 +49,7 @@ public class Games_HoeherTiefer_Activity extends AppCompatActivity {
         ImageViewKarten = findViewById(R.id.imageViewKarten);
         ImageViewKarten.setImageResource(R.drawable.card_back);
         isCardBackVisible = true;
+
         ImageViewKarten.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {flipAnimation();}
@@ -213,6 +215,8 @@ public class Games_HoeherTiefer_Activity extends AppCompatActivity {
             textViewInfo.setText("Dein Tipp war leider falsch");
             streakNumber = 0;
             textViewStreak.setText("aktuelle Streak: " + streakNumber);
+            Intent intent = new Intent(Games_HoeherTiefer_Activity.this, Games_Hoeher_Tiefer_Overlay_Activity.class);
+            startActivity(intent);
         }
     }
 }
