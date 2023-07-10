@@ -19,28 +19,33 @@
                 android:id="@+id/gameNameTextView"
                 android:layout_width="match_parent"
                 android:layout_height="49dp"
-                android:text="Spielname" />
+                android:text="Spielname"
+                android:textSize="48sp"
+                android:textStyle="bold" />
 
             <!-- Spieleranzahl -->
             <TextView
                 android:id="@+id/playerCountTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Spieleranzahl" />
+                android:text="Spieleranzahl"
+                android:textSize="24sp" />
 
             <!-- Spieldauer -->
             <TextView
                 android:id="@+id/gameDurationTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Spieldauer" />
+                android:text="Spieldauer"
+                android:textSize="24sp" />
 
             <!-- Schwierigkeitsgrad -->
             <TextView
                 android:id="@+id/difficultyTextView"
                 android:layout_width="match_parent"
                 android:layout_height="53dp"
-                android:text="Schwierigkeitsgrad" />
+                android:text="Schwierigkeitsgrad"
+                android:textSize="24sp" />
 
 
             <TextView
