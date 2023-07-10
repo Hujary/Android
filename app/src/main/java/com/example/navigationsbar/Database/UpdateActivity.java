@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -15,8 +14,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.navigationsbar.Adapter.allCardAdapter;
-import com.example.navigationsbar.Fragments.AddFragment;
-import com.example.navigationsbar.Items.Article.Article;
+
 import com.example.navigationsbar.Items.Spielkarten.SpielKarten;
 import com.example.navigationsbar.R;
 
@@ -25,13 +23,14 @@ import java.util.List;
 
 public class UpdateActivity extends AppCompatActivity {
 
-    EditText title_input, spielregel_input, benötigteKarten_input, spieleranzahlMin_input, spieleranzahlMax_input, spieldauerMin_input, spieldauerMax_input;
+    EditText title_input, spielregel_input, spieleranzahlMin_input, spieleranzahlMax_input, spieldauerMin_input, spieldauerMax_input;
     Button update_button, delete_button;
     String id, title, spielregel, benötigteKarten, schwierigkeitsgrad;
     int spieleranzahlMin, spieleranzahlMax, spieldauerMin, spieldauerMax;
 
     ArrayAdapter<CharSequence> adapter;
     Spinner schwierigkeitsgradSpinner;
+    List<SpielKarten> selectedCardsList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +40,6 @@ public class UpdateActivity extends AppCompatActivity {
         // Get references to layout elements
         title_input = findViewById(R.id.title_input2);
         spielregel_input = findViewById(R.id.spielregel_input2);
-        benötigteKarten_input = findViewById(R.id.benötigteKarten_input2);
         spieleranzahlMin_input = findViewById(R.id.spieleranzahlMin_input2);
         spieleranzahlMax_input = findViewById(R.id.spieleranzahlMax_input2);
         spieldauerMin_input = findViewById(R.id.spieldauerMin_input2);
@@ -120,7 +118,7 @@ public class UpdateActivity extends AppCompatActivity {
 
         allCardAdapter adapter1 = new allCardAdapter(spielKartenList);
         recyclerView.setAdapter(adapter1);
-        //adapter1.setOnItemClickListener(this);
+                                                                                                                    //  todo:   click listener, damit neu ausgewählte karten hier hinzugefügt werden.
 
         // Retrieve and set intent data
         getAndSetIntentData();
@@ -132,7 +130,7 @@ public class UpdateActivity extends AppCompatActivity {
                 MyDatabaseHelper myDB = new MyDatabaseHelper(UpdateActivity.this);
                 title = title_input.getText().toString().trim();
                 spielregel = spielregel_input.getText().toString().trim();
-                benötigteKarten = benötigteKarten_input.getText().toString().trim();
+                benötigteKarten = "keine";                                                                          // todo: hier müssen die neu ausgewählten benötigten Karten eingezügt werden.
                 spieleranzahlMin = Integer.parseInt(spieleranzahlMin_input.getText().toString().trim());
                 spieleranzahlMax = Integer.parseInt(spieleranzahlMax_input.getText().toString().trim());
                 spieldauerMin = Integer.parseInt(spieldauerMin_input.getText().toString().trim());
@@ -158,8 +156,8 @@ public class UpdateActivity extends AppCompatActivity {
         id = getIntent().getStringExtra("id");
         title = getIntent().getStringExtra("title");
         spielregel = getIntent().getStringExtra("spielregel");
-        benötigteKarten = getIntent().getStringExtra("benötigteKarten");
-        spieleranzahlMin = Integer.parseInt(getIntent().getStringExtra("spieleranzahlMin"));
+        benötigteKarten = getIntent().getStringExtra("benötigteKarten");                            //  todo: beinhaltet die aktuell ausgewählten benötigten karten.
+        spieleranzahlMin = Integer.parseInt(getIntent().getStringExtra("spieleranzahlMin"));        //      [herz_2, herz_3, herz_4] ..
         spieleranzahlMax = Integer.parseInt(getIntent().getStringExtra("spieleranzahlMax"));
         spieldauerMin = Integer.parseInt(getIntent().getStringExtra("spieldauerMin"));
         spieldauerMax = Integer.parseInt(getIntent().getStringExtra("spieldauerMax"));
@@ -168,7 +166,6 @@ public class UpdateActivity extends AppCompatActivity {
         // Set values in EditText
         title_input.setText(title);
         spielregel_input.setText(spielregel);
-        benötigteKarten_input.setText(benötigteKarten);
         spieleranzahlMin_input.setText(String.valueOf(spieleranzahlMin));
         spieleranzahlMax_input.setText(String.valueOf(spieleranzahlMax));
         spieldauerMin_input.setText(String.valueOf(spieldauerMin));
@@ -201,7 +198,19 @@ public class UpdateActivity extends AppCompatActivity {
                 // Do nothing
             }
         });
-
         builder.create().show();
+    }
+
+    // Methode, um die ausgewählten Karten als einen einzelnen String mit Kommatrennung zurückzugeben
+    private String getSelectedCardNamesAsString() {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        // Entferne das letzte Komma und Leerzeichen, falls sie vorhanden sind
+        int length = stringBuilder.length();
+        if (length > 0) {
+            stringBuilder.delete(length - 2, length);
+        }
+
+        return stringBuilder.toString();
     }
 }
