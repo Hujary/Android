@@ -14,23 +14,26 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.navigationsbar.Adapter.allCardAdapter;
-
 import com.example.navigationsbar.Items.Spielkarten.SpielKarten;
 import com.example.navigationsbar.R;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-public class UpdateActivity extends AppCompatActivity {
+public class UpdateActivity extends AppCompatActivity implements allCardAdapter.OnItemClickListener {
 
     EditText title_input, spielregel_input, spieleranzahlMin_input, spieleranzahlMax_input, spieldauerMin_input, spieldauerMax_input;
     Button update_button, delete_button;
     String id, title, spielregel, benötigteKarten, schwierigkeitsgrad;
     int spieleranzahlMin, spieleranzahlMax, spieldauerMin, spieldauerMax;
+    allCardAdapter adapter1;
 
     ArrayAdapter<CharSequence> adapter;
     Spinner schwierigkeitsgradSpinner;
-    List<SpielKarten> selectedCardsList = new ArrayList<>();
+    List<SpielKarten> selectedCardsList2 = new ArrayList<>();
+    Set<Integer> selectedPositions = new HashSet<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,19 +50,19 @@ public class UpdateActivity extends AppCompatActivity {
         update_button = findViewById(R.id.update_button);
         delete_button = findViewById(R.id.delete_button);
 
-            // Set up the spinner and adapter
+        // Set up the spinner and adapter
         schwierigkeitsgradSpinner = findViewById(R.id.schwierigkeitsgrad_spinner);
         adapter = ArrayAdapter.createFromResource(this, R.array.schwierigkeitsgrade_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         schwierigkeitsgradSpinner.setAdapter(adapter);
 
-            //  Set up the recyclerView and add all Cards.
+        // Set up the recyclerView and add all Cards
         RecyclerView recyclerView = findViewById(R.id.CardsRecyclerview);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
-        List<SpielKarten> spielKartenList = new ArrayList<>(); // Erstelle eine Liste mit Spielkarten-Objekten
+        List<SpielKarten> spielKartenList = new ArrayList<>();
 
-        // Füge deine Spielkarten zur spielKartenList hinzu
+// Füge deine Spielkarten zur spielKartenList hinzu
         spielKartenList.add(new SpielKarten(R.drawable.herz_zwei, "herz_zwei"));
         spielKartenList.add(new SpielKarten(R.drawable.herz_drei, "herz_drei"));
         spielKartenList.add(new SpielKarten(R.drawable.herz_vier, "herz_vier"));
@@ -114,14 +117,13 @@ public class UpdateActivity extends AppCompatActivity {
         spielKartenList.add(new SpielKarten(R.drawable.kreuz_bube, "kreuz_bube"));
         spielKartenList.add(new SpielKarten(R.drawable.kreuz_dame, "kreuz_dame"));
         spielKartenList.add(new SpielKarten(R.drawable.kreuz_koenig, "kreuz_koenig"));
-        spielKartenList.add(new SpielKarten(R.drawable.kreuz_ass, "kreuz_ass"));
-
-        allCardAdapter adapter1 = new allCardAdapter(spielKartenList);
-        recyclerView.setAdapter(adapter1);
-                                                                                                                    //  todo:   click listener, damit neu ausgewählte karten hier hinzugefügt werden.
 
         // Retrieve and set intent data
-        getAndSetIntentData();
+        getAndSetIntentData(spielKartenList);
+
+        adapter1 = new allCardAdapter(spielKartenList, selectedPositions, false);   //  übergebe dem Adapter alle Spielkarten + die Karten welche vom bereits ausgewählt wurden.
+        recyclerView.setAdapter(adapter1);
+        adapter1.setOnItemClickListener(this);
 
         // Update button click listener
         update_button.setOnClickListener(new View.OnClickListener() {
@@ -130,13 +132,12 @@ public class UpdateActivity extends AppCompatActivity {
                 MyDatabaseHelper myDB = new MyDatabaseHelper(UpdateActivity.this);
                 title = title_input.getText().toString().trim();
                 spielregel = spielregel_input.getText().toString().trim();
-                benötigteKarten = "keine";                                                                          // todo: hier müssen die neu ausgewählten benötigten Karten eingezügt werden.
+                benötigteKarten = getSelectedCardNamesAsString(spielKartenList, selectedPositions);
                 spieleranzahlMin = Integer.parseInt(spieleranzahlMin_input.getText().toString().trim());
                 spieleranzahlMax = Integer.parseInt(spieleranzahlMax_input.getText().toString().trim());
                 spieldauerMin = Integer.parseInt(spieldauerMin_input.getText().toString().trim());
                 spieldauerMax = Integer.parseInt(spieldauerMax_input.getText().toString().trim());
                 schwierigkeitsgrad = schwierigkeitsgradSpinner.getSelectedItem().toString();
-
                 myDB.updateData(id, title, spielregel, benötigteKarten, spieleranzahlMin, spieleranzahlMax, spieldauerMin, spieldauerMax, schwierigkeitsgrad);
                 finish();
             }
@@ -151,13 +152,13 @@ public class UpdateActivity extends AppCompatActivity {
         });
     }
 
-    void getAndSetIntentData() {
+    void getAndSetIntentData(List<SpielKarten> spielKartenList) {
         // Retrieve values from Intent
         id = getIntent().getStringExtra("id");
         title = getIntent().getStringExtra("title");
         spielregel = getIntent().getStringExtra("spielregel");
-        benötigteKarten = getIntent().getStringExtra("benötigteKarten");                            //  todo: beinhaltet die aktuell ausgewählten benötigten karten.
-        spieleranzahlMin = Integer.parseInt(getIntent().getStringExtra("spieleranzahlMin"));        //      [herz_2, herz_3, herz_4] ..
+        benötigteKarten = getIntent().getStringExtra("benötigteKarten");                                 //  FIXME: hol dir alle bereits ausgewählten Spielkarten
+        spieleranzahlMin = Integer.parseInt(getIntent().getStringExtra("spieleranzahlMin"));
         spieleranzahlMax = Integer.parseInt(getIntent().getStringExtra("spieleranzahlMax"));
         spieldauerMin = Integer.parseInt(getIntent().getStringExtra("spieldauerMin"));
         spieldauerMax = Integer.parseInt(getIntent().getStringExtra("spieldauerMax"));
@@ -174,6 +175,14 @@ public class UpdateActivity extends AppCompatActivity {
         // Set the selected item in the spinner
         int spinnerPosition = adapter.getPosition(schwierigkeitsgrad);
         schwierigkeitsgradSpinner.setSelection(spinnerPosition);
+
+        //FIXME: keine Ahnung was hier gemacht wird
+        for (int i = 0; i < spielKartenList.size(); i++) {
+            SpielKarten spielKarte = spielKartenList.get(i);
+            if (benötigteKarten.contains(spielKarte.getName())) {
+                selectedPositions.add(i);
+            }
+        }
     }
 
     void confirmDialog() {
@@ -201,16 +210,31 @@ public class UpdateActivity extends AppCompatActivity {
         builder.create().show();
     }
 
-    // Methode, um die ausgewählten Karten als einen einzelnen String mit Kommatrennung zurückzugeben
-    private String getSelectedCardNamesAsString() {
+    //  wandelt die ausgewählten Karten in ein kommagetrennten String
+    private String getSelectedCardNamesAsString(List<SpielKarten> spielKartenList, Set<Integer> selectedPositions) {
         StringBuilder stringBuilder = new StringBuilder();
-
-        // Entferne das letzte Komma und Leerzeichen, falls sie vorhanden sind
-        int length = stringBuilder.length();
-        if (length > 0) {
-            stringBuilder.delete(length - 2, length);
+        for (Integer position : selectedPositions) {
+            SpielKarten spielKarte = spielKartenList.get(position);
+            stringBuilder.append(spielKarte.getName()).append(", ");
         }
 
+        if (stringBuilder.length() > 0) {
+            // Remove the last comma and space
+            stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length());
+        }
         return stringBuilder.toString();
     }
+
+    //  fügt Karten beim klicken zur Liste hinzu
+    @Override
+    public void onItemClick(SpielKarten spielkarte, int position) {
+        if (selectedCardsList2.contains(spielkarte)) {
+            selectedCardsList2.remove(spielkarte);   // Karte wurde abgewählt
+        } else {
+            selectedCardsList2.add(spielkarte);      // Karte wurde ausgewählt
+        }
+        System.out.println("ausgewählte Karten: " + selectedCardsList2);
+        //adapter1.notifyDataSetChanged();
+    }
+
 }

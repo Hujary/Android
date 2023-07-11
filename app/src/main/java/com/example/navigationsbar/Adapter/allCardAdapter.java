@@ -4,10 +4,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.navigationsbar.Items.Spielkarten.SpielKarten;
 import com.example.navigationsbar.R;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -17,9 +20,12 @@ public class allCardAdapter extends RecyclerView.Adapter<allCardAdapter.BestSell
     private List<SpielKarten> spielKartenList;
     private Set<Integer> selectedPositions = new HashSet<>();
     private OnItemClickListener onItemClickListener;
+    private boolean reverseLogic;
 
-    public allCardAdapter(List<SpielKarten> spielKartenList) {
+    public allCardAdapter(List<SpielKarten> spielKartenList, Set<Integer> selectedPositions, boolean reverseLogic) {
         this.spielKartenList = spielKartenList;
+        this.selectedPositions = selectedPositions;
+        this.reverseLogic = reverseLogic;
     }
 
     @NonNull
@@ -30,14 +36,21 @@ public class allCardAdapter extends RecyclerView.Adapter<allCardAdapter.BestSell
     }
 
     @Override
+    //  Bestimmt, welche karten umgedreht angezeigt werden, und welche nicht.
     public void onBindViewHolder(@NonNull BestSellerViewHolder holder, int position) {
         SpielKarten spielKarte = spielKartenList.get(position);
-        holder.mImageview.setImageResource(spielKarte.getImage());
-
-        if (selectedPositions.contains(position)) {
-            holder.mImageview.setImageResource(R.drawable.card_back);
+        if (reverseLogic) {
+            if (selectedPositions.contains(position)) {
+                holder.mImageview.setImageResource(R.drawable.card_back);
+            } else {
+                holder.mImageview.setImageResource(spielKarte.getImage());
+            }
         } else {
-            holder.mImageview.setImageResource(spielKarte.getImage());
+            if (selectedPositions.contains(position)) {
+                holder.mImageview.setImageResource(spielKarte.getImage());
+            } else {
+                holder.mImageview.setImageResource(R.drawable.card_back);
+            }
         }
     }
 
@@ -76,6 +89,7 @@ public class allCardAdapter extends RecyclerView.Adapter<allCardAdapter.BestSell
                 }
                 notifyItemChanged(position);
                 if (onItemClickListener != null) {
+                    System.out.println("Spielkarte angeklickt" + position);
                     onItemClickListener.onItemClick(spielkarte, position);
                 }
             }
