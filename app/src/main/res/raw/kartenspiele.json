@@ -4,9 +4,7 @@
     {
       "name": "HigherLower",
       "Regeln": [
-        "Eine Karte wird offen auf den Tisch gelegt. Nun raten die Spieler der Reihe nach, ob die nächste gezogene Karte einen höheren oder niedrigeren Zahlenwert hat.",
-        "Liegt der Spieler richtig, ist der nächst am Zug. Liegt der Spieler falsch, muss er einen Schluck trinken und erneut raten.",
-        "Solange bis er eine Karte richtig errät."
+        "Eine Karte wird offen auf den Tisch gelegt. Nun raten die Spieler der Reihe nach, ob die nächste gezogene Karte einen höheren oder niedrigeren Zahlenwert hat. Liegt der Spieler richtig, ist der nächste am Zug. Liegt der Spieler falsch, muss er einen Schluck trinken und erneut raten. Solange bis er eine Karte richtig errät."
       ],
       "Spielerzahl_Min": 2,
       "Spieleranzahl_Max": 10,

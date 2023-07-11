@@ -18,16 +18,24 @@
             <TextView
                 android:id="@+id/gameNameTextView"
                 android:layout_width="match_parent"
-                android:layout_height="49dp"
+                android:layout_height="wrap_content"
                 android:text="Spielname"
                 android:textSize="48sp"
                 android:textStyle="bold" />
 
             <!-- Spieleranzahl -->
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="#FF239CFB"
+                android:paddingTop="5dp" />
+
             <TextView
                 android:id="@+id/playerCountTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingTop="10dp"
                 android:text="Spieleranzahl"
                 android:textSize="24sp" />
 
@@ -36,6 +44,7 @@
                 android:id="@+id/gameDurationTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingTop="5dp"
                 android:text="Spieldauer"
                 android:textSize="24sp" />
 
@@ -44,6 +53,7 @@
                 android:id="@+id/difficultyTextView"
                 android:layout_width="match_parent"
                 android:layout_height="53dp"
+                android:paddingTop="5dp"
                 android:text="Schwierigkeitsgrad"
                 android:textSize="24sp" />
 
@@ -52,7 +62,8 @@
                 android:id="@+id/justTextKarten"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="benötigte Karten: " />
+                android:text="Benötigte Karten: "
+                android:textSize="20sp" />
 
             <!-- Recycler View für Spielkarten -->
             <androidx.recyclerview.widget.RecyclerView
@@ -65,14 +76,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:text="Spielregeln:: " />
+                android:text="Spielregeln:"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <!-- Regeln -->
             <TextView
                 android:id="@+id/rulesTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="[placeholder]" />
+                android:text="[placeholder]"
+                android:textSize="20sp" />
         </LinearLayout>
     </ScrollView>
 

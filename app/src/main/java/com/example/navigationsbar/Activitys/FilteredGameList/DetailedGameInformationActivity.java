@@ -2,8 +2,10 @@ package com.example.navigationsbar.Activitys.FilteredGameList;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
 import android.view.View;
@@ -57,20 +59,45 @@ public class DetailedGameInformationActivity extends AppCompatActivity {
             playerNumberTextView.setText(spannableString1);
 
             TextView playTimeTextView = findViewById(R.id.gameDurationTextView);
-            String TextZeit = "Spielzeit: " + playTimeMin + "min - " + playTimeMax + "min";
+            String TextZeit = "Spielzeit: " + playTimeMin + " - " + playTimeMax + " min";
             SpannableString spannableString2 = new SpannableString(TextZeit);
             spannableString2.setSpan(new StyleSpan(Typeface.BOLD), 0, 9, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            playTimeTextView.setText(TextZeit);
+            playTimeTextView.setText(spannableString2);
 
             TextView difficultyTextView = findViewById(R.id.difficultyTextView);
             String TextSchwierigkeit = "Schwierigkeit: " + difficulty;
             SpannableString spannableString3 = new SpannableString(TextSchwierigkeit);
             spannableString3.setSpan(new StyleSpan(Typeface.BOLD), 0, 13, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            difficultyTextView.setText(TextSchwierigkeit);
+            difficultyTextView.setText(spannableString3);
 
+                // Regeln formatieren
             TextView rulesTextView = findViewById(R.id.rulesTextView);
-            rulesTextView.setText(rules);
+            SpannableStringBuilder builder = new SpannableStringBuilder(rules);
+            char insertedChar = '\n';
+            int insertPosition = 0;
+            int x = 1;
 
+            for(int i = 0; i < rules.length(); i++){
+                if(rules.charAt(i) == '.'){
+                    insertPosition = i+x;
+                    builder.insert(insertPosition, Character.toString(insertedChar));
+                    x++;
+                }
+
+            }
+
+            builder.delete(0,2);
+            builder.delete(329, 331);
+
+
+            for(int i = 0; i<rules.length(); i++){
+                if(rules.charAt(i) == '.'){
+                    System.out.println(rules.charAt(i+1));
+                }
+            }
+
+            SpannableString spannableString4 = new SpannableString(builder);
+            rulesTextView.setText(spannableString4);
 
                 // RecyclerView und Adapter einrichten
             RecyclerView recyclerView = findViewById(R.id.CardsRecyclerview);
