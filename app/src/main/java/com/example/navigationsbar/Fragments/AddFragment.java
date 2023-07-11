@@ -34,7 +34,6 @@ public class AddFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        System.out.println(" ###################     AddFragment wird aufgerufen");
         View root = inflater.inflate(R.layout.fragment_add, container, false);
         recyclerView = root.findViewById(R.id.recyclerView);
         add_button = root.findViewById(R.id.add_button);
@@ -48,7 +47,7 @@ public class AddFragment extends Fragment {
             }
         });
 
-        //  Listen für die Spieldaten
+        // Listen für die Spieldaten
         myDB = new MyDatabaseHelper(requireActivity());
         game_id = new ArrayList<>();
         game_title = new ArrayList<>();
@@ -61,14 +60,30 @@ public class AddFragment extends Fragment {
         game_schwierigkeitsgrad = new ArrayList<>();
         game_creator = new ArrayList<>();
 
-        //  Spiele von DB in ArrayListen.
+        // Spiele von DB in ArrayListen.
         storeDataInArrays();
 
-        //  Spiele dem RecyclerView hinzufügen.
-        addRecyclerAdapter = new AddRecyclerAdapter(requireActivity(), getContext() , game_id, game_title, game_spielregel, game_benötigteKarten, game_spieleranzahlMin, game_spieleranzahlMax, game_spieldauerMin, game_spieldauerMax, game_schwierigkeitsgrad, game_creator);
+        // Spiele dem RecyclerView hinzufügen.
+        addRecyclerAdapter = new AddRecyclerAdapter(requireActivity(), getContext(), game_id, game_title, game_spielregel, game_benötigteKarten, game_spieleranzahlMin, game_spieleranzahlMax, game_spieldauerMin, game_spieldauerMax, game_schwierigkeitsgrad, game_creator);
         recyclerView.setAdapter(addRecyclerAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
         return root;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Spiele von DB in ArrayListen aktualisieren
+        storeDataInArrays();
+        // Überprüfe, ob der Adapter bereits erstellt wurde
+        if (addRecyclerAdapter == null) {
+            // AddRecyclerAdapter mit aktualisierten Daten erstellen
+            addRecyclerAdapter = new AddRecyclerAdapter(requireActivity(), getContext(), game_id, game_title, game_spielregel, game_benötigteKarten, game_spieleranzahlMin, game_spieleranzahlMax, game_spieldauerMin, game_spieldauerMax, game_schwierigkeitsgrad, game_creator);
+            recyclerView.setAdapter(addRecyclerAdapter);
+        } else {
+            // Adapterdaten aktualisieren
+            addRecyclerAdapter.notifyDataSetChanged();
+        }
     }
 
     // Speichert die Eingabe in der DB
@@ -78,6 +93,16 @@ public class AddFragment extends Fragment {
             empty_imageview.setVisibility(View.VISIBLE);
             no_data.setVisibility(View.VISIBLE);
         } else {
+            game_id.clear();
+            game_title.clear();
+            game_spielregel.clear();
+            game_benötigteKarten.clear();
+            game_spieleranzahlMin.clear();
+            game_spieleranzahlMax.clear();
+            game_spieldauerMin.clear();
+            game_spieldauerMax.clear();
+            game_schwierigkeitsgrad.clear();
+            game_creator.clear();
             while (cursor.moveToNext()) {
                 game_id.add(cursor.getString(0));
                 game_title.add(cursor.getString(1));

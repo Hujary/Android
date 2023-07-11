@@ -29,7 +29,6 @@ public class AddRecyclerAdapter extends RecyclerView.Adapter<AddRecyclerAdapter.
     private Activity activity;
     private ArrayList<String> idList, titleList, spielregelnList, benötigteKartenList, spieleranzahlMinList, spieleranzahlMaxList, spieldauerMinList, spieldauerMaxList, schwierigkeitsgradList, creatorList;
 
-
     public AddRecyclerAdapter(FragmentActivity activity, Context context, ArrayList game_id, ArrayList game_title, ArrayList game_spielregel, ArrayList game_benötigteKarten, ArrayList game_spieleranzahlMin, ArrayList game_spieleranzahlMax, ArrayList game_spieldauerMin, ArrayList game_spieldauerMax, ArrayList game_schwierigkeitsgrad, ArrayList game_creator) {
         this.activity = activity;
         this.context = context;
@@ -52,7 +51,6 @@ public class AddRecyclerAdapter extends RecyclerView.Adapter<AddRecyclerAdapter.
         View view = inflater.inflate(R.layout.my_row, parent, false);
         return new MyViewHolder(view);
     }
-
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -91,9 +89,7 @@ public class AddRecyclerAdapter extends RecyclerView.Adapter<AddRecyclerAdapter.
         return idList.size();
     }
 
-
     static class MyViewHolder extends RecyclerView.ViewHolder {
-
         TextView gameIdTxt, gameTitleTxt, gameAuthorTxt, gamePagesTxt;
         LinearLayout mainLayout;
 
@@ -103,7 +99,6 @@ public class AddRecyclerAdapter extends RecyclerView.Adapter<AddRecyclerAdapter.
             gameTitleTxt = itemView.findViewById(R.id.title_txt);
             gameAuthorTxt = itemView.findViewById(R.id.schwierigkeit_txt);
             mainLayout = itemView.findViewById(R.id.mainLayout);
-
             Animation translateAnim = AnimationUtils.loadAnimation(itemView.getContext(), R.anim.translate_anim);
             mainLayout.setAnimation(translateAnim);
         }
