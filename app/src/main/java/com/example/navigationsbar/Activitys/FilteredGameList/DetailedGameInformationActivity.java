@@ -83,14 +83,9 @@ public class DetailedGameInformationActivity extends AppCompatActivity {
                     builder.insert(insertPosition, Character.toString(insertedChar));
                     x++;
                 }
-
             }
 
-            System.out.println(rules.length());
             builder.delete(0,2);
-            int len = rules.length();
-            System.out.println(rules.charAt(len-1));
-            builder.delete(len, len+3);
 
             SpannableString spannableString4 = new SpannableString(builder);
             rulesTextView.setText(spannableString4);
