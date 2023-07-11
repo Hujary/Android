@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.navigationsbar.Adapter.allCardAdapter;
 import com.example.navigationsbar.Items.Spielkarten.SpielKarten;
@@ -62,7 +63,7 @@ public class UpdateActivity extends AppCompatActivity implements allCardAdapter.
         recyclerView.setLayoutManager(layoutManager);
         List<SpielKarten> spielKartenList = new ArrayList<>();
 
-// Füge deine Spielkarten zur spielKartenList hinzu
+        // Füge deine Spielkarten zur spielKartenList hinzu
         spielKartenList.add(new SpielKarten(R.drawable.herz_zwei, "herz_zwei"));
         spielKartenList.add(new SpielKarten(R.drawable.herz_drei, "herz_drei"));
         spielKartenList.add(new SpielKarten(R.drawable.herz_vier, "herz_vier"));
@@ -118,28 +119,30 @@ public class UpdateActivity extends AppCompatActivity implements allCardAdapter.
         spielKartenList.add(new SpielKarten(R.drawable.kreuz_dame, "kreuz_dame"));
         spielKartenList.add(new SpielKarten(R.drawable.kreuz_koenig, "kreuz_koenig"));
 
-        // Retrieve and set intent data
-        getAndSetIntentData(spielKartenList);
-
-        adapter1 = new allCardAdapter(spielKartenList, selectedPositions, false);   //  übergebe dem Adapter alle Spielkarten + die Karten welche vom bereits ausgewählt wurden.
+        adapter1 = new allCardAdapter(spielKartenList, selectedPositions, false);
         recyclerView.setAdapter(adapter1);
         adapter1.setOnItemClickListener(this);
+
+        // Retrieve and set intent data
+        getAndSetIntentData(spielKartenList);
 
         // Update button click listener
         update_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MyDatabaseHelper myDB = new MyDatabaseHelper(UpdateActivity.this);
-                title = title_input.getText().toString().trim();
-                spielregel = spielregel_input.getText().toString().trim();
-                benötigteKarten = getSelectedCardNamesAsString(spielKartenList, selectedPositions);
-                spieleranzahlMin = Integer.parseInt(spieleranzahlMin_input.getText().toString().trim());
-                spieleranzahlMax = Integer.parseInt(spieleranzahlMax_input.getText().toString().trim());
-                spieldauerMin = Integer.parseInt(spieldauerMin_input.getText().toString().trim());
-                spieldauerMax = Integer.parseInt(spieldauerMax_input.getText().toString().trim());
-                schwierigkeitsgrad = schwierigkeitsgradSpinner.getSelectedItem().toString();
-                myDB.updateData(id, title, spielregel, benötigteKarten, spieleranzahlMin, spieleranzahlMax, spieldauerMin, spieldauerMax, schwierigkeitsgrad);
-                finish();
+                if (validateInputs()) {
+                    MyDatabaseHelper myDB = new MyDatabaseHelper(UpdateActivity.this);
+                    title = title_input.getText().toString().trim();
+                    spielregel = spielregel_input.getText().toString().trim();
+                    benötigteKarten = getSelectedCardNamesAsString(spielKartenList, selectedPositions);
+                    spieleranzahlMin = Integer.parseInt(spieleranzahlMin_input.getText().toString().trim());
+                    spieleranzahlMax = Integer.parseInt(spieleranzahlMax_input.getText().toString().trim());
+                    spieldauerMin = Integer.parseInt(spieldauerMin_input.getText().toString().trim());
+                    spieldauerMax = Integer.parseInt(spieldauerMax_input.getText().toString().trim());
+                    schwierigkeitsgrad = schwierigkeitsgradSpinner.getSelectedItem().toString();
+                    myDB.updateData(id, title, spielregel, benötigteKarten, spieleranzahlMin, spieleranzahlMax, spieldauerMin, spieldauerMax, schwierigkeitsgrad);
+                    finish();
+                }
             }
         });
 
@@ -147,7 +150,9 @@ public class UpdateActivity extends AppCompatActivity implements allCardAdapter.
         delete_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                confirmDialog();
+                if (validateInputs()) {
+                    confirmDialog();
+                }
             }
         });
     }
@@ -157,7 +162,7 @@ public class UpdateActivity extends AppCompatActivity implements allCardAdapter.
         id = getIntent().getStringExtra("id");
         title = getIntent().getStringExtra("title");
         spielregel = getIntent().getStringExtra("spielregel");
-        benötigteKarten = getIntent().getStringExtra("benötigteKarten");                                 //  FIXME: hol dir alle bereits ausgewählten Spielkarten
+        benötigteKarten = getIntent().getStringExtra("benötigteKarten");
         spieleranzahlMin = Integer.parseInt(getIntent().getStringExtra("spieleranzahlMin"));
         spieleranzahlMax = Integer.parseInt(getIntent().getStringExtra("spieleranzahlMax"));
         spieldauerMin = Integer.parseInt(getIntent().getStringExtra("spieldauerMin"));
@@ -176,7 +181,6 @@ public class UpdateActivity extends AppCompatActivity implements allCardAdapter.
         int spinnerPosition = adapter.getPosition(schwierigkeitsgrad);
         schwierigkeitsgradSpinner.setSelection(spinnerPosition);
 
-        //FIXME: keine Ahnung was hier gemacht wird
         for (int i = 0; i < spielKartenList.size(); i++) {
             SpielKarten spielKarte = spielKartenList.get(i);
             if (benötigteKarten.contains(spielKarte.getName())) {
@@ -210,7 +214,36 @@ public class UpdateActivity extends AppCompatActivity implements allCardAdapter.
         builder.create().show();
     }
 
-    //  wandelt die ausgewählten Karten in ein kommagetrennten String
+    private boolean isTitleValid(String title) {
+        int maxLength = 20;
+        return title.length() <= maxLength;
+    }
+
+    private boolean validateInputs() {
+        String title = title_input.getText().toString().trim();
+        String spielregel = spielregel_input.getText().toString().trim();
+        String spieleranzahlMin = spieleranzahlMin_input.getText().toString().trim();
+        String spieleranzahlMax = spieleranzahlMax_input.getText().toString().trim();
+        String spieldauerMin = spieldauerMin_input.getText().toString().trim();
+        String spieldauerMax = spieldauerMax_input.getText().toString().trim();
+
+        // Überprüfen, ob alle Eingabefelder ausgefüllt sind
+        if (title.isEmpty() || spielregel.isEmpty() ||
+                spieleranzahlMin.isEmpty() || spieleranzahlMax.isEmpty() ||
+                spieldauerMin.isEmpty() || spieldauerMax.isEmpty()) {
+            Toast.makeText(this, "Bitte füllen Sie alle Felder aus.", Toast.LENGTH_SHORT).show();
+            return false;   // Eine oder mehrere Eingaben fehlen
+        }
+
+        // Überprüfen, ob der Titel gültig ist
+        if (!isTitleValid(title)) {
+            Toast.makeText(this, "Der Titel darf maximal 20 Zeichen haben.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;        // Alle Eingaben sind vorhanden und gültig
+    }
+
     private String getSelectedCardNamesAsString(List<SpielKarten> spielKartenList, Set<Integer> selectedPositions) {
         StringBuilder stringBuilder = new StringBuilder();
         for (Integer position : selectedPositions) {
@@ -225,7 +258,6 @@ public class UpdateActivity extends AppCompatActivity implements allCardAdapter.
         return stringBuilder.toString();
     }
 
-    //  fügt Karten beim klicken zur Liste hinzu
     @Override
     public void onItemClick(SpielKarten spielkarte, int position) {
         if (selectedCardsList2.contains(spielkarte)) {
@@ -233,8 +265,5 @@ public class UpdateActivity extends AppCompatActivity implements allCardAdapter.
         } else {
             selectedCardsList2.add(spielkarte);      // Karte wurde ausgewählt
         }
-        System.out.println("ausgewählte Karten: " + selectedCardsList2);
-        //adapter1.notifyDataSetChanged();
     }
-
 }

@@ -76,7 +76,6 @@ public class DetailedGameInformationActivity extends AppCompatActivity {
             char insertedChar = '\n';
             int insertPosition = 0;
             int x = 1;
-            int n = 0;
             for(int i = 0; i < rules.length(); i++){
                 if(rules.charAt(i) == '.'){
                     insertPosition = i+x;
@@ -85,7 +84,7 @@ public class DetailedGameInformationActivity extends AppCompatActivity {
                 }
             }
 
-            builder.delete(0,2);
+            //builder.delete(0,2);
 
             SpannableString spannableString4 = new SpannableString(builder);
             rulesTextView.setText(spannableString4);

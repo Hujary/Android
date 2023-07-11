@@ -66,6 +66,13 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         addJsonDataToDatabase(db);
     }
 
+    public void closeDatabase() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        if (db != null && db.isOpen()) {
+            db.close();
+        }
+    }
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
