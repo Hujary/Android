@@ -35,7 +35,6 @@ public class GamesFragment extends Fragment implements ArticleAdapter.OnClickLis
         binding = FragmentGamesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         resources = getResources();
-
         try {
             recyclerView = root.findViewById(R.id.articleRecyclerView);
             recyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
@@ -46,7 +45,6 @@ public class GamesFragment extends Fragment implements ArticleAdapter.OnClickLis
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return root;
     }
 

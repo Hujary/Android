@@ -272,7 +272,7 @@
       ],
       "Spielerzahl_Min": 2,
       "Spieleranzahl_Max": 2,
-      "Benötigte Karten": "karo_sieben, kreuz_sieben, pik_sieben, herz_sieben, karo_acht, kreuz_acht, pik_acht, herz_acht, karo_koenig, kreuz_koenig, pik_dame, herz_koenig, karo_zehn, kreuz_zehn, pik_bube, herz_zehn",
+      "Benötigte Karten": "karo_sieben, karo_acht, karo_zehn, karo_koenig, kreuz_sieben, kreuz_acht, kreuz_zehn, kreuz_koenig, pik_sieben, pik_acht, pik_bube, pik_dame, herz_sieben, herz_acht, herz_zehn, herz_koenig",
       "SpieldauerMin": 15,
       "SpieldauerMax": 30,
       "Schwierigkeitsgrad": "mittel"

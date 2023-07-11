@@ -19,8 +19,9 @@ import com.example.navigationsbar.Items.Spielkarten.SpielKarten;
 import com.example.navigationsbar.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class AddActivity extends AppCompatActivity implements allCardAdapter.OnItemClickListener, ApiCallTask.ApiCallTaskCallback {
 
@@ -29,8 +30,9 @@ public class AddActivity extends AppCompatActivity implements allCardAdapter.OnI
     Button add_button;
     TextView textView_back2;
     List<SpielKarten> selectedCardsList = new ArrayList<>();
+    Set<Integer> selectedCardsList1 = new HashSet<>();
 
-        //  alle Spielkarten als vorauswahl
+    // Alle Spielkarten als Vorauswahl
     String[] allCardsArray = {
             "herz_zwei", "herz_drei", "herz_vier", "herz_fuenf", "herz_sechs", "herz_sieben", "herz_acht", "herz_neun", "herz_zehn",
             "herz_bube", "herz_dame", "herz_koenig", "herz_ass", "pik_zwei", "pik_drei", "pik_vier", "pik_fuenf", "pik_sechs",
@@ -45,7 +47,7 @@ public class AddActivity extends AppCompatActivity implements allCardAdapter.OnI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
-            // Hier Variablen für Layout-Elemente erstellen.
+        // Hier Variablen für Layout-Elemente erstellen.
         Spinner schwierigkeitsgradSpinner = findViewById(R.id.schwierigkeitsgrad_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.schwierigkeitsgrade_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -75,7 +77,7 @@ public class AddActivity extends AppCompatActivity implements allCardAdapter.OnI
                     int spieldauerMax = Integer.parseInt(spieldauerMax_input.getText().toString().trim());
                     String schwierigkeitsgrad = schwierigkeitsgradSpinner.getSelectedItem().toString().trim();
 
-                        // Gib den String mit den ausgewählten Karten aus
+                    // Gib den String mit den ausgewählten Karten aus
                     System.out.println(selectedCardNamesString);
 
                     myDB.addArticle(
@@ -92,7 +94,7 @@ public class AddActivity extends AppCompatActivity implements allCardAdapter.OnI
                     myDB.close();
 
                     if (checkBox.isChecked()) {
-                            // Checkbox ist ausgewählt, führe den API-Aufruf aus
+                        // Checkbox ist ausgewählt, führe den API-Aufruf aus
                         String apiUrl = "https://androidpartysaverbackend.azurewebsites.net/api/androidAPITrigger";
                         ApiCallTask apiCallTask = new ApiCallTask(apiUrl, title, spielregel, spieleranzahlMin, spieleranzahlMax, selectedCardNamesString, spieldauerMin, spieldauerMax, schwierigkeitsgrad, AddActivity.this);
                         apiCallTask.execute();
@@ -111,12 +113,11 @@ public class AddActivity extends AppCompatActivity implements allCardAdapter.OnI
             }
         });
 
-            // RecyclerView und Adapter einrichten
+        // RecyclerView und Adapter einrichten
         RecyclerView recyclerView = findViewById(R.id.CardsRecyclerview);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
-
-        List<SpielKarten> spielKartenList = new ArrayList<>(); // Erstelle eine Liste mit Spielkarten-Objekten
+        List<SpielKarten> spielKartenList = new ArrayList<>();
 
         // Füge deine Spielkarten zur spielKartenList hinzu
         spielKartenList.add(new SpielKarten(R.drawable.herz_zwei, "herz_zwei"));
@@ -175,24 +176,24 @@ public class AddActivity extends AppCompatActivity implements allCardAdapter.OnI
         spielKartenList.add(new SpielKarten(R.drawable.kreuz_koenig, "kreuz_koenig"));
         spielKartenList.add(new SpielKarten(R.drawable.kreuz_ass, "kreuz_ass"));
 
-        allCardAdapter adapter1 = new allCardAdapter(spielKartenList);
+        allCardAdapter adapter1 = new allCardAdapter(spielKartenList, selectedCardsList1, true);
         recyclerView.setAdapter(adapter1);
-
         adapter1.setOnItemClickListener(this);
     }
 
     @Override
     public void onItemClick(SpielKarten spielkarte, int position) {
         if (selectedCardsList.contains(spielkarte)) {
-            selectedCardsList.remove(spielkarte); // Karte wurde abgewählt
+            selectedCardsList.remove(spielkarte);   // Karte wurde abgewählt
         } else {
-            selectedCardsList.add(spielkarte); // Karte wurde ausgewählt
+            selectedCardsList.add(spielkarte);      // Karte wurde ausgewählt
         }
+        System.out.println("ausgewählte Karten: " + selectedCardsList);
     }
 
     @Override
     public void onApiCallComplete(String result) {
-            // Hier kannst du den Toast anzeigen
+        // Hier kannst du den Toast anzeigen
         Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
     }
 
@@ -204,42 +205,39 @@ public class AddActivity extends AppCompatActivity implements allCardAdapter.OnI
         String spieldauerMin = spieldauerMin_input.getText().toString().trim();
         String spieldauerMax = spieldauerMax_input.getText().toString().trim();
 
-            // Überprüfen Sie, ob alle Eingabefelder ausgefüllt sind
+        // Überprüfen, ob alle Eingabefelder ausgefüllt sind
         if (title.isEmpty() || spielregel.isEmpty() ||
                 spieleranzahlMin.isEmpty() || spieleranzahlMax.isEmpty() ||
                 spieldauerMin.isEmpty() || spieldauerMax.isEmpty()) {
-            return false; // Eine oder mehrere Eingaben fehlen
+            return false;   // Eine oder mehrere Eingaben fehlen
         }
-        return true; // Alle Eingaben sind vorhanden
+        return true;        // Alle Eingaben sind vorhanden
     }
 
-        // Methode, um die ausgewählten Karten als einen einzelnen String mit Kommatrennung zurückzugeben
-        private String getSelectedCardNamesAsString() {
-            StringBuilder stringBuilder = new StringBuilder();
+    // Methode, um die ausgewählten Karten als einen einzelnen String mit Kommatrennung zurückzugeben
+    private String getSelectedCardNamesAsString() {
+        StringBuilder stringBuilder = new StringBuilder();
 
-            // Überprüfe jede Karte aus dem allCardsArray
-            for (String cardName : allCardsArray) {
-                // Überprüfe, ob die Karte vom Benutzer abgewählt wurde
-                boolean isCardSelected = false;
-                for (SpielKarten selectedCard : selectedCardsList) {
-                    if (selectedCard.getName().equals(cardName)) {
-                        isCardSelected = true;
-                        break;
-                    }
-                }
-
-                // Füge die Karte zum stringBuilder hinzu, wenn sie nicht abgewählt wurde
-                if (!isCardSelected) {
-                    stringBuilder.append(cardName).append(", ");
+        // Überprüfe jede Karte aus dem allCardsArray
+        for (String cardName : allCardsArray) {
+            // Überprüfe, ob die Karte vom Benutzer abgewählt wurde
+            boolean isCardSelected = false;
+            for (SpielKarten selectedCard : selectedCardsList) {
+                if (selectedCard.getName().equals(cardName)) {
+                    isCardSelected = true;
+                    break;
                 }
             }
-
-            // Entferne das letzte Komma und Leerzeichen, falls sie vorhanden sind
-            int length = stringBuilder.length();
-            if (length > 0) {
-                stringBuilder.delete(length - 2, length);
+            // Füge die Karte zum stringBuilder hinzu, wenn sie nicht abgewählt wurde
+            if (!isCardSelected) {
+                stringBuilder.append(cardName).append(", ");
             }
-
-            return stringBuilder.toString();
         }
+        // Entferne das letzte Komma und Leerzeichen, falls sie vorhanden sind
+        int length = stringBuilder.length();
+        if (length > 0) {
+            stringBuilder.delete(length - 2, length);
+        }
+        return stringBuilder.toString();
+    }
 }
