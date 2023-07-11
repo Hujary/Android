@@ -46,6 +46,12 @@ public class QuestionOneActivity extends AppCompatActivity implements NumberPick
             }
         });
 
+        TextView buttonHome = findViewById(R.id.TextView_home);
+        buttonHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { finish(); }
+        });
+
             // Change the format of numbers in the number picker
         numberPicker.setFormatter(new NumberPicker.Formatter() {
             @Override
