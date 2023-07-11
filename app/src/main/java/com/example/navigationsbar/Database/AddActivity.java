@@ -197,6 +197,11 @@ public class AddActivity extends AppCompatActivity implements allCardAdapter.OnI
         Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
     }
 
+    private boolean isTitleValid(String title) {
+        int maxLength = 20;
+        return title.length() <= maxLength;
+    }
+
     private boolean validateInputs() {
         String title = title_input.getText().toString().trim();
         String spielregel = spielregel_input.getText().toString().trim();
@@ -211,7 +216,14 @@ public class AddActivity extends AppCompatActivity implements allCardAdapter.OnI
                 spieldauerMin.isEmpty() || spieldauerMax.isEmpty()) {
             return false;   // Eine oder mehrere Eingaben fehlen
         }
-        return true;        // Alle Eingaben sind vorhanden
+
+        // Überprüfen, ob der Titel gültig ist
+        if (title.length() > 20) {
+            Toast.makeText(this, "Der Titel darf maximal 20 Zeichen haben", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;        // Alle Eingaben sind vorhanden und gültig
     }
 
     // Methode, um die ausgewählten Karten als einen einzelnen String mit Kommatrennung zurückzugeben

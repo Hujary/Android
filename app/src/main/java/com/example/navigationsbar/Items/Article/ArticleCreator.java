@@ -3,10 +3,10 @@ package com.example.navigationsbar.Items.Article;
 import android.content.Context;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.example.navigationsbar.Database.MyDatabaseHelper;
-import com.example.navigationsbar.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,13 +22,11 @@ public class ArticleCreator {
 
     public List<Article> createArticles() {
         List<Article> articles = new ArrayList<>();
-
-            // Daten aus der Datenbank abrufen
-        List<Article> databaseArticles = readDatabaseData();
-
-            // Datenbank-Artikel zur Liste hinzufügen
-        articles.addAll(databaseArticles);
-
+        try {
+            articles.addAll(readDatabaseData());
+        } finally {
+            myDB.closeDatabase();
+        }
         return articles;
     }
 
@@ -49,7 +47,7 @@ public class ArticleCreator {
                 int spieldauerMin = cursor.getInt(6);
                 int spieldauerMax = cursor.getInt(7);
                 String schwierigkeitsgrad = cursor.getString(8);
-                String creator = cursor.getString(9);;
+                String creator = cursor.getString(9);
 
                 Article article = new Article(id, title, spielregel, benötigteKarten, spieleranzahlMin, spieleranzahlMax, spieldauerMin, spieldauerMax, schwierigkeitsgrad, creator);
                 databaseArticles.add(article);
