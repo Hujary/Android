@@ -53,7 +53,6 @@ public class AddRecyclerAdapter extends RecyclerView.Adapter<AddRecyclerAdapter.
         return new MyViewHolder(view);
     }
 
-
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, @SuppressLint("RecyclerView") final int position) {
@@ -91,9 +90,7 @@ public class AddRecyclerAdapter extends RecyclerView.Adapter<AddRecyclerAdapter.
         return idList.size();
     }
 
-
     static class MyViewHolder extends RecyclerView.ViewHolder {
-
         TextView gameIdTxt, gameTitleTxt, gameAuthorTxt, gamePagesTxt;
         LinearLayout mainLayout;
 
@@ -103,7 +100,6 @@ public class AddRecyclerAdapter extends RecyclerView.Adapter<AddRecyclerAdapter.
             gameTitleTxt = itemView.findViewById(R.id.title_txt);
             gameAuthorTxt = itemView.findViewById(R.id.schwierigkeit_txt);
             mainLayout = itemView.findViewById(R.id.mainLayout);
-
             Animation translateAnim = AnimationUtils.loadAnimation(itemView.getContext(), R.anim.translate_anim);
             mainLayout.setAnimation(translateAnim);
         }
