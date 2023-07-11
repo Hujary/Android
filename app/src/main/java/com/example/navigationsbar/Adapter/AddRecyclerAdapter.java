@@ -29,7 +29,6 @@ public class AddRecyclerAdapter extends RecyclerView.Adapter<AddRecyclerAdapter.
     private Activity activity;
     private ArrayList<String> idList, titleList, spielregelnList, benötigteKartenList, spieleranzahlMinList, spieleranzahlMaxList, spieldauerMinList, spieldauerMaxList, schwierigkeitsgradList, creatorList;
 
-
     public AddRecyclerAdapter(FragmentActivity activity, Context context, ArrayList game_id, ArrayList game_title, ArrayList game_spielregel, ArrayList game_benötigteKarten, ArrayList game_spieleranzahlMin, ArrayList game_spieleranzahlMax, ArrayList game_spieldauerMin, ArrayList game_spieldauerMax, ArrayList game_schwierigkeitsgrad, ArrayList game_creator) {
         this.activity = activity;
         this.context = context;
