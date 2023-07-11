@@ -1,19 +1,15 @@
 package com.example.navigationsbar.Fragments;
 
-import static androidx.core.app.ActivityCompat.recreate;
-
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,15 +28,14 @@ public class AddFragment extends Fragment {
     FloatingActionButton add_button;
     ImageView empty_imageview;
     TextView no_data;
-
     MyDatabaseHelper myDB;
     ArrayList<String> game_id, game_title, game_spielregel, game_benötigteKarten, game_spieleranzahlMin, game_spieleranzahlMax, game_spieldauerMin, game_spieldauerMax, game_schwierigkeitsgrad, game_creator;
     AddRecyclerAdapter addRecyclerAdapter;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        System.out.println(" ###################     AddFragment wird aufgerufen");
         View root = inflater.inflate(R.layout.fragment_add, container, false);
-
         recyclerView = root.findViewById(R.id.recyclerView);
         add_button = root.findViewById(R.id.add_button);
         empty_imageview = root.findViewById(R.id.empty_imageview);
@@ -48,12 +43,12 @@ public class AddFragment extends Fragment {
         add_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("Add button funktioniert");
                 Intent intentAdd = new Intent(requireActivity(), AddActivity.class);
                 requireActivity().startActivity(intentAdd);
             }
         });
 
+        //  Listen für die Spieldaten
         myDB = new MyDatabaseHelper(requireActivity());
         game_id = new ArrayList<>();
         game_title = new ArrayList<>();
@@ -66,20 +61,14 @@ public class AddFragment extends Fragment {
         game_schwierigkeitsgrad = new ArrayList<>();
         game_creator = new ArrayList<>();
 
+        //  Spiele von DB in ArrayListen.
         storeDataInArrays();
 
+        //  Spiele dem RecyclerView hinzufügen.
         addRecyclerAdapter = new AddRecyclerAdapter(requireActivity(), getContext() , game_id, game_title, game_spielregel, game_benötigteKarten, game_spieleranzahlMin, game_spieleranzahlMax, game_spieldauerMin, game_spieldauerMax, game_schwierigkeitsgrad, game_creator);
         recyclerView.setAdapter(addRecyclerAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
         return root;
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1) {
-            requireActivity().recreate();
-        }
     }
 
     // Speichert die Eingabe in der DB
