@@ -80,7 +80,6 @@ public class ApiCallTask extends AsyncTask<Void, Void, String> {
         } catch (Exception e) {
             Log.e(TAG, "Exception occurred during API call: " + e.getMessage());
         }
-
         return result;
     }
 

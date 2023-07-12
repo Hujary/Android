@@ -27,13 +27,13 @@ public class QuestionThreeActivity extends AppCompatActivity {
         setContentView(R.layout.question3_layout);
         gameDataSingelton = GameDataSingelton.getInstance();
 
-            // NumberPicker Werte einsetzen
+        // NumberPicker Werte einsetzen
         numberPickerLocation = findViewById(R.id.answerPicker);
         numberPickerLocation.setMinValue(0);
         numberPickerLocation.setMaxValue(antwortenArray.length - 1);
         numberPickerLocation.setDisplayedValues(antwortenArray);
 
-            // Logik für Return button
+        // Logik für Return button
         TextView buttonReturn = findViewById(R.id.TextView_back);
         buttonReturn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,7 +42,7 @@ public class QuestionThreeActivity extends AppCompatActivity {
             }
         });
 
-            // Logik für Home button
+        // Logik für Home button
         TextView buttonHome = findViewById(R.id.TextView_home);
         buttonHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,7 +53,7 @@ public class QuestionThreeActivity extends AppCompatActivity {
             }
         });
 
-            // Logik für Confirm button
+        // Logik für Confirm button
         Button button_confirm = findViewById(R.id.button_confirm);
         button_confirm.setOnClickListener(new View.OnClickListener() {
             @Override

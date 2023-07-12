@@ -44,7 +44,4 @@ public class Article {
     public String getSchwierigkeitsgrad() {
         return schwierigkeitsgrad;
     }
-    public String getCreator() {
-        return creator;
-    }
 }

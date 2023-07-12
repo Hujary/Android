@@ -31,7 +31,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
         this.onClickListener = onClickListener;
         this.context = context;
 
-// Hinzufügen von Schlüssel-Wert-Paaren zur HashMap für Herz-Karten
+        // Hinzufügen von Schlüssel-Wert-Paaren zur HashMap für Herz-Karten
         cardImagesMap.put("Herz2", R.drawable.herz_zwei);
         cardImagesMap.put("Herz3", R.drawable.herz_drei);
         cardImagesMap.put("Herz4", R.drawable.herz_vier);
@@ -46,7 +46,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
         cardImagesMap.put("HerzK", R.drawable.herz_koenig);
         cardImagesMap.put("HerzA", R.drawable.herz_ass);
 
-// Hinzufügen von Schlüssel-Wert-Paaren zur HashMap für Pik-Karten
+        // Hinzufügen von Schlüssel-Wert-Paaren zur HashMap für Pik-Karten
         cardImagesMap.put("Pik2", R.drawable.pik_zwei);
         cardImagesMap.put("Pik3", R.drawable.pik_drei);
         cardImagesMap.put("Pik4", R.drawable.pik_vier);
@@ -61,7 +61,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
         cardImagesMap.put("PikK", R.drawable.pik_koenig);
         cardImagesMap.put("PikA", R.drawable.pik_ass);
 
-// Hinzufügen von Schlüssel-Wert-Paaren zur HashMap für Kreuz-Karten
+        // Hinzufügen von Schlüssel-Wert-Paaren zur HashMap für Kreuz-Karten
         cardImagesMap.put("Kreuz2", R.drawable.kreuz_zwei);
         cardImagesMap.put("Kreuz3", R.drawable.kreuz_drei);
         cardImagesMap.put("Kreuz4", R.drawable.kreuz_vier);
@@ -76,7 +76,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
         cardImagesMap.put("KreuzK", R.drawable.kreuz_koenig);
         cardImagesMap.put("KreuzA", R.drawable.kreuz_ass);
 
-// Hinzufügen von Schlüssel-Wert-Paaren zur HashMap für Karo-Karten
+        // Hinzufügen von Schlüssel-Wert-Paaren zur HashMap für Karo-Karten
         cardImagesMap.put("Karo2", R.drawable.karo_zwei);
         cardImagesMap.put("Karo3", R.drawable.karo_drei);
         cardImagesMap.put("Karo4", R.drawable.karo_vier);

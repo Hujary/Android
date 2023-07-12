@@ -32,7 +32,6 @@ public class ArticleCreator {
 
     private List<Article> readDatabaseData() {
         List<Article> databaseArticles = new ArrayList<>();
-
         Cursor cursor = myDB.readAllData();
         if (cursor.getCount() == 0) {
             Log.d("ArticleCreator", "Die Datenbank ist leer.");

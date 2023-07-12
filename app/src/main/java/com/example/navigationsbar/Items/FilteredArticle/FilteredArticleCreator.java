@@ -18,7 +18,7 @@ public class FilteredArticleCreator {
 
     public List<filteredArticle> getFilteredArticle(int playerNumber, String difficulty, Boolean missingCards, Boolean haveCards, String missingCardsString) {
 
-          //  Standart Values zuweisen
+        //  Standart Values zuweisen
         if (difficulty == null) {
             difficulty = "egal";
         }
@@ -26,20 +26,15 @@ public class FilteredArticleCreator {
             missingCards = false;
         }
 
-            // Convert variables to strings
+        // Convert variables to strings
         String playerNumberString = String.valueOf(playerNumber);
-        Log.d("YourTag", "Player Number: " + playerNumberString +
-                ", Difficulty: " + difficulty +
-                ", Fehlen Karten? : " + missingCards +
-                ", hast du Karten? : " + haveCards +
-                ", missing Cards: " + missingCardsString);
 
-            //  Datenbank abfrage Methode aufrufen.
+        //  Datenbank abfrage Methode aufrufen.
         List<filteredArticle> articles = readDatabaseDataWithValues(playerNumberString, difficulty, haveCards, missingCardsString);
         return articles;
     }
 
-        // Datenbankabruf mit gefilterten Daten
+    // Datenbankabruf mit gefilterten Daten
     private List<filteredArticle> readDatabaseDataWithValues(String playerNumber, String difficulty, boolean haveCards, String missingCardsString) {
         List<filteredArticle> databaseArticles = new ArrayList<>();
         Cursor cursor = myDB.readFilteredData(playerNumber, difficulty, haveCards, missingCardsString);

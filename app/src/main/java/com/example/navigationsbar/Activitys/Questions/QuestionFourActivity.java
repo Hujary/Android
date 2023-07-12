@@ -34,7 +34,7 @@ public class QuestionFourActivity extends AppCompatActivity {
         setContentView(R.layout.question4_layout);
         gameDataSingelton = GameDataSingelton.getInstance();
 
-            // Herz RecyclerView
+        // Herz RecyclerView
         herzRecyclerView = findViewById(R.id.HerzRecyclerView);
         herzRecyclerView.setHasFixedSize(true);
         herzRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
@@ -55,7 +55,7 @@ public class QuestionFourActivity extends AppCompatActivity {
         PlayCardAdapter herzAdapter = new PlayCardAdapter(herzList);
         herzRecyclerView.setAdapter(herzAdapter);
 
-            // Logik für Return button
+        // Logik für Return button
         TextView buttonReturn = findViewById(R.id.TextView_back);
         buttonReturn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +64,7 @@ public class QuestionFourActivity extends AppCompatActivity {
             }
         });
 
-            // Logik für Home button
+        // Logik für Home button
         TextView buttonHome = findViewById(R.id.TextView_home);
         buttonHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +75,7 @@ public class QuestionFourActivity extends AppCompatActivity {
             }
         });
 
-            // Logik für Confirm button
+        // Logik für Confirm button
         Button button_confirm = findViewById(R.id.button_confirm2);
         button_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,7 +99,7 @@ public class QuestionFourActivity extends AppCompatActivity {
             }
         });
 
-            // Karo RecyclerView
+        // Karo RecyclerView
         karoRecyclerView = findViewById(R.id.KaroRecyclerView);
         karoRecyclerView.setHasFixedSize(true);
         karoRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
@@ -133,7 +133,7 @@ public class QuestionFourActivity extends AppCompatActivity {
             }
         });
 
-            // Pik RecyclerView
+        // Pik RecyclerView
         pikRecyclerView = findViewById(R.id.PikRecyclerview);
         pikRecyclerView.setHasFixedSize(true);
         pikRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
@@ -167,7 +167,7 @@ public class QuestionFourActivity extends AppCompatActivity {
             }
         });
 
-            // Kreuz RecyclerView
+        // Kreuz RecyclerView
         kreuzRecyclerView = findViewById(R.id.KreuzRecyclerview);
         kreuzRecyclerView.setHasFixedSize(true);
         kreuzRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
@@ -204,7 +204,7 @@ public class QuestionFourActivity extends AppCompatActivity {
     }
 
 
-        // Start the intent and pass the value
+    // Start the intent and pass the value
     private void startNextActivity() {
         Intent intent = new Intent(QuestionFourActivity.this, QuestionFiveActivity.class);
         startActivity(intent);

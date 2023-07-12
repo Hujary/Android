@@ -19,7 +19,7 @@ public class GameDataSingelton {
         // Private Konstruktor, um direkte Instanziierung zu verhindern
     }
 
-        // Singelton Logik
+    // Singelton Logik
     public static GameDataSingelton getInstance() {
         if (instance == null) {
             instance = new GameDataSingelton();
@@ -27,7 +27,7 @@ public class GameDataSingelton {
         return instance;
     }
 
-        //  Getter & Setter für Spieleranzahl
+    //  Getter & Setter für Spieleranzahl
     public int getNumberOfPlayers() {
         return numberOfPlayers;
     }
@@ -36,7 +36,7 @@ public class GameDataSingelton {
     }
 
 
-        //  Getter & Setter für Frage ob man Karten hat
+    //  Getter & Setter für Frage ob man Karten hat
     public String getHaveCards() {
         return haveCards;
     }
@@ -45,7 +45,7 @@ public class GameDataSingelton {
     }
 
 
-        //  Getter & Setter für Frage ob Karten Fehlen
+    //  Getter & Setter für Frage ob Karten Fehlen
     public String getFehlenKarten() {
         return fehlenKarten;
     }
@@ -54,7 +54,7 @@ public class GameDataSingelton {
     }
 
 
-        //  Getter & Setter für Schwierigkeit
+    //  Getter & Setter für Schwierigkeit
     public String getSchwierigkeit() {
         return schwierigkeit;
     }
@@ -63,26 +63,26 @@ public class GameDataSingelton {
     }
 
 
-        //  Getter und Setter für selectedHerzCards
+    //  Getter und Setter für selectedHerzCards
     public List<Integer> getSelectedHerzCards() { return selectedHerzCards; }
     public void setSelectedHerzCards(List<Integer> selectedHerzCards) { this.selectedHerzCards = selectedHerzCards; }
 
 
-        //  Getter und Setter für selectedPikCards
+    //  Getter und Setter für selectedPikCards
     public List<Integer> getSelectedPikCards() { return selectedPikCards; }
     public void setSelectedPikCards(List<Integer> selectedPikCards) { this.selectedPikCards = selectedPikCards; }
 
 
-        //  Getter und Setter für selectedKreuzCards
+    //  Getter und Setter für selectedKreuzCards
     public List<Integer> getSelectedKreuzCards() { return selectedKreuzCards; }
     public void setSelectedKreuzCards(List<Integer> selectedKreuzCards) { this.selectedKreuzCards = selectedKreuzCards; }
 
 
-        //  Getter und Setter für selectedKaroCards
+    //  Getter und Setter für selectedKaroCards
     public List<Integer> getSelectedKaroCards() { return selectedKaroCards; }
     public void setSelectedKaroCards(List<Integer> selectedKaroCards) { this.selectedKaroCards = selectedKaroCards; }
 
-        // Getter und Setter für playerStreakHL
+    // Getter und Setter für playerStreakHL
     public int getPlayerStreakHL() { return playerStreakHL; }
     public void setPlayerStreakHL(int Streak) { this.playerStreakHL = Streak; }
 

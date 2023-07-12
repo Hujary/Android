@@ -107,13 +107,13 @@
         android:text="aktuelle Streak: 0"
         android:textAlignment="center"
         android:textSize="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView19"
+        app:layout_constraintBottom_toBottomOf="@+id/spieldauerText_Min"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <TextView
-        android:id="@+id/textView19"
+        android:id="@+id/spieldauerText_Min"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="#DDFFFFFF"
@@ -146,7 +146,7 @@
         app:layout_constraintVertical_bias="0.441" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/spielerAnzText_Min"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Deine beste Streak war: 0"
