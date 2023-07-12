@@ -29,8 +29,7 @@ public class FilteredGamesListActivity extends AppCompatActivity implements Filt
         setContentView(R.layout.filtered_gamelist);
         gameDataSingelton = GameDataSingelton.getInstance();
 
-            // Retrieve variables from Singleton and print them in the console
-        System.out.println("------------------------------------------------------------------------------------------------------------------------------------");
+        // Retrieve variables from Singleton and print them in the console
         int playerNumber = gameDataSingelton.getNumberOfPlayers();
         String difficulty = gameDataSingelton.getSchwierigkeit();
         String missingCards = gameDataSingelton.getFehlenKarten();
@@ -41,7 +40,7 @@ public class FilteredGamesListActivity extends AppCompatActivity implements Filt
         List<Integer> karoCards = gameDataSingelton.getSelectedKaroCards();
 
 
-            //  baue aus zb. [0,3,6] ein String mit den tatsächlichen Spielkarten
+        //  baue aus zb. [0,3,6] ein String mit den tatsächlichen Spielkarten
         StringBuilder missingCardsBuilder = new StringBuilder();
         if (herzCards != null && !herzCards.isEmpty()) {
             appendCardsToStringBuilder(herzCards, "herz", missingCardsBuilder);
@@ -72,30 +71,11 @@ public class FilteredGamesListActivity extends AppCompatActivity implements Filt
             missingCardsString = "null";
         }
 
-
-        System.out.println("------------------------ Information aus Singelton() ---------------------------------- " );
-        System.out.println("Spieler " + playerNumber);
-        System.out.println("Schwieirigkeit " + difficulty);
-        System.out.println("hast du Karten ? " + haveCards);
-        System.out.println("Fehlen dir Karten ?  " + missingCards);     //  eig unrelevant
-        System.out.println("Fehlende Karten:  " + missingCardsString);
-
-
-            // Convert to boolean
+        // Convert to boolean
         boolean bol_answer_haveCards = "Ja".equals(haveCards != null ? haveCards : "Nein");
         boolean bol_answer_missingCards = "Ja".equals(missingCards != null ? missingCards : "Nein");
 
-
-        System.out.println("------------------------ Information konvertiert(): ---------------------------------- " );
-        System.out.println("Spieler " + playerNumber);
-        System.out.println("Schwieirigkeit " + difficulty);
-        System.out.println("hast du Karten ? " + bol_answer_haveCards);
-        System.out.println("Fehlen dir Karten ?  " + bol_answer_missingCards);
-        System.out.println("Fehlende Karten:  " + missingCardsString);
-
-
-
-            // Logik für Zurück Button
+        // Logik für Zurück Button
         Button buttonReturn = findViewById(R.id.button_return);
         buttonReturn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,11 +91,11 @@ public class FilteredGamesListActivity extends AppCompatActivity implements Filt
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
-            //  Liste erzeugen in der meine gefilterten Artikel gespeichert werden.
+        //  Liste erzeugen in der meine gefilterten Artikel gespeichert werden.
         FilteredArticleCreator f1 = new FilteredArticleCreator(this);
         List<filteredArticle> filteredGamesList = f1.getFilteredArticle(playerNumber, difficulty, bol_answer_missingCards, bol_answer_haveCards, missingCardsString );
 
-            // Add the filtered games list to the adapter
+        // Add the filtered games list to the adapter
         FilteredArticleAdapter filteredArticleAdapter = new FilteredArticleAdapter(filteredGamesList, this);
         recyclerView.setAdapter(filteredArticleAdapter);
     }

@@ -56,7 +56,7 @@ public class AddRecyclerAdapter extends RecyclerView.Adapter<AddRecyclerAdapter.
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, @SuppressLint("RecyclerView") final int position) {
 
-            //  Setze dem View Inhalt -> User muss seine Spielinhalte nicht nochmal schreiben.
+        //  Setze dem View Inhalt -> User muss seine Spielinhalte nicht nochmal schreiben.
         int displayedPosition = position + 1; // Add 1 to the position to display the current item count
         holder.gameIdTxt.setText(String.valueOf(displayedPosition));
         holder.gameTitleTxt.setText(String.valueOf(titleList.get(position)));
@@ -65,10 +65,9 @@ public class AddRecyclerAdapter extends RecyclerView.Adapter<AddRecyclerAdapter.
 
             @Override
             public void onClick(View view) {
-                System.out.println("Working" + view);
                 Intent updateIntent = new Intent(context, UpdateActivity.class);
 
-                    //  übergebe alle inhalte als String
+                //  übergebe alle inhalte als String
                 updateIntent.putExtra("id", String.valueOf(idList.get(position)));
                 updateIntent.putExtra("title", String.valueOf(titleList.get(position)));
                 updateIntent.putExtra("spielregel", String.valueOf(spielregelnList.get(position)));

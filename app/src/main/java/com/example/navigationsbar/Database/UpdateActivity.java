@@ -240,7 +240,6 @@ public class UpdateActivity extends AppCompatActivity implements allCardAdapter.
             Toast.makeText(this, "Der Titel darf maximal 20 Zeichen haben.", Toast.LENGTH_SHORT).show();
             return false;
         }
-
         return true;        // Alle Eingaben sind vorhanden und gültig
     }
 

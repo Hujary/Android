@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.navigationsbar.Activitys.GameDataSingelton;
 import com.example.navigationsbar.R;
 
 import java.util.Random;
@@ -47,9 +46,9 @@ public class Games_HoeherTiefer_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_hoeher_tiefer);
 
-        textViewStreak = findViewById(R.id.textView7);
-        textViewNumber = findViewById(R.id.textView5);
-        textViewInfo = findViewById(R.id.textView4);
+        textViewStreak = findViewById(R.id.currentStreak);
+        textViewNumber = findViewById(R.id.aktuelleKarte);
+        textViewInfo = findViewById(R.id.higherlowerTitle);
         ImageViewKarten = findViewById(R.id.imageViewKarten);
         ImageViewKarten.setImageResource(R.drawable.card_back);
         isCardBackVisible = true;
@@ -201,7 +200,8 @@ public class Games_HoeherTiefer_Activity extends AppCompatActivity {
         textViewNumber.setText(String.valueOf(newNumber));
         NewNumberToName = getNameOfNumber(newNumber);
 
-        String previousNumberToName = currentNumberToName; // Speichern des vorherigen Kartenwertes
+        // Speichern des vorherigen Kartenwertes
+        String previousNumberToName = currentNumberToName;
 
         setImageResourceForNumber(newNumber);
 
@@ -216,7 +216,6 @@ public class Games_HoeherTiefer_Activity extends AppCompatActivity {
             textViewStreak.setText("aktuelle Streak: " + streakNumber);
         } else {
             // You lose
-
             if(streakNumber >= highStreak){
                 highStreak = streakNumber;
             }

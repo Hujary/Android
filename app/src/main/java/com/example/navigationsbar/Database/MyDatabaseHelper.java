@@ -62,7 +62,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_CREATOR + " TEXT);";
         db.execSQL(query);
 
-            // JSON-Datenbank laden
+        // JSON-Datenbank laden
         addJsonDataToDatabase(db);
     }
 
@@ -101,18 +101,16 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-
     //  -------------------------------------------------------------------------- Methoden für SQL Abfragen ----------------------------------------------------------------------------------------------------------------
 
-
-        //  Alle (User & Creator) Daten lesen.
+    //  Alle (User & Creator) Daten lesen.
     public Cursor readAllData() {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM " + TABLE_NAME;
         return db.rawQuery(query, null);
     }
 
-        //  Nur (User) Data auslesen
+    //  Nur (User) Data auslesen
     public Cursor readUserAddedData() {
         SQLiteDatabase db = this.getReadableDatabase();
         String selection = COLUMN_CREATOR + " = ?";
@@ -121,69 +119,55 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-            //  übel komplizierte SQL abfrage abhängig der Eingabe
-            public Cursor readFilteredData(String playerNumber, String difficulty, boolean haveCards, String fehlendeKartenString) {
-                System.out.println("------------------------ Information aus Datenbankmethode() ---------------------------------- ");
-                System.out.println("Spieler " + playerNumber);
-                System.out.println("Schwierigkeit " + difficulty);
-                System.out.println("hast du Karten ? " + haveCards);
-                System.out.println("Fehlende Karten: " + fehlendeKartenString);
+    //  übel komplizierte SQL abfrage abhängig der Eingabe
+    public Cursor readFilteredData(String playerNumber, String difficulty, boolean haveCards, String fehlendeKartenString) {
 
-                    // Öffnet eine Verbindung zur SQLite-Datenbank
-                SQLiteDatabase db = this.getReadableDatabase();
+        // Öffnet eine Verbindung zur SQLite-Datenbank
+        SQLiteDatabase db = this.getReadableDatabase();
 
-                    // Erstellt die selection-Zeichenkette und filtert nach Spieleranzahl
-                String selection = COLUMN_SPIELERANZAHL_MIN + " <= ? AND " + COLUMN_SPIELERANZAHL_MAX + " >= ?";
-                List<String> selectionArgsList = new ArrayList<>();
-                selectionArgsList.add(playerNumber);
-                selectionArgsList.add(playerNumber);
+        // Erstellt die selection-Zeichenkette und filtert nach Spieleranzahl
+        String selection = COLUMN_SPIELERANZAHL_MIN + " <= ? AND " + COLUMN_SPIELERANZAHL_MAX + " >= ?";
+        List<String> selectionArgsList = new ArrayList<>();
+        selectionArgsList.add(playerNumber);
+        selectionArgsList.add(playerNumber);
 
-                    // Überprüft die Schwierigkeitsstufe, falls angegeben
-                if (difficulty != null && !difficulty.equalsIgnoreCase("egal")) {
-                    selection += " AND " + COLUMN_SCHWIERIGKEITSGRAD + " = ?";
-                    selectionArgsList.add(difficulty.toLowerCase());
+        // Überprüft die Schwierigkeitsstufe, falls angegeben
+        if (difficulty != null && !difficulty.equalsIgnoreCase("egal")) {
+            selection += " AND " + COLUMN_SCHWIERIGKEITSGRAD + " = ?";
+            selectionArgsList.add(difficulty.toLowerCase());
+        }
+
+        // Überprüft, ob der Spieler Karten benötigt oder nicht
+        if (haveCards) {
+            if (fehlendeKartenString != null && !fehlendeKartenString.isEmpty()) {
+                // Teilt den fehlendeKartenString in einzelne Karten auf
+                String[] fehlendeKarten = fehlendeKartenString.split(",");
+
+                // Erzeugt eine Bedingung, um Spiele auszuschließen, die fehlende Karten benötigen
+                StringBuilder excludeCondition = new StringBuilder();
+                for (String karte : fehlendeKarten) {
+                    excludeCondition.append(" AND (" + COLUMN_BENÖTIGTE_KARTEN + " IS NULL OR " + COLUMN_BENÖTIGTE_KARTEN + " = '' OR " + COLUMN_BENÖTIGTE_KARTEN + " NOT LIKE '%" + karte.trim() + "%')");
                 }
-
-                    // Überprüft, ob der Spieler Karten benötigt oder nicht
-                if (haveCards) {
-                    System.out.println("DB: Spieler hat Karten");
-                    if (fehlendeKartenString != null && !fehlendeKartenString.isEmpty()) {
-                        // Teilt den fehlendeKartenString in einzelne Karten auf
-                        String[] fehlendeKarten = fehlendeKartenString.split(",");
-
-                        // Erzeugt eine Bedingung, um Spiele auszuschließen, die fehlende Karten benötigen
-                        StringBuilder excludeCondition = new StringBuilder();
-                        for (String karte : fehlendeKarten) {
-                            excludeCondition.append(" AND (" + COLUMN_BENÖTIGTE_KARTEN + " IS NULL OR " + COLUMN_BENÖTIGTE_KARTEN + " = '' OR " + COLUMN_BENÖTIGTE_KARTEN + " NOT LIKE '%" + karte.trim() + "%')");
-                        }
-
-                        selection += excludeCondition.toString();
-                        System.out.println("Exclude Condition: " + excludeCondition.toString());
-                    }
-                } else {
-                    System.out.println("DB: Spieler hat keine Karten");
-                    // Filtert Spiele aus, bei denen Spielkarten benötigt werden
-                    selection += " AND (" + COLUMN_BENÖTIGTE_KARTEN + " IS NULL OR " + COLUMN_BENÖTIGTE_KARTEN + " = 'keine')";
-                }
-
-                    // Konvertiert die selectionArgsList in ein String-Array
-                String[] selectionArgs = selectionArgsList.toArray(new String[0]);
-
-                System.out.println("Selection: " + selection);
-                System.out.println("SelectionArgs: " + Arrays.toString(selectionArgs));
-
-                Cursor cursor = db.query(TABLE_NAME, null, selection, selectionArgs, null, null, null);
-                return cursor;
+                selection += excludeCondition.toString();
             }
+        } else {
+            // Filtert Spiele aus, bei denen Spielkarten benötigt werden
+            selection += " AND (" + COLUMN_BENÖTIGTE_KARTEN + " IS NULL OR " + COLUMN_BENÖTIGTE_KARTEN + " = 'keine')";
+        }
+
+        // Konvertiert die selectionArgsList in ein String-Array
+        String[] selectionArgs = selectionArgsList.toArray(new String[0]);
+        Cursor cursor = db.query(TABLE_NAME, null, selection, selectionArgs, null, null, null);
+        return cursor;
+    }
+
     //  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
 
     public void updateData(String row_id, String title, String spielregel, String benötigteKarten, int spieleranzahlMin, int spieleranzahlMax, int spieldauerMin, int spieldauerMax, String schwierigkeitsgrad) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-            // füge neue Werte der DB hinzu.
+        // füge neue Werte der DB hinzu.
         cv.put(COLUMN_TITLE, title);
         cv.put(COLUMN_SPIELREGEL, spielregel);
         cv.put(COLUMN_BENÖTIGTE_KARTEN, benötigteKarten);
@@ -194,7 +178,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_SCHWIERIGKEITSGRAD, schwierigkeitsgrad);
         cv.put(COLUMN_CREATOR, "user");
 
-            // Prüfe ob Update erfolgreich war.
+        // Prüfe ob Update erfolgreich war.
         long result = db.update(TABLE_NAME, cv, COLUMN_ID + "=?", new String[]{row_id});
         if (result == -1) {
             Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
@@ -203,7 +187,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-        //  Eine Zeile in meiner DB löschen
+    //  Eine Zeile in meiner DB löschen
     public void deleteOneRow(String row_id) {
         SQLiteDatabase db = this.getWritableDatabase();
         long result = db.delete(TABLE_NAME, COLUMN_ID + "=?", new String[]{row_id});
@@ -214,11 +198,11 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-        //  JSON Code zur Datenbank hinzuzufügen.
+    //  JSON Code zur Datenbank hinzuzufügen.
     public void addJsonDataToDatabase(SQLiteDatabase db) {
         List<Article> articles = new ArrayList<>();
         try {
-                // JSON-Daten aus der Ressource laden
+            // JSON-Daten aus der Ressource laden
             String jsonData = loadJSONFromResource();
             JSONObject jsonObject = new JSONObject(jsonData);
             db.beginTransaction();
@@ -226,12 +210,12 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             try {
                 ContentValues cv = new ContentValues();
                 for (int i = 1; i <= 13; i++) {
-                        // Den Schlüssel für jedes Spiel dynamisch generieren (z.B. "Game_1", "Game_2")
+                    // Den Schlüssel für jedes Spiel dynamisch generieren (z.B. "Game_1", "Game_2")
                     String gameKey = "Game_" + i;
                     JSONArray gameArray = jsonObject.getJSONArray(gameKey);
                     JSONObject game = gameArray.getJSONObject(0);
 
-                        // Daten für das Spiel aus dem JSON-Objekt auslesen
+                    // Daten für das Spiel aus dem JSON-Objekt auslesen
                     String id = "";
                     String name = game.getString("name");
                     String spielregeln = game.getString("Regeln");
@@ -243,11 +227,11 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                     String schwierigkeitsgrad = game.getString("Schwierigkeitsgrad");
                     String creator = "creator";
 
-                        // Artikel erstellen und der Liste hinzufügen
+                    // Artikel erstellen und der Liste hinzufügen
                     Article article = new Article(id, name, spielregeln, benötigteKarten, maxSpieleranzahl, minSpieleranzahl, maxSpieldauer, minSpieldauer, schwierigkeitsgrad, creator);
                     articles.add(article);
 
-                        // Artikel zur Datenbank hinzufügen
+                    // Artikel zur Datenbank hinzufügen
                     cv.clear();
                     cv.put(COLUMN_TITLE, name);
                     cv.put(COLUMN_SPIELREGEL, spielregeln);
@@ -274,7 +258,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     private String loadJSONFromResource() {
         String json = null;
         try {
-                // JSON-Datei aus der Ressource lesen
+            // JSON-Datei aus der Ressource lesen
             InputStream is = context.getResources().openRawResource(R.raw.kartenspiele);
             int size = is.available();
             byte[] buffer = new byte[size];

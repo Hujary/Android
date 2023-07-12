@@ -88,7 +88,6 @@ public class QuestionTwoActivity extends AppCompatActivity {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 chosenAnswer = antwortenArray[newVal];
-                System.out.println(chosenAnswer);
             }
         });
     }

@@ -32,10 +32,10 @@ public class HomeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         // Object references
-        Button myButton = root.findViewById(R.id.button);
-        TextView textView2 = root.findViewById(R.id.textView2);
-        Button buttonGame1 = root.findViewById(R.id.button6);
-        buttonGame2 = root.findViewById(R.id.button15);
+        Button myButton = root.findViewById(R.id.startSearchButton);
+        TextView textView2 = root.findViewById(R.id.appTitle);
+        Button buttonGame1 = root.findViewById(R.id.playButtonGame1);
+        buttonGame2 = root.findViewById(R.id.playButtonGame2);
 
         buttonGame1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,7 +73,6 @@ public class HomeFragment extends Fragment {
 
         // Set the formatted text in the TextView
         textView2.setText(spannableString);
-
         return root;
     }
 
@@ -84,7 +83,6 @@ public class HomeFragment extends Fragment {
     private void disableButton2Temporarily() {
         isButton2Clickable = false;
         buttonGame2.setEnabled(false);
-
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override

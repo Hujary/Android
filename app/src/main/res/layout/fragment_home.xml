@@ -30,7 +30,7 @@
                 android:gravity="center">
 
                 <TextView
-                    android:id="@+id/textView9"
+                    android:id="@+id/Game1Header"
                     android:layout_width="match_parent"
                     android:layout_height="43dp"
                     android:text="Höher/Tiefer"
@@ -39,7 +39,7 @@
                     android:gravity="center" />
 
                 <TextView
-                    android:id="@+id/textView10"
+                    android:id="@+id/p1Game1"
                     android:layout_width="match_parent"
                     android:layout_height="38dp"
                     android:textSize="14dp"
@@ -48,7 +48,7 @@
                     android:textColor="@color/lightblue1" />
 
                 <TextView
-                    android:id="@+id/textView11"
+                    android:id="@+id/p2Game1"
                     android:layout_width="match_parent"
                     android:layout_height="61dp"
                     android:gravity="center"
@@ -56,7 +56,7 @@
                     android:textColor="@color/white" />
 
                 <Button
-                    android:id="@+id/button6"
+                    android:id="@+id/playButtonGame1"
                     android:layout_width="101dp"
                     android:layout_height="37dp"
                     android:background="@drawable/rounded_button_background_small"
@@ -84,7 +84,7 @@
                 android:gravity="center">
 
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/Game2Header"
                     android:layout_width="match_parent"
                     android:layout_height="43dp"
                     android:text="Busfahrer"
@@ -93,7 +93,7 @@
                     android:gravity="center" />
 
                 <TextView
-                    android:id="@+id/textView13"
+                    android:id="@+id/p1Game2"
                     android:layout_width="match_parent"
                     android:layout_height="38dp"
                     android:textSize="14dp"
@@ -102,7 +102,7 @@
                     android:textColor="@color/lightblue1" />
 
                 <TextView
-                    android:id="@+id/textView14"
+                    android:id="@+id/p2Game2"
                     android:layout_width="match_parent"
                     android:layout_height="61dp"
                     android:gravity="center"
@@ -110,7 +110,7 @@
                     android:textColor="@color/white" />
 
                 <Button
-                    android:id="@+id/button15"
+                    android:id="@+id/playButtonGame2"
                     android:layout_width="101dp"
                     android:layout_height="37dp"
                     android:background="@drawable/rounded_button_background_small"
@@ -124,7 +124,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/appTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
@@ -145,18 +145,18 @@
         app:layout_constraintTop_toBottomOf="@id/linearLayout" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/appText"
         android:layout_width="match_parent"
         android:layout_height="133dp"
         android:layout_marginTop="32dp"
         android:text="@string/Home_Start_Game"
         android:textAlignment="center"
         android:textSize="30dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/appTitle"
         tools:layout_editor_absoluteX="0dp" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/startSearchButton"
         android:layout_width="343dp"
         android:layout_height="75dp"
         android:layout_marginStart="37dp"
@@ -170,6 +170,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/appText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

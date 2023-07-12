@@ -89,7 +89,6 @@ public class allCardAdapter extends RecyclerView.Adapter<allCardAdapter.BestSell
                 }
                 notifyItemChanged(position);
                 if (onItemClickListener != null) {
-                    System.out.println("Spielkarte angeklickt" + position);
                     onItemClickListener.onItemClick(spielkarte, position);
                 }
             }

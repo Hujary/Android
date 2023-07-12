@@ -52,7 +52,7 @@ public class QuestionOneActivity extends AppCompatActivity implements NumberPick
             public void onClick(View v) { finish(); }
         });
 
-            // Change the format of numbers in the number picker
+        // Change the format of numbers in the number picker
         numberPicker.setFormatter(new NumberPicker.Formatter() {
             @Override
             public String format(int i) {
@@ -70,11 +70,11 @@ public class QuestionOneActivity extends AppCompatActivity implements NumberPick
 
     private void startNextActivity() {
 
-            // Pass the chosen number as data to the Singelton Object
+        // Pass the chosen number as data to the Singelton Object
         int buttonNumber = chosenNumber;
         gameDataSingelton.setNumberOfPlayers(buttonNumber);
 
-            // Starte Frage 2 Activity
+        // Starte Frage 2 Activity
         Intent intent = new Intent(QuestionOneActivity.this, QuestionTwoActivity.class);
         startActivity(intent);
     }

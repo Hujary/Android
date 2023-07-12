@@ -32,7 +32,7 @@ public class DetailedGameInformationActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-                // holt sich die information aus dem Intent
+            // holt sich die information aus dem Intent
             String title = extras.getString("title");
             String cardNumber = extras.getString("cardNumber");
             int playerNumberMin = extras.getInt("playerNumberMin");
@@ -42,16 +42,12 @@ public class DetailedGameInformationActivity extends AppCompatActivity {
             String difficulty = extras.getString("difficulty");
             String rules = extras.getString("rules");
 
-
-
-                // Verwendet die übergebenen Werte, um die Ansichten in Ihrem Layout zu aktualisieren
-
+            // Verwendet die übergebenen Werte, um die Ansichten in Ihrem Layout zu aktualisieren
             TextView titleTextView = findViewById(R.id.gameNameTextView);
             String emoji = "\uD83C\uDF7B";
             titleTextView.setText(title + " " + emoji);
 
-                // Custom Formatierung
-
+            // Custom Formatierung
             TextView playerNumberTextView = findViewById(R.id.playerCountTextView);
             String TextSpieler = "Benötigte Spieler: " + playerNumberMin + " - " + playerNumberMax;
             SpannableString spannableString1 = new SpannableString(TextSpieler);
@@ -70,7 +66,7 @@ public class DetailedGameInformationActivity extends AppCompatActivity {
             spannableString3.setSpan(new StyleSpan(Typeface.BOLD), 0, 13, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             difficultyTextView.setText(spannableString3);
 
-                // Regeln formatieren
+            // Regeln formatieren
             TextView rulesTextView = findViewById(R.id.rulesTextView);
             SpannableStringBuilder builder = new SpannableStringBuilder(rules);
             char insertedChar = '\n';
@@ -83,32 +79,30 @@ public class DetailedGameInformationActivity extends AppCompatActivity {
                     x++;
                 }
             }
-
-            //builder.delete(0,2);
-
             SpannableString spannableString4 = new SpannableString(builder);
             rulesTextView.setText(spannableString4);
 
-                // RecyclerView und Adapter einrichten
+            // RecyclerView und Adapter einrichten
             RecyclerView recyclerView = findViewById(R.id.CardsRecyclerview);
             LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
             recyclerView.setLayoutManager(layoutManager);
             String cardNumberCUT = extras.getString("cardNumber");
             String[] cardNumbers = cardNumberCUT.split(",");
 
-            List<SpielKarten> spielKartenList = new ArrayList<>(); // Erstelle eine Liste mit Spielkarten-Objekten
+            // Erstelle eine Liste mit Spielkarten-Objekten
+            List<SpielKarten> spielKartenList = new ArrayList<>();
 
             for (String number : cardNumbers) {
                 int drawableResourceId = getResources().getIdentifier(number.trim(), "drawable", getPackageName());
                 spielKartenList.add(new SpielKarten(drawableResourceId, number.trim()));
             }
 
-                //  Adapter für das Anzeigen der Spielkarten
+            //  Adapter für das Anzeigen der Spielkarten
             DetailedCardListAdapter adapter2 = new DetailedCardListAdapter(spielKartenList);
             recyclerView.setAdapter(adapter2);
         }
 
-            // Logik um Intent zu beenden
+        // Logik um Intent zu beenden
         FloatingActionButton fabButton = findViewById(R.id.returnFabButton);
         fabButton.setOnClickListener(new View.OnClickListener() {
             @Override
