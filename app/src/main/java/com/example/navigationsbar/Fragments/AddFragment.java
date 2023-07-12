@@ -82,41 +82,45 @@ public class AddFragment extends Fragment {
             recyclerView.setAdapter(addRecyclerAdapter);
         } else {
             // Adapterdaten aktualisieren
+            addRecyclerAdapter.updateData(game_id, game_title, game_spielregel, game_benötigteKarten, game_spieleranzahlMin, game_spieleranzahlMax, game_spieldauerMin, game_spieldauerMax, game_schwierigkeitsgrad, game_creator);
             addRecyclerAdapter.notifyDataSetChanged();
+        }
+
+        // Überprüfe, ob der RecyclerView leer ist
+        if (game_id.isEmpty()) {
+            empty_imageview.setVisibility(View.VISIBLE);
+            no_data.setVisibility(View.VISIBLE);
+        } else {
+            empty_imageview.setVisibility(View.GONE);
+            no_data.setVisibility(View.GONE);
         }
     }
 
     // Speichert die Eingabe in der DB
     void storeDataInArrays() {
         Cursor cursor = myDB.readUserAddedData();
-        if (cursor.getCount() == 0) {
-            empty_imageview.setVisibility(View.VISIBLE);
-            no_data.setVisibility(View.VISIBLE);
-        } else {
-            game_id.clear();
-            game_title.clear();
-            game_spielregel.clear();
-            game_benötigteKarten.clear();
-            game_spieleranzahlMin.clear();
-            game_spieleranzahlMax.clear();
-            game_spieldauerMin.clear();
-            game_spieldauerMax.clear();
-            game_schwierigkeitsgrad.clear();
-            game_creator.clear();
-            while (cursor.moveToNext()) {
-                game_id.add(cursor.getString(0));
-                game_title.add(cursor.getString(1));
-                game_spielregel.add(cursor.getString(2));
-                game_benötigteKarten.add(cursor.getString(3));
-                game_spieleranzahlMin.add(cursor.getString(4));
-                game_spieleranzahlMax.add(cursor.getString(5));
-                game_spieldauerMin.add(cursor.getString(6));
-                game_spieldauerMax.add(cursor.getString(7));
-                game_schwierigkeitsgrad.add(cursor.getString(8));
-                game_creator.add(cursor.getString(9));
-            }
-            empty_imageview.setVisibility(View.GONE);
-            no_data.setVisibility(View.GONE);
+        game_id.clear();
+        game_title.clear();
+        game_spielregel.clear();
+        game_benötigteKarten.clear();
+        game_spieleranzahlMin.clear();
+        game_spieleranzahlMax.clear();
+        game_spieldauerMin.clear();
+        game_spieldauerMax.clear();
+        game_schwierigkeitsgrad.clear();
+        game_creator.clear();
+        while (cursor.moveToNext()) {
+            game_id.add(cursor.getString(0));
+            game_title.add(cursor.getString(1));
+            game_spielregel.add(cursor.getString(2));
+            game_benötigteKarten.add(cursor.getString(3));
+            game_spieleranzahlMin.add(cursor.getString(4));
+            game_spieleranzahlMax.add(cursor.getString(5));
+            game_spieldauerMin.add(cursor.getString(6));
+            game_spieldauerMax.add(cursor.getString(7));
+            game_schwierigkeitsgrad.add(cursor.getString(8));
+            game_creator.add(cursor.getString(9));
         }
+        cursor.close();
     }
 }
