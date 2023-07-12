@@ -77,9 +77,6 @@ public class AddActivity extends AppCompatActivity implements allCardAdapter.OnI
                     int spieldauerMax = Integer.parseInt(spieldauerMax_input.getText().toString().trim());
                     String schwierigkeitsgrad = schwierigkeitsgradSpinner.getSelectedItem().toString().trim();
 
-                    // Gib den String mit den ausgewählten Karten aus
-                    System.out.println(selectedCardNamesString);
-
                     myDB.addArticle(
                             title,
                             spielregel,
@@ -120,62 +117,16 @@ public class AddActivity extends AppCompatActivity implements allCardAdapter.OnI
         List<SpielKarten> spielKartenList = new ArrayList<>();
 
         // Füge deine Spielkarten zur spielKartenList hinzu
-        spielKartenList.add(new SpielKarten(R.drawable.herz_zwei, "herz_zwei"));
-        spielKartenList.add(new SpielKarten(R.drawable.herz_drei, "herz_drei"));
-        spielKartenList.add(new SpielKarten(R.drawable.herz_vier, "herz_vier"));
-        spielKartenList.add(new SpielKarten(R.drawable.herz_fuenf, "herz_fuenf"));
-        spielKartenList.add(new SpielKarten(R.drawable.herz_sechs, "herz_sechs"));
-        spielKartenList.add(new SpielKarten(R.drawable.herz_sieben, "herz_sieben"));
-        spielKartenList.add(new SpielKarten(R.drawable.herz_acht, "herz_acht"));
-        spielKartenList.add(new SpielKarten(R.drawable.herz_neun, "herz_neun"));
-        spielKartenList.add(new SpielKarten(R.drawable.herz_zehn, "herz_zehn"));
-        spielKartenList.add(new SpielKarten(R.drawable.herz_bube, "herz_bube"));
-        spielKartenList.add(new SpielKarten(R.drawable.herz_dame, "herz_dame"));
-        spielKartenList.add(new SpielKarten(R.drawable.herz_koenig, "herz_koenig"));
-        spielKartenList.add(new SpielKarten(R.drawable.herz_ass, "herz_ass"));
+        String[] suits = {"herz", "karo", "pik", "kreuz"};
+        String[] values = {"zwei", "drei", "vier", "fuenf", "sechs", "sieben", "acht", "neun", "zehn", "bube", "dame", "koenig", "ass"};
 
-        spielKartenList.add(new SpielKarten(R.drawable.karo_zwei, "karo_zwei"));
-        spielKartenList.add(new SpielKarten(R.drawable.karo_drei, "karo_drei"));
-        spielKartenList.add(new SpielKarten(R.drawable.karo_vier, "karo_vier"));
-        spielKartenList.add(new SpielKarten(R.drawable.karo_fuenf, "karo_fuenf"));
-        spielKartenList.add(new SpielKarten(R.drawable.karo_sechs, "karo_sechs"));
-        spielKartenList.add(new SpielKarten(R.drawable.karo_sieben, "karo_sieben"));
-        spielKartenList.add(new SpielKarten(R.drawable.karo_acht, "karo_acht"));
-        spielKartenList.add(new SpielKarten(R.drawable.karo_neun, "karo_neun"));
-        spielKartenList.add(new SpielKarten(R.drawable.karo_zehn, "karo_zehn"));
-        spielKartenList.add(new SpielKarten(R.drawable.karo_bube, "karo_bube"));
-        spielKartenList.add(new SpielKarten(R.drawable.karo_dame, "karo_dame"));
-        spielKartenList.add(new SpielKarten(R.drawable.karo_koenig, "karo_koenig"));
-        spielKartenList.add(new SpielKarten(R.drawable.karo_ass, "karo_ass"));
-
-        spielKartenList.add(new SpielKarten(R.drawable.pik_zwei, "pik_zwei"));
-        spielKartenList.add(new SpielKarten(R.drawable.pik_drei, "pik_drei"));
-        spielKartenList.add(new SpielKarten(R.drawable.pik_vier, "pik_vier"));
-        spielKartenList.add(new SpielKarten(R.drawable.pik_fuenf, "pik_fuenf"));
-        spielKartenList.add(new SpielKarten(R.drawable.pik_sechs, "pik_sechs"));
-        spielKartenList.add(new SpielKarten(R.drawable.pik_sieben, "pik_sieben"));
-        spielKartenList.add(new SpielKarten(R.drawable.pik_acht, "pik_acht"));
-        spielKartenList.add(new SpielKarten(R.drawable.pik_neun, "pik_neun"));
-        spielKartenList.add(new SpielKarten(R.drawable.pik_zehn, "pik_zehn"));
-        spielKartenList.add(new SpielKarten(R.drawable.pik_bube, "pik_bube"));
-        spielKartenList.add(new SpielKarten(R.drawable.pik_dame, "pik_dame"));
-        spielKartenList.add(new SpielKarten(R.drawable.pik_koenig, "pik_koenig"));
-        spielKartenList.add(new SpielKarten(R.drawable.pik_ass, "pik_ass"));
-
-        spielKartenList.add(new SpielKarten(R.drawable.kreuz_zwei, "kreuz_zwei"));
-        spielKartenList.add(new SpielKarten(R.drawable.kreuz_drei, "kreuz_drei"));
-        spielKartenList.add(new SpielKarten(R.drawable.kreuz_vier, "kreuz_vier"));
-        spielKartenList.add(new SpielKarten(R.drawable.kreuz_fuenf, "kreuz_fuenf"));
-        spielKartenList.add(new SpielKarten(R.drawable.kreuz_sechs, "kreuz_sechs"));
-        spielKartenList.add(new SpielKarten(R.drawable.kreuz_sieben, "kreuz_sieben"));
-        spielKartenList.add(new SpielKarten(R.drawable.kreuz_acht, "kreuz_acht"));
-        spielKartenList.add(new SpielKarten(R.drawable.kreuz_neun, "kreuz_neun"));
-        spielKartenList.add(new SpielKarten(R.drawable.kreuz_zehn, "kreuz_zehn"));
-        spielKartenList.add(new SpielKarten(R.drawable.kreuz_bube, "kreuz_bube"));
-        spielKartenList.add(new SpielKarten(R.drawable.kreuz_dame, "kreuz_dame"));
-        spielKartenList.add(new SpielKarten(R.drawable.kreuz_koenig, "kreuz_koenig"));
-        spielKartenList.add(new SpielKarten(R.drawable.kreuz_ass, "kreuz_ass"));
-
+        for (String suit : suits) {
+            for (String value : values) {
+                int resourceId = getResources().getIdentifier(suit + "_" + value, "drawable", getPackageName());
+                spielKartenList.add(new SpielKarten(resourceId, suit + "_" + value));
+            }
+        }
+        //  Liste dem Adapter hinzufügen
         allCardAdapter adapter1 = new allCardAdapter(spielKartenList, selectedCardsList1, true);
         recyclerView.setAdapter(adapter1);
         adapter1.setOnItemClickListener(this);
@@ -192,13 +143,7 @@ public class AddActivity extends AppCompatActivity implements allCardAdapter.OnI
 
     @Override
     public void onApiCallComplete(String result) {
-        // Hier kannst du den Toast anzeigen
         Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
-    }
-
-    private boolean isTitleValid(String title) {
-        int maxLength = 20;
-        return title.length() <= maxLength;
     }
 
     private boolean validateInputs() {
@@ -221,6 +166,23 @@ public class AddActivity extends AppCompatActivity implements allCardAdapter.OnI
             Toast.makeText(this, "Der Titel darf maximal 20 Zeichen haben", Toast.LENGTH_SHORT).show();
             return false;
         }
+
+        // Überprüfen, ob die Spieleranzahl gültig ist
+        int minSpieleranzahl = Integer.parseInt(spieleranzahlMin);
+        int maxSpieleranzahl = Integer.parseInt(spieleranzahlMax);
+        if (minSpieleranzahl >= maxSpieleranzahl) {
+            Toast.makeText(this, "Die maximale Spieleranzahl muss größer als die minimale Spieleranzahl sein", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        // Überprüfen, ob die Spieldauer gültig ist
+        int minSpieldauer = Integer.parseInt(spieldauerMin);
+        int maxSpieldauer = Integer.parseInt(spieldauerMax);
+        if (minSpieldauer >= maxSpieldauer) {
+            Toast.makeText(this, "Die maximale Spieldauer muss größer als die minimale Spieldauer sein", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
         return true;        // Alle Eingaben sind vorhanden und gültig
     }
 

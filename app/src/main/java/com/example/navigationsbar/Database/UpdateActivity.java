@@ -64,60 +64,15 @@ public class UpdateActivity extends AppCompatActivity implements allCardAdapter.
         List<SpielKarten> spielKartenList = new ArrayList<>();
 
         // Füge deine Spielkarten zur spielKartenList hinzu
-        spielKartenList.add(new SpielKarten(R.drawable.herz_zwei, "herz_zwei"));
-        spielKartenList.add(new SpielKarten(R.drawable.herz_drei, "herz_drei"));
-        spielKartenList.add(new SpielKarten(R.drawable.herz_vier, "herz_vier"));
-        spielKartenList.add(new SpielKarten(R.drawable.herz_fuenf, "herz_fuenf"));
-        spielKartenList.add(new SpielKarten(R.drawable.herz_sechs, "herz_sechs"));
-        spielKartenList.add(new SpielKarten(R.drawable.herz_sieben, "herz_sieben"));
-        spielKartenList.add(new SpielKarten(R.drawable.herz_acht, "herz_acht"));
-        spielKartenList.add(new SpielKarten(R.drawable.herz_neun, "herz_neun"));
-        spielKartenList.add(new SpielKarten(R.drawable.herz_zehn, "herz_zehn"));
-        spielKartenList.add(new SpielKarten(R.drawable.herz_bube, "herz_bube"));
-        spielKartenList.add(new SpielKarten(R.drawable.herz_dame, "herz_dame"));
-        spielKartenList.add(new SpielKarten(R.drawable.herz_koenig, "herz_koenig"));
-        spielKartenList.add(new SpielKarten(R.drawable.herz_ass, "herz_ass"));
+        String[] suits = {"herz", "karo", "pik", "kreuz"};
+        String[] values = {"zwei", "drei", "vier", "fuenf", "sechs", "sieben", "acht", "neun", "zehn", "bube", "dame", "koenig", "ass"};
 
-        spielKartenList.add(new SpielKarten(R.drawable.karo_zwei, "karo_zwei"));
-        spielKartenList.add(new SpielKarten(R.drawable.karo_drei, "karo_drei"));
-        spielKartenList.add(new SpielKarten(R.drawable.karo_vier, "karo_vier"));
-        spielKartenList.add(new SpielKarten(R.drawable.karo_fuenf, "karo_fuenf"));
-        spielKartenList.add(new SpielKarten(R.drawable.karo_sechs, "karo_sechs"));
-        spielKartenList.add(new SpielKarten(R.drawable.karo_sieben, "karo_sieben"));
-        spielKartenList.add(new SpielKarten(R.drawable.karo_acht, "karo_acht"));
-        spielKartenList.add(new SpielKarten(R.drawable.karo_neun, "karo_neun"));
-        spielKartenList.add(new SpielKarten(R.drawable.karo_zehn, "karo_zehn"));
-        spielKartenList.add(new SpielKarten(R.drawable.karo_bube, "karo_bube"));
-        spielKartenList.add(new SpielKarten(R.drawable.karo_dame, "karo_dame"));
-        spielKartenList.add(new SpielKarten(R.drawable.karo_koenig, "karo_koenig"));
-        spielKartenList.add(new SpielKarten(R.drawable.karo_ass, "karo_ass"));
-
-        spielKartenList.add(new SpielKarten(R.drawable.pik_zwei, "pik_zwei"));
-        spielKartenList.add(new SpielKarten(R.drawable.pik_drei, "pik_drei"));
-        spielKartenList.add(new SpielKarten(R.drawable.pik_vier, "pik_vier"));
-        spielKartenList.add(new SpielKarten(R.drawable.pik_fuenf, "pik_fuenf"));
-        spielKartenList.add(new SpielKarten(R.drawable.pik_sechs, "pik_sechs"));
-        spielKartenList.add(new SpielKarten(R.drawable.pik_sieben, "pik_sieben"));
-        spielKartenList.add(new SpielKarten(R.drawable.pik_acht, "pik_acht"));
-        spielKartenList.add(new SpielKarten(R.drawable.pik_neun, "pik_neun"));
-        spielKartenList.add(new SpielKarten(R.drawable.pik_zehn, "pik_zehn"));
-        spielKartenList.add(new SpielKarten(R.drawable.pik_bube, "pik_bube"));
-        spielKartenList.add(new SpielKarten(R.drawable.pik_dame, "pik_dame"));
-        spielKartenList.add(new SpielKarten(R.drawable.pik_koenig, "pik_koenig"));
-        spielKartenList.add(new SpielKarten(R.drawable.pik_ass, "pik_ass"));
-
-        spielKartenList.add(new SpielKarten(R.drawable.kreuz_zwei, "kreuz_zwei"));
-        spielKartenList.add(new SpielKarten(R.drawable.kreuz_drei, "kreuz_drei"));
-        spielKartenList.add(new SpielKarten(R.drawable.kreuz_vier, "kreuz_vier"));
-        spielKartenList.add(new SpielKarten(R.drawable.kreuz_fuenf, "kreuz_fuenf"));
-        spielKartenList.add(new SpielKarten(R.drawable.kreuz_sechs, "kreuz_sechs"));
-        spielKartenList.add(new SpielKarten(R.drawable.kreuz_sieben, "kreuz_sieben"));
-        spielKartenList.add(new SpielKarten(R.drawable.kreuz_acht, "kreuz_acht"));
-        spielKartenList.add(new SpielKarten(R.drawable.kreuz_neun, "kreuz_neun"));
-        spielKartenList.add(new SpielKarten(R.drawable.kreuz_zehn, "kreuz_zehn"));
-        spielKartenList.add(new SpielKarten(R.drawable.kreuz_bube, "kreuz_bube"));
-        spielKartenList.add(new SpielKarten(R.drawable.kreuz_dame, "kreuz_dame"));
-        spielKartenList.add(new SpielKarten(R.drawable.kreuz_koenig, "kreuz_koenig"));
+        for (String suit : suits) {
+            for (String value : values) {
+                int resourceId = getResources().getIdentifier(suit + "_" + value, "drawable", getPackageName());
+                spielKartenList.add(new SpielKarten(resourceId, suit + "_" + value));
+            }
+        }
 
         adapter1 = new allCardAdapter(spielKartenList, selectedPositions, false);
         recyclerView.setAdapter(adapter1);
@@ -240,6 +195,23 @@ public class UpdateActivity extends AppCompatActivity implements allCardAdapter.
             Toast.makeText(this, "Der Titel darf maximal 20 Zeichen haben.", Toast.LENGTH_SHORT).show();
             return false;
         }
+
+        // Überprüfen, ob die Spieleranzahl gültig ist
+        int minSpieleranzahl = Integer.parseInt(spieleranzahlMin);
+        int maxSpieleranzahl = Integer.parseInt(spieleranzahlMax);
+        if (minSpieleranzahl >= maxSpieleranzahl) {
+            Toast.makeText(this, "Die Mindestspieleranzahl muss kleiner als die Höchstspieleranzahl sein.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        // Überprüfen, ob die Spieldauer gültig ist
+        int minSpieldauer = Integer.parseInt(spieldauerMin);
+        int maxSpieldauer = Integer.parseInt(spieldauerMax);
+        if (minSpieldauer >= maxSpieldauer) {
+            Toast.makeText(this, "Die Mindestspieldauer muss kleiner als die Höchstspieldauer sein.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
         return true;        // Alle Eingaben sind vorhanden und gültig
     }
 
