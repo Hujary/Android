@@ -29,7 +29,7 @@ public class AddRecyclerAdapter extends RecyclerView.Adapter<AddRecyclerAdapter.
     private Activity activity;
     private ArrayList<String> idList, titleList, spielregelnList, benötigteKartenList, spieleranzahlMinList, spieleranzahlMaxList, spieldauerMinList, spieldauerMaxList, schwierigkeitsgradList, creatorList;
 
-    public AddRecyclerAdapter(FragmentActivity activity, Context context, ArrayList game_id, ArrayList game_title, ArrayList game_spielregel, ArrayList game_benötigteKarten, ArrayList game_spieleranzahlMin, ArrayList game_spieleranzahlMax, ArrayList game_spieldauerMin, ArrayList game_spieldauerMax, ArrayList game_schwierigkeitsgrad, ArrayList game_creator) {
+    public AddRecyclerAdapter(FragmentActivity activity, Context context, ArrayList<String> game_id, ArrayList<String> game_title, ArrayList<String> game_spielregel, ArrayList<String> game_benötigteKarten, ArrayList<String> game_spieleranzahlMin, ArrayList<String> game_spieleranzahlMax, ArrayList<String> game_spieldauerMin, ArrayList<String> game_spieldauerMax, ArrayList<String> game_schwierigkeitsgrad, ArrayList<String> game_creator) {
         this.activity = activity;
         this.context = context;
         this.idList = game_id;
@@ -56,7 +56,7 @@ public class AddRecyclerAdapter extends RecyclerView.Adapter<AddRecyclerAdapter.
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, @SuppressLint("RecyclerView") final int position) {
 
-            //  Setze dem View Inhalt -> User muss seine Spielinhalte nicht nochmal schreiben.
+        // Setze dem View Inhalt -> User muss seine Spielinhalte nicht nochmal schreiben.
         int displayedPosition = position + 1; // Add 1 to the position to display the current item count
         holder.gameIdTxt.setText(String.valueOf(displayedPosition));
         holder.gameTitleTxt.setText(String.valueOf(titleList.get(position)));
@@ -68,7 +68,7 @@ public class AddRecyclerAdapter extends RecyclerView.Adapter<AddRecyclerAdapter.
                 System.out.println("Working" + view);
                 Intent updateIntent = new Intent(context, UpdateActivity.class);
 
-                    //  übergebe alle inhalte als String
+                // Übergebe alle Inhalte als String
                 updateIntent.putExtra("id", String.valueOf(idList.get(position)));
                 updateIntent.putExtra("title", String.valueOf(titleList.get(position)));
                 updateIntent.putExtra("spielregel", String.valueOf(spielregelnList.get(position)));
@@ -87,6 +87,19 @@ public class AddRecyclerAdapter extends RecyclerView.Adapter<AddRecyclerAdapter.
     @Override
     public int getItemCount() {
         return idList.size();
+    }
+
+    public void updateData(ArrayList<String> game_id, ArrayList<String> game_title, ArrayList<String> game_spielregel, ArrayList<String> game_benötigteKarten, ArrayList<String> game_spieleranzahlMin, ArrayList<String> game_spieleranzahlMax, ArrayList<String> game_spieldauerMin, ArrayList<String> game_spieldauerMax, ArrayList<String> game_schwierigkeitsgrad, ArrayList<String> game_creator) {
+        this.idList = game_id;
+        this.titleList = game_title;
+        this.spielregelnList = game_spielregel;
+        this.benötigteKartenList = game_benötigteKarten;
+        this.spieleranzahlMinList = game_spieleranzahlMin;
+        this.spieleranzahlMaxList = game_spieleranzahlMax;
+        this.spieldauerMinList = game_spieldauerMin;
+        this.spieldauerMaxList = game_spieldauerMax;
+        this.schwierigkeitsgradList = game_schwierigkeitsgrad;
+        this.creatorList = game_creator;
     }
 
     static class MyViewHolder extends RecyclerView.ViewHolder {
